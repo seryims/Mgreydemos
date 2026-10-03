@@ -21,8 +21,8 @@ const path = require('path');
     const fps = +process.argv[3], out = process.argv[4], dur = +(process.argv[5] || 32);
     const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
       '-c:v', 'libx264', '-preset', 'medium', '-crf', '16', '-pix_fmt', 'yuv420p', out], { stdio: ['pipe', 'inherit', 'inherit'] });
-    const N = Math.round(dur * fps);
-    for (let i = 0; i < N; i++) {
+    const N = Math.round(dur * fps); const st = +(process.argv[6] || 0);
+    for (let i = Math.round(st*fps); i < N; i++) {
       await page.evaluate(t => render(t), i / fps);
       const buf = await page.screenshot({ type: 'jpeg', quality: 95 });
       if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
