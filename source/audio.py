@@ -57,9 +57,9 @@ for j in range(int(DUR/BEAT)+1):
         kx=np.sin(ph)*np.exp(-kt/0.16); L=min(kn,N-i); kick[i:i+L]+=kx[:L]*0.32
         dl=int(.3*SR); L=min(dl,N-i); duck[i:i+L]=np.minimum(duck[i:i+L],0.45+0.55*np.linspace(0,1,dl)[:L]**0.6)
         if st>7.3:
-            hn=int(.08*SR); hx=hp(rng.standard_normal(hn),7000)*np.exp(-np.arange(hn)/SR/0.025)
+            hn=int(.08*SR); hx=lp(hp(rng.standard_normal(hn),5000),9000)*np.minimum(1,np.arange(hn)/SR/0.004)*np.exp(-np.arange(hn)/SR/0.02)
             i2=int((st+BEAT/2)*SR); L=min(hn,N-i2)
-            if L>0: hat[i2:i2+L]+=hx[:L]*0.05
+            if L>0: hat[i2:i2+L]+=hx[:L]*0.022
 mus=(pad+arp)*duck+bass*duck**0.5+kick+hat
 # expiry: lowpass section + global volume automation
 lpmix=np.clip((t-19.6)/0.4,0,1)*np.clip((24.3-t)/0.15,0,1)
@@ -99,41 +99,34 @@ def riser(d=1.7,g=.25):
 def swell(d=2.5,g=.25):
     n=int(d*SR); tt=np.arange(n)/SR; x=lp(noise(n),600)*np.sin(np.pi*tt/d)**2
     return x*g
+def soft_whoosh(d=.9,g=.08):
+    n=int(d*SR); tt=np.arange(n)/SR
+    x=lp(bp(noise(n),200,1400),1200)
+    e=np.sin(np.pi*tt/d)**3
+    return x*e*g
+def soft_bell(f,d=1.6,g=.05):
+    n=int(d*SR); tt=np.arange(n)/SR
+    x=np.sin(2*np.pi*f*tt)+.15*np.sin(4*np.pi*f*tt)
+    e=np.minimum(1,tt/0.035)*np.exp(-tt/(d/3.5))
+    return lp(x*e,2500)*g
+def soft_boom(g=.25):
+    n=int(1.8*SR); tt=np.arange(n)/SR
+    x=np.sin(2*np.pi*55*tt)*np.minimum(1,tt/0.05)*np.exp(-tt/0.6)
+    return x*g
 cues=json.load(open('cues.json'))
 for c in cues:
     s=c['s']; at=c['t']
-    if s=='whoosh': place(sfx,whoosh(.55,250,6000,.5),at-.25,1,0.2)
-    elif s=='whoosh_soft': place(sfx,whoosh(.7,200,2500,.22),at-.3,1,-0.2)
-    elif s=='tap': place(sfx,tap(),at,1)
-    elif s=='send': place(sfx,pop(600,1100,.22),at,1,.3); place(sfx,whoosh(.25,1000,6000,.12),at-.05)
-    elif s=='pop': place(sfx,pop(),at,1,-.2)
-    elif s=='chip': place(sfx,pop(1300,800,.16),at,1,.4); place(sfx,bell(2093,.4,.05),at+.03,1,.4)
-    elif s=='tick': place(sfx,tap()*.6,at,1)
-    elif s=='impact': place(sfx,impact(.55),at,1)
-    elif s=='swell': place(sfx,swell(2.5,.35),at,1)
-    elif s=='sheet': place(sfx,whoosh(.45,150,1800,.3),at-.1,1)
-    elif s=='type':
-        for j in range(19): place(sfx,tap()*.35,at+j*0.048+rng.random()*.01,1,(rng.random()-.5)*.4)
-        for j in range(4): place(sfx,tap()*.35,at+1.05+j*0.05,1)
-    elif s=='process': 
-        n=int(.55*SR); tt=np.arange(n)/SR; place(sfx,np.sin(2*np.pi*660*tt)*np.sin(np.pi*tt/.55)*0.04*(1+np.sin(2*np.pi*14*tt))/2,at,1)
+    if s in ('whoosh','sheet'): place(sfx,soft_whoosh(.9,.07),at-.45,1)
+    elif s=='swell': place(sfx,swell(2.5,.25),at,1)
+    elif s=='impact': place(sfx,soft_boom(.22),at-.03,1)
     elif s=='success':
-        for j,f in enumerate([523.25,659.25,783.99,1046.5]): place(sfx,bell(f,1.2,.13),at+j*0.07,1,(j-1.5)*.2)
+        for j,f in enumerate([523.25,659.25,783.99]): place(sfx,soft_bell(f,1.8,.045),at+j*0.09,1,(j-1)*.3)
     elif s=='success_short':
-        for j,f in enumerate([659.25,783.99,1046.5]): place(sfx,bell(f,.9,.11),at+j*0.05,1)
-    elif s=='confetti':
-        for j in range(30): place(sfx,hp(noise(int(.02*SR)),5000)*np.exp(-np.arange(int(.02*SR))/SR/.004)*.06,at+rng.random()*.6,1,rng.random()*2-1)
-    elif s=='notif': place(sfx,bell(1318.5,.7,.16),at,1); place(sfx,bell(1760,.9,.14),at+.12,1)
-    elif s=='down':
-        n=int(1.2*SR); tt=np.arange(n)/SR; f=220*np.exp(-tt*.8); place(sfx,np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-tt/.5)*.22,at,1)
-    elif s=='lock':
-        place(sfx,impact(.35),at+.2,1); n=int(.08*SR); tt=np.arange(n)/SR
-        place(sfx,(bp(noise(n),1500,5000)*np.exp(-tt/.01)*.5+np.sin(2*np.pi*900*tt)*np.exp(-tt/.02)*.2),at+.2,1)
-    elif s=='unlock':
-        n=int(.08*SR); tt=np.arange(n)/SR
-        place(sfx,(bp(noise(n),2000,7000)*np.exp(-tt/.01)*.4+np.sin(2*np.pi*1400*tt)*np.exp(-tt/.02)*.2),at+.15,1)
-    elif s=='riser': place(sfx,riser(1.7,.22),at,1)
-    elif s=='outro_tail': pass
+        for j,f in enumerate([659.25,783.99]): place(sfx,soft_bell(f,1.4,.04),at+j*0.08,1)
+    elif s=='notif': place(sfx,soft_bell(880,1.4,.04),at,1); place(sfx,soft_bell(1046.5,1.6,.035),at+.15,1)
+    elif s=='down': place(sfx,soft_bell(220,2.0,.08),at,1)
+    elif s=='riser': place(sfx,lp(riser(1.7,.12),2000),at,1)
+    # taps, pops, clicks, typing, confetti, chips, lock clicks: removed
 # reverb-ish: sum of delays on sfx
 for c in (0,1):
     x=sfx[c]; r=np.zeros(N)
