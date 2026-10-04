@@ -183,7 +183,11 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 /* ---- admin panel ---- */
 #admin{position:absolute;inset:0;z-index:7;background:#eef1f5;opacity:0}
 .abar{position:absolute;left:0;right:0;top:54px;height:48px;background:#f7f8fa;border-bottom:1px solid #dfe3e9;display:flex;align-items:center;justify-content:center}
-.aurl{background:#e8ebf0;border-radius:11px;padding:6px 40px;font-size:14px;color:#3b4250;font-weight:500}
+.abar{justify-content:flex-start!important;padding:0 14px;gap:10px}
+.alogo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#7c6cff,#31d8c9);flex:none}
+.atitle{font-size:14.5px;font-weight:700;color:#2b3242;flex:1}
+.aburger{display:flex;flex-direction:column;gap:3.5px}
+.aburger i{display:block;width:18px;height:2px;border-radius:1px;background:#8b93a3}
 .abot{position:absolute;left:0;right:0;bottom:0;height:62px;background:#f7f8fa;border-top:1px solid #dfe3e9;display:flex;align-items:center;justify-content:space-around;padding:0 26px 10px}
 .abot i{display:block;width:17px;height:17px;border:2px solid #9aa2b1;border-radius:3px}
 .aclip{position:absolute;left:0;right:0;top:102px;bottom:62px;overflow:hidden}
@@ -248,11 +252,11 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         <div class="datepill" id="d0"><span>Сегодня</span></div>
         <div class="m in" id="m0"><div class="bubble">Привет <span class="emo">👋</span> Это магазин <b>vas_kristi</b>. Выбирайте товар в меню ниже — файл придёт сразу после оплаты.<span class="time">12:09</span></div></div>
 
-        <div class="m out" id="m1"><div class="bubble"><span class="emo">🛒</span> Сборник + гайд (−30%)<span class="time">12:10 <svg width="16" height="10" viewBox="0 0 16 10"><path d="M1 5l3 3 6-7M6 8l1 1 7-8" fill="none" stroke="#5f9a4a" stroke-width="1.6" stroke-linecap="round"/></svg></span></div></div>
+        <div class="m out" id="m1"><div class="bubble"><span class="emo">🛒</span> Сборник рецептов и гайд (−30%)<span class="time">12:10 <svg width="16" height="10" viewBox="0 0 16 10"><path d="M1 5l3 3 6-7M6 8l1 1 7-8" fill="none" stroke="#5f9a4a" stroke-width="1.6" stroke-linecap="round"/></svg></span></div></div>
 
         <div class="m in wide" id="m2"><div class="bubble">
           <div class="cover"><div class="bk a"><span class="emo">📗</span>СБОРНИК<br>РЕЦЕПТОВ</div><div class="bk b"><span class="emo">📙</span>ГАЙД ПО<br>ЗОЖ</div><div class="disc" id="dbadge">−30%</div></div>
-          <b><span class="emo">📚</span> Сборник + гайд</b><br>Покупая два продукта сразу, вы получаете скидку 30%.
+          <b><span class="emo">📚</span> Сборник рецептов и гайд по здоровому образу жизни</b><br>Покупая два продукта сразу, вы получаете скидку 30%.
           <div class="li"><span class="emo">🥗</span>70 рабочих рецептов с КБЖУ</div>
           <div class="li"><span class="emo">📘</span>Гайд на 50 страниц</div>
           <div class="prow"><span class="oldp">1 990 ₽</span><span class="newp">1 390 ₽</span><span class="time">12:10</span></div>
@@ -263,7 +267,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 
         <div class="m in wide" id="m3"><div class="bubble">
           <b><span class="emo">🧾</span> Заказ оформлен</b><br>
-          — <i>Товар:</i> Сборник + гайд<br>
+          — <i>Товар:</i> Сборник рецептов и гайд по ЗОЖ<br>
           — <i>Сумма:</i> <b>1 390 ₽</b><br>
           — <i>Номер заказа:</i> № 38145746
           <div style="margin-top:7px;font-size:13.5px;color:#555"><span class="emo">🔒</span> Оплата картой РФ · <span class="lnk">договор-оферта</span><span class="time">12:10</span></div>
@@ -278,7 +282,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         </div></div>
 
         <div class="m in wide" id="m5"><div class="bubble">
-          <div class="doc"><div class="doci">PDF</div><div><div class="docn">Сборник + гайд.pdf</div><div class="docs">24,6 МБ · скачан 0 раз</div></div></div>
+          <div class="doc"><div class="doci">PDF</div><div><div class="docn">Сборник рецептов и гайд по ЗОЖ.pdf</div><div class="docs">24,6 МБ · скачан 0 раз</div></div></div>
           Спасибо за покупку <span class="emo">💚</span> Файл доступен всегда — в разделе «Мои заказы».<span class="time">12:11</span>
         </div>
           <div class="ibtn" id="bdl"><span class="emo">⬇️</span> Загрузить</div>
@@ -288,7 +292,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 
         <div class="m in wide" id="m7"><div class="bubble">
           <b>Ваши заказы: 2</b>
-          <div class="ordr"><span><span class="emo">🧾</span> Сборник + гайд</span><span><b>1 390 ₽</b> · <span class="ok">оплачен</span></span></div>
+          <div class="ordr"><span><span class="emo">🧾</span> Сборник рецептов и гайд</span><span><b>1 390 ₽</b> · <span class="ok">оплачен</span></span></div>
           <div class="ordr"><span><span class="emo">🧾</span> Рацион-конструктор</span><span><b>549 ₽</b> · <span class="ok">оплачен</span></span></div>
           <div style="margin-top:6px;font-size:13.5px;color:#555">Файлы можно скачать повторно в любой момент.<span class="time">12:12</span></div>
         </div>
@@ -314,7 +318,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         <div id="ava" class="emo">🛍</div>
       </div>
       <div id="rkb">
-        <div class="kbr"><div class="kb" id="kb1"><span class="emo">🛒</span> Сборник + гайд (−30%)</div></div>
+        <div class="kbr"><div class="kb" id="kb1"><span class="emo">🛒</span> Сборник рецептов и гайд (−30%)</div></div>
         <div class="kbr"><div class="kb">Гайд по ЗОЖ</div><div class="kb">Сборник рецептов</div></div>
         <div class="kbr"><div class="kb sm">Рацион-конструктор</div><div class="kb sm"><span class="emo">🎁</span> Подарки</div></div>
         <div class="kbr"><div class="kb sm">Мои заказы</div><div class="kb sm">Помощь</div><div class="kb sm">Инфо</div></div>
@@ -332,7 +336,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         <div class="grab"></div>
         <div class="sh-top"><div class="sh-ava emo">🛍</div><div><div class="sh-m">VasKristi Shop</div><div class="sh-s">Оплата заказа № 38145746</div></div></div>
         <div class="amount" id="amount">1 190 ₽</div>
-        <div class="prod">Сборник + гайд · цифровой товар</div>
+        <div class="prod">Сборник рецептов и гайд по ЗОЖ</div>
         <div class="tabs"><div class="tab on">Карта</div><div class="tab">СБП</div><div class="tab">Долями</div></div>
         <div class="field"><div class="l">Номер карты</div><div class="v" id="cardnum"></div></div>
         <div class="frow"><div class="field"><div class="l">Срок</div><div class="v" id="cexp"></div></div><div class="field"><div class="l">CVC</div><div class="v" id="ccvc"></div></div></div>
@@ -349,7 +353,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
       </div><!-- /chatui2 -->
 
       <div id="admin">
-        <div class="abar"><div class="aurl">bot-t.com</div></div>
+        <div class="abar"><div class="alogo"></div><div class="atitle">Панель управления</div><div class="aburger"><i></i><i></i><i></i></div></div>
         <div class="aclip"><div class="afeed" id="afeed">
           <div class="acrumb">Панель управления / Товары и категории</div>
           <div class="acard" id="aA">
@@ -358,7 +362,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
               <tr><td><i class="dh">⠿</i></td><td>Сборник ПП-рецептов</td><td class="pz">1 200 ₽</td><td><div class="ctl"><i></i><i class="g"></i></div></td></tr>
               <tr><td><i class="dh">⠿</i></td><td>Рацион-конструктор</td><td class="pz">549 ₽</td><td><div class="ctl"><i></i><i class="g"></i></div></td></tr>
               <tr id="arow3"><td><i class="dh">⠿</i></td><td>Гайд по ЗОЖ</td><td class="pz">990 ₽</td><td><div class="ctl"><i></i><i class="g"></i></div></td></tr>
-              <tr><td><i class="dh">⠿</i></td><td>Сборник + гайд</td><td class="pz">1 390 ₽</td><td><div class="ctl"><i></i><i class="g"></i></div></td></tr>
+              <tr><td><i class="dh">⠿</i></td><td>Сборник рецептов и гайд</td><td class="pz">1 390 ₽</td><td><div class="ctl"><i></i><i class="g"></i></div></td></tr>
             </table>
             <div class="ar2"><div class="abtn ghost">Подкатегория</div><div class="abtn green" id="aAdd">Добавить товар</div></div>
           </div>
@@ -372,7 +376,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
             <div class="ah"><span>ФАЙЛ ТОВАРА</span><em>⬆</em></div>
             <div class="adrop" id="aDrop">Выберите файл или перетащите сюда<br>PDF · ZIP · MP4 · EPUB — до 2 ГБ</div>
             <div class="bar"><i id="aBar"></i></div>
-            <div class="afile" id="aFile"><div class="fi">PDF</div><div><div class="fn">Сборник + гайд.pdf</div><div class="fs">24,6 МБ</div></div><div class="fok">✓</div></div>
+            <div class="afile" id="aFile"><div class="fi">PDF</div><div><div class="fn">Сборник рецептов и гайд.pdf</div><div class="fs">24,6 МБ</div></div><div class="fok">✓</div></div>
           </div>
           <div class="acard" id="aD">
             <div class="ah"><span>КНОПКИ И ВЫДАЧА</span><em>⚙</em></div>
@@ -380,6 +384,14 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
             <div class="abtn">Что внутри?</div>
             <div class="abtn ghost">Добавить кнопку в новую линию</div>
             <div class="abtn green" id="aPub">Опубликовать в боте</div>
+          </div>
+          <div class="acard" id="aF">
+            <div class="ah"><span>ПОСЛЕДНИЕ ЗАКАЗЫ</span><em>⟳</em></div>
+            <table class="atab"><tr><th>№</th><th>Товар</th><th>Сумма</th><th style="text-align:right">Статус</th></tr>
+              <tr><td>38145746</td><td>Сборник рецептов и гайд</td><td class="pz">1 390 ₽</td><td style="text-align:right;color:#2fae4a;font-weight:700">оплачен</td></tr>
+              <tr><td>38145701</td><td>Рацион-конструктор</td><td class="pz">549 ₽</td><td style="text-align:right;color:#2fae4a;font-weight:700">оплачен</td></tr>
+              <tr><td>38145688</td><td>Гайд по ЗОЖ</td><td class="pz">990 ₽</td><td style="text-align:right;color:#2fae4a;font-weight:700">оплачен</td></tr>
+            </table>
           </div>
           <div class="acard" id="aE">
             <div class="ah"><span>СТАТИСТИКА ПРОДАЖ</span><em>📊</em></div>
@@ -403,8 +415,8 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
     <div class="chip" id="cA" style="left:250px;top:250px"><div class="ci emo" style="background:#e6f4dc">📦</div><div><div class="a">Файл отправлен</div><div class="b">✓ Сразу после оплаты</div></div></div>
     <div class="chip" id="cB" style="left:270px;top:350px"><div class="ci emo" style="background:#e3eefc">🧾</div><div><div class="a">Заказ записан</div><div class="b">✓ История в «Мои заказы»</div></div></div>
     <div class="chip" id="cC" style="left:-120px;top:300px"><div class="ci emo" style="background:#fff3d6">♾</div><div><div class="a">Повторное скачивание</div><div class="b">✓ В любой момент</div></div></div>
-    <div class="chip" id="cD" style="left:130px;top:170px"><div class="ci emo" style="background:#e6f4dc">🚀</div><div><div class="a">Товар опубликован</div><div class="b">✓ Сразу виден в боте</div></div></div>
-    <div class="chip" id="cE" style="left:-40px;top:620px"><div class="ci emo" style="background:#e3eefc">📈</div><div><div class="a">+91% за месяц</div><div class="b">✓ Выручка растёт</div></div></div>
+    <div class="chip" id="cD" style="left:190px;top:40px"><div class="ci emo" style="background:#e6f4dc">🚀</div><div><div class="a">Товар опубликован</div><div class="b">✓ Сразу виден в боте</div></div></div>
+    <div class="chip" id="cE" style="left:-20px;top:762px"><div class="ci emo" style="background:#e3eefc">📈</div><div><div class="a">+91% за месяц</div><div class="b">✓ Выручка растёт</div></div></div>
     <div class="chip" id="cF" style="left:240px;top:120px"><div class="ci emo" style="background:#e6f4dc">💳</div><div><div class="a">Платёж принят</div><div class="b">✓ 1 390 ₽ · заказ оплачен</div></div></div>
   </div></div></div>
 
@@ -470,23 +482,24 @@ for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i
 
 // ---------- timeline ----------
 const MSG=[ // id, appear time
- ['d0',-1],['m0',-1],['m1',3.40],['m2',4.00],['m3',8.80],['m4',14.10],['m5',14.90],['m6',17.90],['m7',18.40]];
-const PRESS={kb1:3.10,bbuy:8.30,bpay:10.00,bdl:16.60,aAdd:22.00,aPub:24.80};
-const TAPS=[['kb1',3.10],['bbuy',8.30],['bpay',10.00],['paybtn',12.30],['bdl',16.60],['aAdd',22.00],['aDrop',23.05],['aPub',24.80]];
+ ['d0',-1],['m0',-1],['m1',3.40],['m2',4.00],['m3',8.80],['m4',14.10],['m5',14.90],['m6',17.85],['m7',18.30]];
+const PRESS={kb1:3.10,bbuy:8.30,bpay:10.00,bdl:16.60,aAdd:21.30,aPub:25.35};
+const TAPS=[['kb1',3.10],['bbuy',8.30],['bpay',10.00],['paybtn',12.30],['bdl',16.60],['aAdd',21.30],['aDrop',24.05],['aPub',25.35]];
 const STEPS=[
  {n:'01',t0:2.85,t1:6.30,title:'Каталог в чате',sub:'Товары и цены — кнопками в Telegram'},
  {n:'02',t0:6.40,t1:9.50,title:'Комплект со скидкой',sub:'Наборы и промо считает бот'},
  {n:'03',t0:9.60,t1:13.60,title:'Оплата картой',sub:'Заказ и платёж в пару касаний'},
  {n:'04',t0:13.70,t1:17.60,title:'Мгновенная выдача',sub:'Файл приходит сразу после оплаты'},
- {n:'05',t0:17.70,t1:20.30,title:'Мои заказы',sub:'Скачать повторно — в любой момент'},
- {n:'06',t0:20.40,t1:25.40,title:'Админ-панель',sub:'Товар, файл и кнопки — без кода'},
- {n:'07',t0:25.50,t1:28.00,title:'Статистика продаж',sub:'Выручка и заказы — на одном экране'},
+ {n:'05',t0:17.70,t1:19.80,title:'Мои заказы',sub:'Скачать повторно — в любой момент'},
+ {n:'06',t0:19.90,t1:25.60,title:'Админ-панель',sub:'Товар, файл и кнопки — без кода'},
+ {n:'07',t0:25.70,t1:28.00,title:'Статистика продаж',sub:'Выручка и заказы — на одном экране'},
 ];
 const CHIPS=[ // id, in, out, fromX
- ['cF',13.50,15.40,60],['cA',15.40,17.50,80],['cB',15.75,17.50,80],['cC',18.95,20.25,-80],['cD',24.95,25.85,80],['cE',26.80,27.95,-80]];
+ ['cF',13.50,15.40,60],['cA',15.40,17.50,80],['cB',15.75,17.50,80],['cC',18.85,19.75,-80],['cD',25.45,25.95,80],['cE',27.00,27.90,-80]];
 const DUR=33;
-const MORPH=[20.50,21.15];
-const ASCROLL=[[21.10,0],[22.30,236],[23.00,236],[23.95,470],[25.00,700],[26.00,800]];
+const MORPH=[19.95,20.60];
+const ASMAX=880;
+const ASCROLL=[[20.60,0],[21.70,0],[22.40,240],[23.30,240],[23.90,500],[24.70,500],[25.25,600],[25.80,600],[26.55,ASMAX],[27.95,ASMAX]];
 window.CUES=[
  {t:0.15,s:'swell'},{t:1.75,s:'whoosh'},{t:2.55,s:'impact'},
  {t:3.10,s:'tap'},{t:3.40,s:'send'},{t:4.00,s:'pop'},{t:4.60,s:'whoosh_soft'},
@@ -495,10 +508,10 @@ window.CUES=[
  {t:12.30,s:'tap'},{t:12.42,s:'process'},{t:13.00,s:'success'},
  {t:13.65,s:'whoosh'},{t:14.10,s:'pop'},{t:14.20,s:'confetti'},{t:14.90,s:'notif'},
  {t:15.40,s:'chip'},{t:15.75,s:'chip'},{t:16.60,s:'tap'},
- {t:17.65,s:'whoosh'},{t:17.90,s:'send'},{t:18.40,s:'pop'},{t:18.95,s:'chip'},
- {t:20.25,s:'riser'},{t:20.50,s:'whoosh'},{t:22.00,s:'tap'},{t:23.05,s:'tap'},{t:23.95,s:'whoosh_soft'},
- {t:24.80,s:'tap'},{t:24.95,s:'success_short'},
- {t:25.45,s:'whoosh'},{t:25.90,s:'notif'},{t:26.80,s:'chip'},
+ {t:17.65,s:'whoosh'},{t:17.85,s:'send'},{t:18.30,s:'pop'},{t:18.85,s:'chip'},
+ {t:19.70,s:'riser'},{t:19.95,s:'whoosh'},{t:21.30,s:'tap'},{t:24.05,s:'tap'},{t:24.60,s:'whoosh_soft'},
+ {t:25.35,s:'tap'},{t:25.50,s:'success_short'},
+ {t:25.95,s:'whoosh'},{t:26.25,s:'notif'},{t:27.00,s:'chip'},
  {t:27.95,s:'whoosh'},{t:28.40,s:'tick'},{t:29.10,s:'tick'},{t:29.40,s:'tick'},{t:29.70,s:'tick'},{t:30.00,s:'tick'},{t:32.0,s:'outro_tail'}
 ];
 
@@ -527,17 +540,10 @@ const CAM=[
  {t:17.45,f:[195,430],s:1.55,sx:440,sy:1140,rx:4,ry:-13,rz:0,e:E.lin},
  {t:18.10,f:[195,420],s:1.74,sy:1112,rx:0,ry:5,rz:0,e:E.inOutExpo},
  {t:18.90,f:'m7',s:2.00,sx:620,sy:1200,rx:0,ry:11,rz:0,e:E.inOutExpo},
- {t:20.20,f:'m7',s:2.02,sx:625,sy:1200,rx:0,ry:12,rz:0,e:E.lin},
- {t:20.55,f:[195,422],s:1.60,sy:1112,rx:0,ry:-24,rz:0,e:E.inOutExpo},
- {t:21.30,f:[195,330],s:1.78,sy:1090,rx:0,ry:4,rz:0,e:E.inOutExpo},
- {t:22.25,f:'aAdd',s:2.10,sy:1330,rx:0,ry:0,rz:0,e:E.inOutExpo},
- {t:22.75,f:'aAdd',s:2.12,sy:1330,rx:0,ry:0,rz:0,e:E.lin},
- {t:23.35,f:'aC',s:1.95,sy:1130,rx:0,ry:-4,rz:0,e:E.inOutExpo},
- {t:24.20,f:'aC',s:1.98,sy:1130,rx:0,ry:-4,rz:0,e:E.lin},
- {t:24.70,f:'aPub',s:2.10,sy:1300,rx:0,ry:3,rz:0,e:E.inOutExpo},
- {t:25.30,f:'aPub',s:2.12,sy:1300,rx:0,ry:3,rz:0,e:E.lin},
- {t:25.95,f:'aE',s:1.80,sy:1180,rx:0,ry:-6,rz:0,e:E.inOutExpo},
- {t:27.85,f:'aE',s:1.83,sy:1180,rx:0,ry:-4,rz:0,e:E.lin},
+ {t:19.70,f:'m7',s:2.02,sx:625,sy:1200,rx:0,ry:12,rz:0,e:E.lin},
+ {t:20.00,f:[195,422],s:1.58,sy:1112,rx:0,ry:-22,rz:0,e:E.inOutExpo},
+ {t:20.80,f:[195,422],s:1.62,sy:1112,rx:0,ry:3,rz:0,e:E.inOutExpo},
+ {t:27.90,f:[195,422],s:1.645,sy:1112,rx:0,ry:-3,rz:0,e:E.lin},
  {t:28.90,f:[195,422],s:1.30,sy:1330,rx:10,ry:-20,rz:4,e:E.inOutExpo},
  {t:32.5, f:[195,422],s:1.22,sy:1345,rx:7,ry:-26,rz:4,e:E.lin},
 ];
@@ -650,7 +656,7 @@ function render(t){
   const kh=k(t,3.10,3.25)*(1-k(t,4.2,4.8));
   $('kb1').style.boxShadow=`0 1px 1.5px rgba(40,60,30,.14),0 0 0 ${2.4*kh}px rgba(47,110,246,${.75*kh})`;
   // admin row highlight on add
-  $('arow3').className=(t>22.0&&t<23.6)?'hi':'';
+  $('arow3').className=(t>21.3&&t<22.6)?'hi':'';
 
   // taps
   let tapEl=$('tap'),shown=false;
@@ -703,31 +709,31 @@ function render(t){
   // admin scroll
   setT($('afeed'),`translateY(${-adminScrollAt(t)}px)`);
   // product form fills in
-  const nm='Сборник + гайд';const nc2=Math.floor(k(t,22.45,23.00)*nm.length);
-  $('aName').innerHTML=nm.slice(0,nc2)+((nc2<nm.length&&t>22.4&&Math.floor(t*3)%2===0)?'<span class="caret"></span>':'');
+  const nm='Сборник рецептов и гайд по ЗОЖ';const nc2=Math.floor(k(t,22.55,23.25)*nm.length);
+  $('aName').innerHTML=nm.slice(0,nc2)+((nc2<nm.length&&t>22.5&&Math.floor(t*3)%2===0)?'<span class="caret"></span>':'');
   const ds='Два продукта в одном наборе со скидкой 30%. Файл выдаётся сразу после оплаты.';
-  $('aDesc').textContent=ds.slice(0,Math.floor(k(t,22.75,23.45)*ds.length));
+  $('aDesc').textContent=ds.slice(0,Math.floor(k(t,22.90,23.60)*ds.length));
   // upload
-  const up=k(t,23.15,23.85);
+  const up=k(t,24.10,24.70);
   $('aBar').style.width=(up*100)+'%';
   $('aDrop').style.borderColor=up>0&&up<1?'#2f6ef6':'#c3cbd8';
-  $('aFile').style.opacity=k(t,23.80,24.05);
-  setT($('aFile'),`translateY(${(1-E.outBack(k(t,23.80,24.25)))*12}px)`);
+  $('aFile').style.opacity=k(t,24.65,24.90);
+  setT($('aFile'),`translateY(${(1-E.outBack(k(t,24.65,25.05)))*12}px)`);
   // publish button
-  const pub=k(t,24.80,25.00);
+  const pub=k(t,25.35,25.55);
   $('aPub').textContent=pub>=1?'✓ Опубликовано':'Опубликовать в боте';
   $('aPub').style.background=pub>=1?'#2fae4a':'#2fae4a';
   // stats count up
   const sv=[['s1',11690,' ₽'],['s2',74300,' ₽'],['s3',268400,' ₽'],['s4',214,''],['s5',4828,'']];
-  sv.forEach(([id,val,suf],i)=>{const a0=25.95+i*.13;
+  sv.forEach(([id,val,suf],i)=>{const a0=26.15+i*.13;
     $(id).textContent=fmt(val*E.outExpo(k(t,a0,a0+1.15)))+suf;
     const e=$(id).parentElement;e.style.opacity=k(t,a0-.1,a0+.15);
     e.style.transform=`translateX(${(1-E.outCubic(k(t,a0-.1,a0+.5)))*22}px)`;});
   if(!window.BARS){const hs=[28,41,34,52,46,63,57,49,71,66,84,78,92,100];
     $('achart').innerHTML=hs.map((h,i)=>`<i class="${i>=11?'hi':''}" style="height:${h}%"></i>`).join('');
     window.BARS=[...$('achart').children];}
-  BARS.forEach((b,i)=>{const a0=26.55+i*.045;b.style.transform=`scaleY(${E.outBack(k(t,a0,a0+.5))})`;});
-  ['d1s','d2s','d3s'].forEach((id,i)=>{const a0=26.6+i*.18;$(id).style.opacity=k(t,a0,a0+.3);
+  BARS.forEach((b,i)=>{const a0=26.80+i*.045;b.style.transform=`scaleY(${E.outBack(k(t,a0,a0+.5))})`;});
+  ['d1s','d2s','d3s'].forEach((id,i)=>{const a0=26.90+i*.18;$(id).style.opacity=k(t,a0,a0+.3);
     $(id).style.transform=`scale(${.6+.4*E.outBack(k(t,a0,a0+.45))})`;});
 
   // confetti
