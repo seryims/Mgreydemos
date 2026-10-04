@@ -17,3 +17,5 @@ projects/*/chip_chk.jpg
 projects/*/gap_chk.jpg
 site/media/*_web.mp4
 site/mock_*.jpg
+site/media/*.webm
+site/t_*.jpg
