@@ -584,16 +584,16 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
   </div>
 
   <div id="intro">
-    <div class="tag" id="itag">ФИТОТЕКА · TELEGRAM MINI APP</div>
+    <div class="tag" id="itag">ФИТОТЕКА · МИНИ-ПРИЛОЖЕНИЕ TELEGRAM</div>
     <div class="big" id="ib1"></div>
     <div class="big big2" id="ib2"></div>
-    <div class="sm" id="ism">Витрина · Оплата · Доставка</div>
+    <div class="sm" id="ism">Мини-приложение · Витрина · Оплата</div>
   </div>
 
   <div id="outro">
     <div class="big" id="ob"><div id="ob1"></div><div id="ob2" class="hl"></div></div>
     <div class="feats" id="feats"></div>
-    <div class="foot" id="ofoot">ФИТОТЕКА · МАГАЗИН В TELEGRAM · MINI APP</div>
+    <div class="foot" id="ofoot">ФИТОТЕКА · МАГАЗИН В TELEGRAM · МИНИ-ПРИЛОЖЕНИЕ</div>
   </div>
 
   <div id="flash"></div>
@@ -624,7 +624,7 @@ for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i
 
 const DUR=33;
 // screen id, in, out
-const SCR=[['s1',4.60,9.95],['s2',9.80,13.35],['s3',13.20,16.35],['s4',16.20,20.60],['s5',20.45,24.60],['s6',24.45,28.60]];
+const SCR=[['s1',4.60,9.95],['s2',9.80,13.35],['s3',13.20,16.35],['s4',16.20,20.60],['s5',20.45,24.60],['s6',24.45,33.6]];
 // per-screen scroll keyframes
 const SCROLL={
  f1:[[5.30,0],[6.20,0],[7.05,250],[7.60,250],[8.30,560],[8.75,560],[9.25,760],[9.80,760]],
@@ -632,7 +632,7 @@ const SCROLL={
  f3:[[13.40,0],[16.30,0]],
  f4:[[16.40,0],[17.20,0],[17.80,250],[18.40,250],[18.95,520],[19.35,760],[20.55,760]],
  f5:[[20.65,0],[21.30,0],[22.20,118],[24.55,118]],
- f6:[[24.65,0],[25.60,0],[26.60,96],[28.55,96]],
+ f6:[[24.65,0],[25.60,0],[26.60,96],[33.50,96]],
 };
 const STEPS=[
  {n:'01',t0:2.85,t1:5.60,title:'Открывается из чата',sub:'Мини-приложение внутри Telegram'},
@@ -684,7 +684,7 @@ function init(){
   $('prog').innerHTML=STEPS.map(()=>'<i><b></b></i>').join('');
   window.IB1=splitChars($('ib1'),'Магазин');window.IB2=splitChars($('ib2'),'в Telegram');
   window.OB1=splitWords($('ob1'),'Магазин в Telegram');window.OB2=splitWords($('ob2'),'работает сам');
-  $('feats').innerHTML=['🛍 Витрина Mini App','💳 Оплата картой','🚚 Доставка СДЭК','📦 Статусы заказа','🛠 Админ-панель']
+  $('feats').innerHTML=['🛍 Мини-приложение','💳 Оплата картой','🚚 Доставка СДЭК','📦 Статусы заказа','🛠 Админ-панель']
     .map(f=>`<div class="f">${f.replace(/^(\S+)/,'<span class="emo">$1</span>')}</div>`).join('');
   $('ttl').innerHTML=STEPS.map((s,i)=>`<div class="tl" id="tt${i}"></div>`).join('');
   $('sub').innerHTML=STEPS.map((s,i)=>`<div class="tl" id="ts${i}"></div>`).join('');
