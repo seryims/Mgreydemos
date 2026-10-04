@@ -722,6 +722,7 @@ function render(t){
   setT($('masheet'),`translateY(${(1-open)*800}px)`);
   $('chatscr').style.filter=open>.02?`brightness(${1-.35*open})`:'none';
   setT($('chatscr'),`scale(${1-.03*open})`);
+  $('chatscr').style.opacity=1-k(t,4.30,4.85);
   const ld=1-k(t,4.85,5.20);
   $('maload').style.opacity=ld;$('maload').style.display=ld<=0?'none':'flex';
   setT($('maload').querySelector('.ring'),`rotate(${t*900}deg)`);
