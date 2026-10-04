@@ -224,10 +224,15 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         <div class="datepill" id="d0"><span>Сегодня</span></div>
         <div class="m out" id="m0"><div class="bubble">/start<span class="time">19:02 <svg width="16" height="10" viewBox="0 0 16 10"><path d="M1 5l3 3 6-7M6 8l1 1 7-8" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-linecap="round"/></svg></span></div></div>
 
-        <div class="m in wide" id="m1"><div class="bubble">
+        <div class="m in wide" id="m1a"><div class="bubble">
           <b><span class="emo">✨</span> Добро пожаловать!</b><br>
-          Здесь оформляется доступ в закрытую группу <b>«Что поесть»</b> во ВКонтакте.
-          <div style="font-size:13.5px;color:#9fb0c4;margin-top:7px">Проверим подписку <span class="emo">→</span> привяжем профиль <span class="emo">→</span> передадим заявку администратору.<span class="time">19:02</span></div>
+          Здесь оформляется доступ в закрытую группу <b>«Что поесть»</b> во ВКонтакте.<span class="time">19:02</span>
+        </div></div>
+
+        <div class="m in wide" id="m1"><div class="bubble">
+          <div class="stepk">КАК ЭТО РАБОТАЕТ</div>
+          <div style="font-size:13.5px;color:#cfd9e4;line-height:1.5">1 · Проверим подписку в Telegram<br>2 · Привяжем профиль ВКонтакте<br>3 · Передадим заявку администратору</div>
+          <div style="font-size:13px;color:#9fb0c4;margin-top:7px">Нажмите кнопку ниже, чтобы начать <span class="emo">👇</span><span class="time">19:02</span></div>
         </div>
           <div class="ibtn" id="bStart"><span class="emo">🚀</span> Вступить в ВК</div>
         </div>
@@ -337,8 +342,8 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
       <div class="tap" id="tap"><div class="ring"></div><div class="dot"></div></div>
     </div>
 
-    <div class="chip" id="cA" style="left:240px;top:120px"><div class="ci emo" style="background:#e9e3fb">✅</div><div><div class="a">Подписка проверена</div><div class="b">✓ Автоматически из канала</div></div></div>
-    <div class="chip" id="cB" style="left:-60px;top:430px"><div class="ci emo" style="background:#e3eefc">🔗</div><div><div class="a">Профиль привязан</div><div class="b">✓ Telegram ↔ ВКонтакте</div></div></div>
+    <div class="chip" id="cA" style="left:145px;top:205px"><div class="ci emo" style="background:#e9e3fb">✅</div><div><div class="a">Подписка проверена</div><div class="b">✓ Автоматически из канала</div></div></div>
+    <div class="chip" id="cB" style="left:-60px;top:430px"><div class="ci emo" style="background:#e3eefc">🔗</div><div><div class="a">Профиль привязан</div><div class="b">✓ Telegram и ВКонтакте</div></div></div>
     <div class="chip" id="cC" style="left:235px;top:150px"><div class="ci emo" style="background:#e9e3fb">📥</div><div><div class="a">Заявка у админа</div><div class="b">✓ С профилем и подпиской</div></div></div>
     <div class="chip" id="cD" style="left:-55px;top:600px"><div class="ci emo" style="background:#fdeede">⏰</div><div><div class="a">Контроль продления</div><div class="b">✓ Удаление из группы само</div></div></div>
   </div></div></div>
@@ -354,13 +359,13 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
     <div class="tag" id="itag">ЧТО ПОЕСТЬ [VK] · TELEGRAM-БОТ</div>
     <div class="big" id="ib1"></div>
     <div class="big big2" id="ib2"></div>
-    <div class="sm" id="ism">Платная подписка работает в двух сетях</div>
+    <div class="sm" id="ism">Telegram и ВКонтакте · доступ по одной подписке</div>
   </div>
 
   <div id="outro">
     <div class="big" id="ob"><div id="ob1"></div><div id="ob2" class="hl"></div></div>
     <div class="feats" id="feats"></div>
-    <div class="foot" id="ofoot">ЧТО ПОЕСТЬ · TELEGRAM ↔ ВКОНТАКТЕ · TELEGRAM-БОТ</div>
+    <div class="foot" id="ofoot">ЧТО ПОЕСТЬ · TELEGRAM И ВКОНТАКТЕ · TELEGRAM-БОТ</div>
   </div>
 
   <div id="flash"></div>
@@ -393,10 +398,10 @@ function splitChars(el,text){el.innerHTML=[...text].map(c=>`<span class="ch">${c
 for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}x.putImageData(d,0,0);$('grain').style.backgroundImage=`url(${c.toDataURL()})`})();
 
 const DUR=33;
-const MSG=[['d0',-1],['m0',-1],['m1',3.20],['m2',6.90],['m3',9.95],['m4',10.75],['m5',18.35],
+const MSG=[['d0',-1],['m0',-1],['m1a',3.20],['m1',4.60],['m2',6.90],['m3',9.95],['m4',10.75],['m5',18.35],
  ['d1',20.70],['m6',21.00],['d2',24.70],['m7',25.05],['d3',27.10],['m8',27.40]];
-const PRESS={bStart:6.35,bApply:14.05,vkJoin:15.95,bDone:17.95,bAcc:23.25,bOpen:26.40};
-const TAPS=[['bStart',6.35],['bApply',14.05],['vkJoin',15.95],['bDone',17.95],['bAcc',23.25],['bOpen',26.40]];
+const PRESS={bStart:6.25,bApply:14.05,vkJoin:15.95,bDone:17.95,bAcc:23.25,bOpen:26.40};
+const TAPS=[['bStart',6.25],['bApply',14.05],['vkJoin',15.95],['bDone',17.95],['bAcc',23.25],['bOpen',26.40]];
 const STEPS=[
  {n:'01',t0:2.85,t1:6.70,title:'Вход из подписки',sub:'Бот ведёт в закрытую группу ВК'},
  {n:'02',t0:6.80,t1:9.70,title:'Проверка подписки',sub:'Статус берётся из платного канала'},
@@ -409,7 +414,7 @@ const STEPS=[
 const CHIPS=[['cA',7.60,9.60,80],['cB',11.90,13.60,-80],['cC',21.80,23.10,80],['cD',27.60,28.00,-80]];
 window.CUES=[
  {t:0.15,s:'swell'},{t:1.75,s:'whoosh'},{t:2.55,s:'impact'},
- {t:3.20,s:'pop'},{t:4.30,s:'whoosh_soft'},{t:6.35,s:'tap'},{t:6.75,s:'whoosh'},{t:6.90,s:'pop'},
+ {t:3.20,s:'pop'},{t:4.60,s:'pop'},{t:5.10,s:'whoosh_soft'},{t:6.25,s:'tap'},{t:6.75,s:'whoosh'},{t:6.90,s:'pop'},
  {t:7.60,s:'chip'},{t:9.95,s:'send'},{t:10.75,s:'pop'},{t:11.90,s:'chip'},
  {t:13.75,s:'whoosh'},{t:14.05,s:'tap'},{t:14.25,s:'sheet'},{t:15.95,s:'tap'},{t:16.25,s:'success_short'},
  {t:17.35,s:'whoosh_soft'},{t:17.95,s:'tap'},{t:18.35,s:'pop'},
@@ -422,8 +427,9 @@ const CAM=[
  {t:0,    f:[195,422],s:1.45,sy:2950,rx:42,ry:0,rz:-8},
  {t:1.55, f:[195,422],s:1.45,sy:2950,rx:42,ry:0,rz:-8,e:E.lin},
  {t:2.75, f:[195,422],s:1.66,sy:1112,rx:0,ry:2,rz:0,e:E.outQuint},
- {t:4.30, f:'m1',s:1.92,sy:1180,rx:0,ry:-3,rz:0,e:E.inOutExpo},
- {t:6.55, f:'m1',s:1.95,sy:1180,rx:0,ry:-2,rz:0,e:E.lin},
+ {t:4.00, f:'m1a',s:1.88,sy:1150,rx:0,ry:-3,rz:0,e:E.inOutExpo},
+ {t:5.10, f:'m1',s:1.92,sy:1210,rx:0,ry:-2,rz:0,e:E.inOutExpo},
+ {t:6.55, f:'m1',s:1.95,sy:1210,rx:0,ry:-1,rz:0,e:E.lin},
  {t:7.40, f:'m2',s:1.95,sy:1180,rx:0,ry:3,rz:0,e:E.inOutExpo},
  {t:9.60, f:'m2',s:1.98,sy:1180,rx:0,ry:2,rz:0,e:E.lin},
  {t:10.90,f:'m4',s:1.94,sy:1180,rx:0,ry:-3,rz:0,e:E.inOutExpo},
@@ -448,7 +454,7 @@ function init(){
   let prev=0;
   targets=MSG.map(([id,t])=>{const el=$(id);const b=el.offsetTop+el.offsetHeight;const tg=Math.max(prev,b-VIEW_H);prev=tg;return{id,t,tg,el}});
   $('prog').innerHTML=STEPS.map(()=>'<i><b></b></i>').join('');
-  window.IB1=splitChars($('ib1'),'Синхронизация');window.IB2=splitChars($('ib2'),'Telegram и ВК');
+  window.IB1=splitChars($('ib1'),'Синхронизация');window.IB2=splitChars($('ib2'),'подписки');
   window.OB1=splitWords($('ob1'),'Одна подписка —');window.OB2=splitWords($('ob2'),'две площадки.');
   $('feats').innerHTML=['✅ Проверка подписки','🔗 Привязка профиля ВК','📩 Заявки в группу','👤 Приём у админа','⏰ Контроль продления']
     .map(f=>`<div class="f">${f.replace(/^(\S+)/,'<span class="emo">$1</span>')}</div>`).join('');
