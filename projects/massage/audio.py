@@ -1,7 +1,7 @@
 import numpy as np, json
 from scipy.signal import butter, sosfilt
 from scipy.io import wavfile
-SR=48000; DUR=32.0; N=int(SR*DUR)
+SR=48000; DUR=33.0; N=int(SR*DUR)
 rng=np.random.default_rng(3)
 t=np.arange(N)/SR
 def lp(x,f,o=2): return sosfilt(butter(o,f,'low',fs=SR,output='sos'),x)
@@ -37,7 +37,7 @@ arp=np.zeros(N)
 step=BEAT/2
 for j in range(int(DUR/step)):
     st=j*step
-    if st<2.6 or 19.8<st<24.3 or st>30: continue
+    if st<2.6 or st>31.4: continue
     ch=prog[int(st/BAR)%4]; m=ch[[0,2,1,3,2,1,3,2][j%8]]+12
     n=int(.35*SR); tt=np.arange(n)/SR
     x=(np.sin(2*np.pi*m2f(m)*tt)+0.3*np.sin(4*np.pi*m2f(m)*tt))*np.exp(-tt/0.09)
@@ -46,8 +46,8 @@ for j in range(int(DUR/step)):
 bass=np.zeros(N); kick=np.zeros(N); hat=np.zeros(N); duck=np.ones(N)
 for j in range(int(DUR/BEAT)+1):
     st=j*BEAT
-    if st<2.55 or st>30.6: continue
-    expir=19.8<st<24.3
+    if st<2.55 or st>31.6: continue
+    expir=False
     ch=prog[int(st/BAR)%4]
     n=int(BEAT*SR); tt=np.arange(n)/SR
     f=m2f(ch[0]-24); bx=np.sin(2*np.pi*f*tt)*np.minimum(1,tt/0.01)*np.exp(-tt/0.35)
@@ -62,9 +62,9 @@ for j in range(int(DUR/BEAT)+1):
             if L>0: hat[i2:i2+L]+=hx[:L]*0.022
 mus=(pad+arp)*duck+bass*duck**0.5+kick+hat
 # expiry: lowpass section + global volume automation
-lpmix=np.clip((t-19.6)/0.4,0,1)*np.clip((24.3-t)/0.15,0,1)
+lpmix=np.zeros_like(t)
 mus=mus*(1-lpmix)+lp(mus,350,2)*lpmix*1.3
-vol=np.clip(t/1.0,0,1)*np.clip((32-t)/1.6,0,1)
+vol=np.clip(t/1.0,0,1)*np.clip((33-t)/1.6,0,1)
 mus*=vol
 for c in (0,1): music[c]=mus.copy()
 # stereo widening of pad

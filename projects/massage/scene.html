@@ -120,7 +120,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 #intro .ch{display:inline-block}
 #intro .sm{font-size:34px;color:rgba(230,245,215,.7);margin-top:30px;font-weight:500;letter-spacing:.5px}
 #outro{position:absolute;left:0;right:0;top:150px;z-index:31;text-align:center}
-#outro .big{font-family:Unbounded;font-weight:800;font-size:84px;line-height:1.08;color:#f3fbe9;letter-spacing:-2px}
+#outro .big{font-family:Unbounded;font-weight:800;font-size:76px;line-height:1.08;color:#f3fbe9;letter-spacing:-2px}
 #outro .big .hl{color:#d6f29a}
 #outro .feats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:38px 90px 0}
 #outro .f{padding:14px 24px;border-radius:30px;background:rgba(214,242,154,.1);border:1.5px solid rgba(214,242,154,.35);color:#e8f7d2;font-size:27px;font-weight:600}
@@ -500,7 +500,7 @@ function init(){
   targets=MSG.map(([id,t])=>{const el=$(id);const b=el.offsetTop+el.offsetHeight;const tg=Math.max(prev,b-VIEW_H);prev=tg;return{id,t,tg,el}});
   $('prog').innerHTML=STEPS.map(()=>'<i><b></b></i>').join('');
   window.IB1=splitChars($('ib1'),'Запись');window.IB2=splitChars($('ib2'),'на массаж');
-  window.OB1=splitWords($('ob1'),'Запись на массаж');window.OB2=splitWords($('ob2'),'без переписки');
+  window.OB1=splitWords($('ob1'),'Запись автоматическая.');window.OB2=splitWords($('ob2'),'Администратор не нужен.');
   $('feats').innerHTML=['📅 Онлайн-запись','🗓 Свободные даты','🔔 Напоминания','🛡 Без двойных записей','🛠 Панель админа']
     .map(f=>`<div class="f">${f.replace(/^(\S+)/,'<span class="emo">$1</span>')}</div>`).join('');
   $('ttl').innerHTML=STEPS.map((s,i)=>`<div class="tl" id="tt${i}"></div>`).join('');
