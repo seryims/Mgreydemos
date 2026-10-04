@@ -115,7 +115,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 .w>span{display:inline-block}
 #intro{position:absolute;left:0;right:0;top:640px;z-index:31;text-align:center}
 #intro .tag{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:30px;border:1.5px solid rgba(214,242,154,.45);color:#d6f29a;font-family:Unbounded;font-weight:500;font-size:22px;letter-spacing:4px}
-#intro .big{font-family:Unbounded;font-weight:800;font-size:132px;line-height:1.02;color:#f3fbe9;letter-spacing:-3px;margin-top:34px}
+#intro .big{font-family:Unbounded;font-weight:800;font-size:114px;line-height:1.02;color:#f3fbe9;letter-spacing:-3px;margin-top:34px}
 #intro .big2{color:#d6f29a}
 #intro .ch{display:inline-block}
 #intro .sm{font-size:34px;color:rgba(230,245,215,.7);margin-top:30px;font-weight:500;letter-spacing:.5px}
@@ -354,7 +354,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
     <div class="tag" id="itag">ЧТО ПОЕСТЬ [VK] · TELEGRAM-БОТ</div>
     <div class="big" id="ib1"></div>
     <div class="big big2" id="ib2"></div>
-    <div class="sm" id="ism">Подписка · Профиль · Заявка</div>
+    <div class="sm" id="ism">Платная подписка работает в двух сетях</div>
   </div>
 
   <div id="outro">
@@ -448,7 +448,7 @@ function init(){
   let prev=0;
   targets=MSG.map(([id,t])=>{const el=$(id);const b=el.offsetTop+el.offsetHeight;const tg=Math.max(prev,b-VIEW_H);prev=tg;return{id,t,tg,el}});
   $('prog').innerHTML=STEPS.map(()=>'<i><b></b></i>').join('');
-  window.IB1=splitChars($('ib1'),'Из Telegram');window.IB2=splitChars($('ib2'),'в группу ВК');
+  window.IB1=splitChars($('ib1'),'Синхронизация');window.IB2=splitChars($('ib2'),'Telegram и ВК');
   window.OB1=splitWords($('ob1'),'Одна подписка —');window.OB2=splitWords($('ob2'),'две площадки.');
   $('feats').innerHTML=['✅ Проверка подписки','🔗 Привязка профиля ВК','📩 Заявки в группу','👤 Приём у админа','⏰ Контроль продления']
     .map(f=>`<div class="f">${f.replace(/^(\S+)/,'<span class="emo">$1</span>')}</div>`).join('');
