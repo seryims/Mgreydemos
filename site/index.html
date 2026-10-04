@@ -146,8 +146,10 @@
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a;
     font:700 14px/1 Inter,system-ui,sans-serif; display:flex; align-items:center; justify-content:center; gap:8px; }
   .vfull:hover{ filter:brightness(1.08); }
-  .vmute{ width:44px; height:44px; flex:none; border-radius:12px; cursor:pointer;
-    border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text); font-size:15px; }
+  .vmute{ position:absolute; right:14px; top:14px; z-index:2; width:40px; height:40px; border-radius:50%; cursor:pointer;
+    border:1px solid var(--border); background:rgba(7,7,10,.6); backdrop-filter:blur(8px);
+    color:var(--text); font-size:15px; line-height:1; }
+  .vmute:hover{ background:rgba(7,7,10,.8); }
   .vlabel{ position:absolute; left:14px; top:14px; display:inline-flex; align-items:center; gap:7px;
     padding:7px 12px; border-radius:999px; font:600 12px/1 'IBM Plex Mono',monospace; letter-spacing:.4px;
     background:rgba(7,7,10,.6); color:var(--text-dim); backdrop-filter:blur(8px); border:1px solid var(--border); }
@@ -157,7 +159,22 @@
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a;
     font:700 13px/1 Inter,system-ui,sans-serif; }
   .lb-sound.hide{ display:none; }
-  @media (max-width:560px){ .vshow{ height:min(560px, calc(100vh - 260px)); } }
+  .hero > *{ min-width:0; }
+  .phone-wrap{ min-width:0; }
+  .phone-tabs{ max-width:100%; }
+  .vfull{ white-space:nowrap; }
+  @media (max-width:860px){
+    .vshow{ width:100%; height:auto; max-height:none; }
+    .vfull{ font-size:13px; }
+    .vlabel{ font-size:11px; padding:6px 10px; }
+    .vmute{ width:38px; height:38px; font-size:14px; right:12px; top:12px; }
+  }
+  @media (max-width:420px){
+    .vshow{ border-radius:16px; }
+    .vfull{ font-size:12.5px; }
+    .vshow .vctl{ left:10px; right:10px; bottom:10px; justify-content:center; }
+    .vfull{ height:40px; flex:0 0 auto; padding:0 22px; }
+  }
   @media (prefers-reduced-motion: reduce){ .vshow video{ display:none; } }
   .swipe-hint{
     text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim);
@@ -574,15 +591,15 @@
     </div>
     <div class="vshow" id="vshow">
       <img class="vposter" id="vposter" src="media/booking_poster.jpg" alt="Демо Telegram-бота">
-      <video id="vloop" muted loop playsinline autoplay preload="auto" poster="media/booking_poster.jpg">
+      <video id="vloop" muted playsinline autoplay preload="auto" poster="media/booking_poster.jpg">
         <source id="vloopWebm" src="media/booking_loop.webm" type="video/webm">
         <source id="vloopMp4" src="media/booking_loop.mp4" type="video/mp4">
       </video>
       <div class="vfade"></div>
       <div class="vlabel"><span class="d"></span><span id="vlabel">запись в студию</span></div>
+      <button type="button" class="vmute" id="vmute" aria-label="Включить звук">🔇</button>
       <div class="vctl">
         <button type="button" class="vfull" id="vfull">▶ Полный ролик · 33 сек</button>
-        <button type="button" class="vmute" id="vmute" aria-label="Звук">🔇</button>
       </div>
     </div>
     <div class="swipe-hint" id="swipeHint">← листайте, чтобы посмотреть другие проекты →</div>
@@ -952,8 +969,29 @@
       playSafe(vloop);
     });
     vfullBtn.addEventListener('click', function(){ openDemo(HERO[heroKey].demo); });
+
+    // auto-advance to the next project when the clip ends
+    var HERO_ORDER = ['booking','subscription','shop','digital','content'];
+    vloop.addEventListener('ended', function(){
+      if(document.getElementById('lightbox').classList.contains('open')) return;
+      var i = HERO_ORDER.indexOf(heroKey);
+      var next = HERO_ORDER[(i + 1) % HERO_ORDER.length];
+      var btn = document.querySelector('.phone-tabs button[data-bot="' + next + '"]');
+      if(btn) btn.click(); else renderBot(next);
+    });
     if(lightMode){ vloop.removeAttribute('autoplay'); document.getElementById('vloopWebm').removeAttribute('src'); document.getElementById('vloopMp4').removeAttribute('src'); vloop.load(); }
-    else { playSafe(vloop); }
+    else {
+      playSafe(vloop);
+      // pause while the hero is off screen, resume when it comes back
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){
+          es.forEach(function(en){
+            if(document.getElementById('lightbox').classList.contains('open')) return;
+            if(en.isIntersecting) playSafe(vloop); else vloop.pause();
+          });
+        }, { threshold:.2 }).observe(document.getElementById('vshow'));
+      }
+    }
 
     var swipeHint = document.getElementById('swipeHint');
     var dotpagerEls = Array.prototype.slice.call(document.querySelectorAll('#dotpager span'));
