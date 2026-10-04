@@ -155,114 +155,147 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 /* ===== Mini App ===== */
 #screen{background:#000!important}
 #appwrap{position:absolute;inset:0;z-index:5}
-.masheet{position:absolute;left:0;right:0;top:46px;bottom:0;background:#F7F2E8;border-radius:22px 22px 0 0;overflow:hidden}
-.mahdr{position:absolute;left:0;right:0;top:0;height:64px;background:#fff;display:flex;align-items:center;padding:0 14px;z-index:3}
+.masheet{position:absolute;left:0;right:0;top:46px;bottom:0;z-index:4;background:#F1F4F0;border-radius:22px 22px 0 0;overflow:hidden}
+.mahdr{position:absolute;left:0;right:0;top:0;height:64px;background:#fff;display:flex;align-items:center;padding:0 14px;z-index:30}
 .mahdr .lf{font-size:15.5px;color:#111;font-weight:500;width:74px}
 .mahdr .ct{flex:1;text-align:center}
 .mahdr .ct b{display:block;font-size:16px;font-weight:700;color:#111;letter-spacing:-.1px}
-.mahdr .ct span{display:block;font-size:12.5px;color:#8a8f86;margin-top:-1px}
+.mahdr .ct span{display:block;font-size:12.5px;color:#8d968f;margin-top:-1px}
 .mahdr .rt{width:74px;display:flex;justify-content:flex-end}
-.mahdr .rt i{width:28px;height:28px;border-radius:50%;border:1.6px solid #c9ccc4;display:flex;align-items:center;justify-content:center;font-size:13px;color:#555;font-style:normal;letter-spacing:1px}
+.mahdr .rt i{width:28px;height:28px;border-radius:50%;border:1.6px solid #ccd3ce;display:flex;align-items:center;justify-content:center;font-size:13px;color:#555;font-style:normal;letter-spacing:1px}
 .maclip{position:absolute;left:0;right:0;top:64px;bottom:0;overflow:hidden}
 .mascr{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden}
 .mafeed{position:absolute;left:0;right:0;top:0;padding:14px 13px 90px}
-.manav{position:absolute;left:0;right:0;bottom:0;height:74px;background:#FFFCF6;border-top:1px solid rgba(41,39,32,.10);display:flex;z-index:4}
-.manav div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11.5px;color:#9a9287;font-weight:600;position:relative}
-.manav div.on{color:#5A3827}
+.manav{position:absolute;left:0;right:0;bottom:0;height:74px;background:#FFFFFF;border-top:1px solid rgba(27,31,28,.10);display:flex;z-index:30}
+.manav div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11.5px;color:#8d968f;font-weight:600;position:relative}
+.manav div.on{color:#1E6A4F}
 .manav .ico{width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:19px;opacity:.85}
-.manav .bdg{position:absolute;top:10px;left:calc(50% + 7px);min-width:17px;height:17px;border-radius:9px;background:#B97818;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.manav .bdg{position:absolute;top:10px;left:calc(50% + 7px);min-width:17px;height:17px;border-radius:9px;background:#1E6A4F;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}
 /* cards */
-.ecard{background:#FFFCF6;border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(41,39,32,.07);margin-bottom:16px}
-.elogo{text-align:center;font-weight:800;font-size:17px;color:#B97818;letter-spacing:.5px;margin-bottom:9px}
-.elogo span{display:block;font-size:11px;letter-spacing:2px;color:#8a7a5e;font-weight:700;margin-top:-2px}
-.eh1{font-size:22px;font-weight:800;color:#292720;line-height:1.18;text-align:center;letter-spacing:-.4px}
-.esub{font-size:13px;color:rgba(41,39,32,.64);text-align:center;margin-top:7px;line-height:1.35}
-.efeat{display:flex;gap:6px;margin:13px 0;padding:11px 0;border-top:1px solid rgba(41,39,32,.12);border-bottom:1px solid rgba(41,39,32,.12)}
-.efeat div{flex:1;text-align:center;font-size:10px;font-weight:700;color:#292720;line-height:1.25}
-.efeat i{display:block;width:26px;height:26px;margin:0 auto 5px;border-radius:50%;border:1.4px solid rgba(185,120,24,.45);font-style:normal;font-size:12px;display:flex;align-items:center;justify-content:center}
+.ecard{background:#FFFFFF;border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(27,31,28,.07);margin-bottom:16px}
+.elogo{text-align:center;font-weight:800;font-size:17px;color:#1E6A4F;letter-spacing:.5px;margin-bottom:9px}
+.elogo span{display:block;font-size:11px;letter-spacing:2px;color:#6d7d72;font-weight:700;margin-top:-2px}
+.eh1{font-size:22px;font-weight:800;color:#1B1F1C;line-height:1.18;text-align:center;letter-spacing:-.4px}
+.esub{font-size:13px;color:rgba(27,31,28,.64);text-align:center;margin-top:7px;line-height:1.35}
+.efeat{display:flex;gap:6px;margin:13px 0;padding:11px 0;border-top:1px solid rgba(27,31,28,.12);border-bottom:1px solid rgba(27,31,28,.12)}
+.efeat div{flex:1;text-align:center;font-size:10px;font-weight:700;color:#1B1F1C;line-height:1.25}
+.efeat i{display:block;width:26px;height:26px;margin:0 auto 5px;border-radius:50%;border:1.4px solid rgba(30,106,79,.45);font-style:normal;font-size:12px;display:flex;align-items:center;justify-content:center}
 .erow{display:flex;gap:10px;align-items:center}
-.ebtn{height:44px;border-radius:13px;background:#B97818;color:#fff;font-size:14.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:1;position:relative;overflow:hidden}
-.ebtn.gh{background:transparent;color:#B97818;flex:0 0 auto;padding:0 6px}
+.ebtn{height:44px;border-radius:13px;background:#1E6A4F;color:#fff;font-size:14.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:1;position:relative;overflow:hidden}
+.ebtn.gh{background:transparent;color:#1E6A4F;flex:0 0 auto;padding:0 6px}
 .ebtn.wide{width:100%}
 .esec{display:flex;align-items:baseline;justify-content:space-between;margin:4px 2px 10px}
-.esec b{font-size:21px;font-weight:800;color:#292720;letter-spacing:-.4px}
-.esec span{font-size:12.5px;color:#B97818;font-weight:600}
-.eline{height:1px;background:rgba(41,39,32,.14);margin:-6px 2px 12px}
+.esec b{font-size:21px;font-weight:800;color:#1B1F1C;letter-spacing:-.4px}
+.esec span{font-size:12.5px;color:#1E6A4F;font-weight:600}
+.eline{height:1px;background:rgba(27,31,28,.14);margin:-6px 2px 12px}
 .erail{display:flex;gap:12px;margin-bottom:18px}
-.pcard{flex:0 0 272px;background:#FFFCF6;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(41,39,32,.07)}
-.pcard img{width:100%;height:188px;object-fit:cover;display:block}
+.pcard{flex:0 0 272px;background:#FFFFFF;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(27,31,28,.07)}
+.pimg{height:188px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--h1),var(--h2));display:flex;align-items:center;justify-content:center}
+.pimg svg{height:150px;display:block;filter:drop-shadow(0 12px 22px rgba(20,35,25,.3))}
+.pimg .lf2{position:absolute;left:12px;top:12px;font-size:9px;font-weight:800;letter-spacing:1.4px;color:rgba(27,31,28,.42)}
+.phero2{height:290px;border-radius:18px;background:linear-gradient(160deg,#e3eee7,#c6ddd0);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.phero2 svg{height:238px;filter:drop-shadow(0 16px 30px rgba(20,35,25,.32))}
+.inf{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(27,31,28,.1)}
+.inf:first-child{border-top:0;padding-top:2px}
+.inf i{width:34px;height:34px;border-radius:50%;border:1.4px solid rgba(30,106,79,.4);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px;color:#1E6A4F;flex:none}
+.inf .k{font-size:10.5px;font-weight:800;letter-spacing:1.1px;color:#1E6A4F}
+.inf .t{font-size:12.5px;color:rgba(27,31,28,.66);line-height:1.4;margin-top:3px}
 .pc{padding:12px 13px 14px}
-.pcat{font-size:9.5px;font-weight:800;letter-spacing:1.1px;color:#365443}
-.pname{font-size:16px;font-weight:800;color:#292720;margin:5px 0 5px;letter-spacing:-.2px}
-.pdesc{font-size:11.5px;color:rgba(41,39,32,.6);line-height:1.38;height:46px;overflow:hidden}
+.pcat{font-size:9.5px;font-weight:800;letter-spacing:1.1px;color:#2A8A66}
+.pname{font-size:16px;font-weight:800;color:#1B1F1C;margin:5px 0 5px;letter-spacing:-.2px}
+.pdesc{font-size:11.5px;color:rgba(27,31,28,.6);line-height:1.38;height:46px;overflow:hidden}
 .ppr{display:flex;align-items:center;justify-content:space-between;margin:9px 0 10px}
-.phrt{width:34px;height:34px;border-radius:11px;border:1.4px solid rgba(41,39,32,.18);display:flex;align-items:center;justify-content:center;font-size:15px;color:#9a9287}
-.phrt.on{border-color:#B97818;color:#B97818;background:rgba(185,120,24,.08)}
-.pprice{font-size:19px;font-weight:800;color:#292720;letter-spacing:-.3px}
-.pbuy{height:40px;border-radius:12px;background:#B97818;color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.8px;display:flex;align-items:center;justify-content:center}
+.phrt{width:34px;height:34px;border-radius:11px;border:1.4px solid rgba(27,31,28,.18);display:flex;align-items:center;justify-content:center;font-size:15px;color:#8d968f}
+.phrt.on{border-color:#1E6A4F;color:#1E6A4F;background:rgba(30,106,79,.08)}
+.pprice{font-size:19px;font-weight:800;color:#1B1F1C;letter-spacing:-.3px}
+.pbuy{height:40px;border-radius:12px;background:#1E6A4F;color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.8px;display:flex;align-items:center;justify-content:center}
 .dots{display:flex;gap:5px;justify-content:center;margin:-6px 0 16px}
-.dots i{width:6px;height:6px;border-radius:3px;background:rgba(41,39,32,.2)}
-.dots i.on{width:16px;background:#B97818}
+.dots i{width:6px;height:6px;border-radius:3px;background:rgba(27,31,28,.2)}
+.dots i.on{width:16px;background:#1E6A4F}
 /* product screen */
 .phero{width:100%;height:290px;object-fit:cover;border-radius:18px;display:block}
-.qty{display:flex;align-items:center;gap:14px;border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:7px 14px;font-size:16px;font-weight:800;color:#292720}
-.qty i{font-style:normal;color:#B97818;font-size:19px}
+.qty{display:flex;align-items:center;gap:14px;border:1.4px solid rgba(27,31,28,.16);border-radius:12px;padding:7px 14px;font-size:16px;font-weight:800;color:#1B1F1C}
+.qty i{font-style:normal;color:#1E6A4F;font-size:19px}
 /* cart */
 .citem{display:flex;gap:12px;align-items:center}
 .citem img{width:64px;height:64px;border-radius:13px;object-fit:cover}
-.cname{font-size:14px;font-weight:700;color:#292720;line-height:1.25}
-.csum{display:flex;justify-content:space-between;font-size:13.5px;color:rgba(41,39,32,.66);margin-top:9px}
-.csum b{color:#292720;font-weight:700}
-.ctot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(41,39,32,.14);margin-top:11px;padding-top:11px}
-.ctot span{font-size:14px;font-weight:700;color:#292720}
-.ctot b{font-size:23px;font-weight:800;color:#292720;letter-spacing:-.4px}
+.cname{font-size:14px;font-weight:700;color:#1B1F1C;line-height:1.25}
+.csum{display:flex;justify-content:space-between;font-size:13.5px;color:rgba(27,31,28,.66);margin-top:9px}
+.csum b{color:#1B1F1C;font-weight:700}
+.ctot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(27,31,28,.14);margin-top:11px;padding-top:11px}
+.ctot span{font-size:14px;font-weight:700;color:#1B1F1C}
+.ctot b{font-size:23px;font-weight:800;color:#1B1F1C;letter-spacing:-.4px}
 .promo{display:flex;gap:8px;margin-top:12px}
-.promo .f{flex:1;border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600;color:#292720;background:#fff;min-height:42px}
-.promo .b{width:104px;border-radius:12px;background:rgba(185,120,24,.12);color:#B97818;font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.pok{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#2f7a3f;font-weight:700;margin-top:9px;opacity:0}
+.promo .f{flex:1;border:1.4px solid rgba(27,31,28,.16);border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600;color:#1B1F1C;background:#fff;min-height:42px}
+.promo .b{width:104px;border-radius:12px;background:rgba(30,106,79,.12);color:#1E6A4F;font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pok{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#1E6A4F;font-weight:700;margin-top:9px;opacity:0}
 /* checkout */
-.step{font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#B97818;margin-bottom:8px}
-.fl{font-size:11px;color:rgba(41,39,32,.55);font-weight:600;margin:10px 0 4px}
-.fi{border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:10px 12px;font-size:14.5px;color:#292720;background:#fff;min-height:42px;font-weight:600}
-.dopt{display:flex;align-items:center;gap:11px;border:1.4px solid rgba(41,39,32,.14);border-radius:14px;padding:12px;margin-bottom:9px;background:#fff}
-.dopt.on{border-color:#B97818;background:rgba(185,120,24,.07)}
-.dopt .rd{width:20px;height:20px;border-radius:50%;border:2px solid rgba(41,39,32,.25);flex:none}
-.dopt.on .rd{border-color:#B97818;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 12px #B97818}
-.dopt .dn{font-size:14px;font-weight:700;color:#292720}
-.dopt .dd{font-size:11.5px;color:rgba(41,39,32,.55);margin-top:2px}
-.dopt .dp{margin-left:auto;font-size:14px;font-weight:800;color:#292720}
+.step{font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#1E6A4F;margin-bottom:8px}
+.fl{font-size:11px;color:rgba(27,31,28,.55);font-weight:600;margin:10px 0 4px}
+.fi{border:1.4px solid rgba(27,31,28,.16);border-radius:12px;padding:10px 12px;font-size:14.5px;color:#1B1F1C;background:#fff;min-height:42px;font-weight:600}
+.dopt{display:flex;align-items:center;gap:11px;border:1.4px solid rgba(27,31,28,.14);border-radius:14px;padding:12px;margin-bottom:9px;background:#fff}
+.dopt.on{border-color:#1E6A4F;background:rgba(30,106,79,.07)}
+.dopt .rd{width:20px;height:20px;border-radius:50%;border:2px solid rgba(27,31,28,.25);flex:none}
+.dopt.on .rd{border-color:#1E6A4F;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 12px #1E6A4F}
+.dopt .dn{font-size:14px;font-weight:700;color:#1B1F1C}
+.dopt .dd{font-size:11.5px;color:rgba(27,31,28,.55);margin-top:2px}
+.dopt .dp{margin-left:auto;font-size:14px;font-weight:800;color:#1B1F1C}
 /* order */
-.ordh{font-size:18px;font-weight:800;color:#292720;text-align:center;letter-spacing:-.3px}
-.trk{background:#F4EFE4;border-radius:13px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;margin-top:11px}
-.trk .l{font-size:11px;color:rgba(41,39,32,.55);font-weight:600}
-.trk .v{font-size:17px;font-weight:800;color:#292720;letter-spacing:.3px;margin-top:2px}
-.trk .c{background:#EDE5D6;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:700;color:#5A3827}
+.ordh{font-size:18px;font-weight:800;color:#1B1F1C;text-align:center;letter-spacing:-.3px}
+.trk{background:#EEF3EF;border-radius:13px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;margin-top:11px}
+.trk .l{font-size:11px;color:rgba(27,31,28,.55);font-weight:600}
+.trk .v{font-size:17px;font-weight:800;color:#1B1F1C;letter-spacing:.3px;margin-top:2px}
+.trk .c{background:#E2EBE5;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:700;color:#1E6A4F}
 .tl2{position:relative;padding-left:30px;margin-top:4px}
-.tl2:before{content:'';position:absolute;left:9px;top:8px;bottom:14px;width:2px;background:rgba(41,39,32,.14)}
+.tl2:before{content:'';position:absolute;left:9px;top:8px;bottom:14px;width:2px;background:rgba(27,31,28,.14)}
 .ti{position:relative;padding:9px 0}
-.ti .dot{position:absolute;left:-30px;top:11px;width:20px;height:20px;border-radius:50%;background:#2f7a3f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
-.ti.cur .dot{background:#B97818}
-.ti.next .dot{background:#fff;border:2px solid rgba(41,39,32,.22)}
-.ti b{font-size:15px;font-weight:800;color:#292720;display:block}
-.ti.cur b{color:#B97818}
-.ti.next b{color:rgba(41,39,32,.42)}
-.ti span{font-size:11.5px;color:rgba(41,39,32,.5);display:block;margin-top:1px}
+.ti .dot{position:absolute;left:-30px;top:11px;width:20px;height:20px;border-radius:50%;background:#1E6A4F;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
+.ti.cur .dot{background:#1E6A4F}
+.ti.next .dot{background:#fff;border:2px solid rgba(27,31,28,.22)}
+.ti b{font-size:15px;font-weight:800;color:#1B1F1C;display:block}
+.ti.cur b{color:#1E6A4F}
+.ti.next b{color:rgba(27,31,28,.42)}
+.ti span{font-size:11.5px;color:rgba(27,31,28,.5);display:block;margin-top:1px}
 /* admin */
-.akicker{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:#365443}
-.atitle2{font-size:25px;font-weight:800;color:#292720;letter-spacing:-.6px;margin-top:3px}
+.akicker{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:#2A8A66}
+.atitle2{font-size:25px;font-weight:800;color:#1B1F1C;letter-spacing:-.6px;margin-top:3px}
 .atiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.atile{background:#FFFCF6;border-radius:16px;padding:12px 13px;box-shadow:0 7px 20px rgba(41,39,32,.045)}
-.atile .l{font-size:11.5px;color:rgba(41,39,32,.55);font-weight:600}
-.atile .v{font-size:23px;font-weight:800;color:#292720;letter-spacing:-.6px;margin-top:3px}
-.atile .v.g{color:#2f7a3f}
+.atile{background:#FFFFFF;border-radius:16px;padding:12px 13px;box-shadow:0 7px 20px rgba(27,31,28,.045)}
+.atile .l{font-size:11.5px;color:rgba(27,31,28,.55);font-weight:600}
+.atile .v{font-size:23px;font-weight:800;color:#1B1F1C;letter-spacing:-.6px;margin-top:3px}
+.atile .v.g{color:#1E6A4F}
 .achips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-.achip{border:1.4px solid rgba(41,39,32,.16);border-radius:11px;padding:9px 15px;font-size:12.5px;font-weight:700;color:#292720;background:#FFFCF6}
-.achip.on{border-color:#365443;background:rgba(54,84,67,.09);color:#365443}
+.achip{border:1.4px solid rgba(27,31,28,.16);border-radius:11px;padding:9px 15px;font-size:12.5px;font-weight:700;color:#1B1F1C;background:#FFFFFF}
+.achip.on{border-color:#2A8A66;background:rgba(42,138,102,.09);color:#2A8A66}
 .achart{display:flex;align-items:flex-end;gap:5px;height:76px;margin-top:14px}
-.achart i{flex:1;background:linear-gradient(180deg,#d8a24a,#B97818);border-radius:4px 4px 0 0;transform-origin:50% 100%;transform:scaleY(0)}
-.achart i.g{background:linear-gradient(180deg,#5c9a6c,#365443)}
+.achart i{flex:1;background:linear-gradient(180deg,#4fb088,#1E6A4F);border-radius:4px 4px 0 0;transform-origin:50% 100%;transform:scaleY(0)}
+.achart i.g{background:linear-gradient(180deg,#1E6A4F,#2A8A66)}
 /* bits */
 .spin2{position:absolute;opacity:0}
+/* --- telegram chat before mini app --- */
+#chatscr{position:absolute;inset:0;z-index:2;background:linear-gradient(170deg,#bcd3e6,#a6c3dc 55%,#b4cde0)}
+#chatscr .pat{position:absolute;inset:0;opacity:.55;background-size:170px 170px}
+.chdr{position:absolute;left:0;right:0;top:46px;height:60px;background:rgba(252,253,255,.92);backdrop-filter:blur(14px);display:flex;align-items:center;padding:0 12px;gap:10px;z-index:3;box-shadow:0 .5px 0 rgba(0,0,0,.09)}
+.chdr .bk{font-size:24px;color:#2f86f6;line-height:1;margin-right:-2px}
+.chdr .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,#4fb088,#1E6A4F);display:flex;align-items:center;justify-content:center;font-size:18px}
+.chdr .nm{font-size:15.5px;font-weight:700;color:#111}
+.chdr .st{font-size:12.5px;color:#8a9199;margin-top:-1px}
+.cfeed{position:absolute;left:0;right:0;top:112px;padding:0 10px}
+.cm{margin-top:9px;transform-origin:0 100%}
+.cb{background:#fff;border-radius:18px;padding:10px 13px 9px;font-size:15.2px;line-height:1.4;color:#111;max-width:330px;box-shadow:0 1px 1.5px rgba(30,45,60,.16)}
+.cb b{font-weight:700}
+.ctm{float:right;font-size:11.5px;color:#9aa2a9;margin:7px -3px -3px 12px}
+.cib{height:44px;border-radius:14px;background:rgba(47,134,246,.14);color:#2f86f6;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:6px;backdrop-filter:blur(6px)}
+.ccomp{position:absolute;left:0;right:0;bottom:0;height:92px;z-index:3;background:rgba(252,253,255,.94);backdrop-filter:blur(14px);box-shadow:0 -.5px 0 rgba(0,0,0,.08)}
+#openApp{position:absolute;left:12px;top:9px;height:44px;border-radius:22px;background:#2f86f6;color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;padding:0 17px;box-shadow:0 3px 12px rgba(47,134,246,.4)}
+.ccomp .inp{position:absolute;left:218px;right:60px;top:9px;height:44px;border-radius:22px;background:rgba(0,0,0,.05);display:flex;align-items:center;padding-left:15px;color:#9aa2a9;font-size:15.5px}
+.ccomp .mic{position:absolute;right:14px;top:9px;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.05)}
+/* --- loading --- */
+#maload{position:absolute;left:0;right:0;top:64px;bottom:0;z-index:40;background:#F1F4F0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+#maload .lg{font-size:19px;font-weight:800;color:#1E6A4F;letter-spacing:1px}
+#maload .lg span{display:block;font-size:9.5px;letter-spacing:2.4px;color:#8d968f;font-weight:700;margin-top:2px}
+#maload .ring{width:34px;height:34px;border-radius:50%;border:3px solid rgba(30,106,79,.2);border-top-color:#1E6A4F}
+#maprog{position:absolute;left:0;top:64px;height:3px;background:linear-gradient(90deg,#1E6A4F,#4fb088);width:0;z-index:41}
 #topfade{display:none}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><filter id="mb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter></svg>
@@ -280,10 +313,22 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
     <div id="phone"></div>
     <div id="screen">
       <div id="appwrap">
-        <div class="masheet">
+        <div id="chatscr"><div class="pat" id="cpat"></div>
+          <div class="chdr"><span class="bk">‹</span><div class="av"><span class="emo">🌿</span></div><div><div class="nm">Фитотека</div><div class="st">бот</div></div></div>
+          <div class="cfeed">
+            <div class="datepill"><span>Сегодня</span></div>
+            <div class="cm" id="cm1"><div class="cb">Добро пожаловать <span class="emo">🌿</span> Это магазин <b>«Фитотека»</b>.<br>Каталог, корзина и оплата — в мини-приложении.<span class="ctm">12:04</span></div>
+              <div class="cib"><span class="emo">🛍</span> Открыть магазин</div></div>
+          </div>
+          <div class="ccomp"><div id="openApp"><svg width="15" height="13" viewBox="0 0 16 14"><path d="M1 2h14M1 7h14M1 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>Открыть приложение</div>
+            <div class="inp">Сообщение</div><div class="mic"></div></div>
+        </div>
+        <div class="masheet" id="masheet">
+          <div id="maprog"></div>
+          <div id="maload"><div class="lg">ФИТОТЕКА<span>РАСТИТЕЛЬНЫЕ ЭКСТРАКТЫ</span></div><div class="ring"></div></div>
           <div class="mahdr">
             <div class="lf" id="mLeft">Закрыть</div>
-            <div class="ct"><b>Eco NeuroNova</b><span>мини-приложение</span></div>
+            <div class="ct"><b>Фитотека</b><span>мини-приложение</span></div>
             <div class="rt"><i>•••</i></div>
           </div>
           <div class="maclip">
@@ -291,85 +336,152 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
             <!-- S1 CATALOG -->
             <div class="mascr" id="s1"><div class="mafeed" id="f1">
               <div class="ecard">
-                <div class="elogo">ECO<span>NeuroNova</span></div>
-                <div class="eh1">Экстракты для энергии, фокуса и баланса</div>
-                <div class="esub">Подбор по задачам: энергия, концентрация, восстановление и иммунный баланс.</div>
+                <div class="elogo">ФИТОТЕКА<span>РАСТИТЕЛЬНЫЕ ЭКСТРАКТЫ</span></div>
+                <div class="eh1">Экстракты трав для энергии и баланса</div>
+                <div class="esub">Подбор по задачам: энергия, иммунитет, сон и восстановление.</div>
                 <div class="efeat">
-                  <div><i>◎</i>Лабораторно подтверждённый состав</div>
-                  <div><i>◈</i>Full Spectrum Technology</div>
-                  <div><i>✓</i>Контроль каждой партии</div>
+                  <div><i>⚗</i>Проверенный состав</div>
+                  <div><i>🜂</i>Полный спектр</div>
+                  <div><i>✓</i>Контроль партий</div>
                 </div>
-                <div class="erow"><div class="ebtn" id="bChoose">Выбрать экстракт</div><div class="ebtn gh">База знаний →</div></div>
+                <div class="erow"><div class="ebtn" id="bChoose">Подобрать экстракт</div><div class="ebtn gh">О составах →</div></div>
               </div>
 
               <div class="esec"><b>Энергия и фокус</b><span>Смотреть все →</span></div><div class="eline"></div>
-              <div class="erail">
-                <div class="pcard"><img src="img/kordiceps_s.jpg">
-                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт кордицепса 30 мл</div>
-                  <div class="pdesc">Кордицепс — гриб для выносливости, энергии и поддержки работоспособности в течение дня.</div>
-                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">3 300 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
-                <div class="pcard"><img src="img/ezhovik_s.jpg">
-                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт ежовика 30 мл</div>
-                  <div class="pdesc">Ежовик — поддержка памяти, концентрации и ясности мышления.</div>
-                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 700 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
-              </div>
+              <div class="erail"><div class="pcard"><div class="pimg" style="--h1:#eef0e7;--h2:#d8e2cf"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5f2b"/><stop offset="1" stop-color="#5a3c18"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g0)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">ЖЕНЬШЕНЬ</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">EXTRACT</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт женьшеня 30 мл</div>
+                  <div class="pdesc">Женьшень — поддержка энергии и работоспособности в течение дня.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 490 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div><div class="pcard"><div class="pimg" style="--h1:#f0ebf0;--h2:#ddd0dd"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a4a5e"/><stop offset="1" stop-color="#4a2b3a"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g1)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">РОДИОЛА</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">ROSEA</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт родиолы 30 мл</div>
+                  <div class="pdesc">Родиола — адаптоген для выносливости и устойчивости к нагрузкам.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 190 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div></div>
               <div class="dots"><i class="on"></i><i></i><i></i></div>
 
-              <div class="esec"><b>Иммунитет и баланс</b><span>Смотреть все →</span></div><div class="eline"></div>
-              <div class="erail">
-                <div class="pcard" id="pReishi"><img src="img/reishi_s.jpg">
-                  <div class="pc"><div class="pcat">ИММУНИТЕТ И БАЛАНС</div><div class="pname">Экстракт рейши 30 мл</div>
-                  <div class="pdesc">Рейши — функциональный гриб для поддержки спокойствия, восстановления и естественного баланса организма.</div>
-                  <div class="ppr"><div class="phrt" id="hReishi">♡</div><div class="pprice">3 400 ₽</div></div><div class="pbuy" id="bReishi">В КОРЗИНУ</div></div></div>
-                <div class="pcard"><img src="img/trametes_s.jpg">
-                  <div class="pc"><div class="pcat">ИММУНИТЕТ И БАЛАНС</div><div class="pname">Экстракт траметеса 30 мл</div>
-                  <div class="pdesc">Траметес — поддержка естественных защитных сил и микрофлоры кишечника.</div>
-                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 900 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
-              </div>
+              <div class="esec"><b>Иммунитет</b><span>Смотреть все →</span></div><div class="eline"></div>
+              <div class="erail"><div class="pcard" id="pReishi"><div class="pimg" style="--h1:#e3eee7;--h2:#c6ddd0"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6a4a"/><stop offset="1" stop-color="#1c422e"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g2)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">ЭХИНАЦЕЯ</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">FORTE</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">ИММУНИТЕТ</div><div class="pname">Эхинацея форте 30 мл</div>
+                  <div class="pdesc">Эхинацея — поддержка естественных защитных сил организма в сезон простуд.</div>
+                  <div class="ppr"><div class="phrt" id="hReishi">♡</div><div class="pprice">1 890 ₽</div></div><div class="pbuy" id="bReishi">В КОРЗИНУ</div></div></div><div class="pcard"><div class="pimg" style="--h1:#f5eede;--h2:#e6d6b8"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a6a22"/><stop offset="1" stop-color="#6a4512"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g3)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">ОБЛЕПИХА</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">VITAMIN C</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">ИММУНИТЕТ</div><div class="pname">Экстракт облепихи 30 мл</div>
+                  <div class="pdesc">Облепиха — источник витамина C и антиоксидантов.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">1 690 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div></div>
               <div class="dots"><i class="on"></i><i></i><i></i></div>
 
-              <div class="esec"><b>Наружный уход</b><span>Смотреть все →</span></div><div class="eline"></div>
-              <div class="erail">
-                <div class="pcard"><img src="img/muhomor_s.jpg">
-                  <div class="pc"><div class="pcat">НАРУЖНЫЙ УХОД</div><div class="pname">Экстракт мухомора 30 мл</div>
-                  <div class="pdesc">Amanita Regalis — энергия, выносливость и адаптация к стрессу.</div>
-                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">3 100 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
-                <div class="pcard"><img src="img/chaga_s.jpg">
-                  <div class="pc"><div class="pcat">НАРУЖНЫЙ УХОД</div><div class="pname">Экстракт чаги 30 мл</div>
-                  <div class="pdesc">Чага — антиоксидантная защита и очищение организма.</div>
-                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">1 690 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
-              </div>
+              <div class="esec"><b>Сон и восстановление</b><span>Смотреть все →</span></div><div class="eline"></div>
+              <div class="erail"><div class="pcard"><div class="pimg" style="--h1:#e5eeee;--h2:#c9dedc"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b6a66"/><stop offset="1" stop-color="#23423f"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g4)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">МЕЛИССА</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">& МЯТА</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">СОН И ВОССТАНОВЛЕНИЕ</div><div class="pname">Мелисса и мята 30 мл</div>
+                  <div class="pdesc">Мягкая поддержка спокойного сна и вечернего расслабления.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">1 590 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div><div class="pcard"><div class="pimg" style="--h1:#e8ebf2;--h2:#ccd5e4"><div class="lf2">ФИТОТЕКА</div><svg viewBox="0 0 120 176"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#33496e"/><stop offset="1" stop-color="#1f2c45"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#g5)"/>
+<rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">МАГНИЙ</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72" letter-spacing=".5">B6</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+                  <div class="pc"><div class="pcat">СОН И ВОССТАНОВЛЕНИЕ</div><div class="pname">Магний B6 · 60 капсул</div>
+                  <div class="pdesc">Магний и витамин B6 — поддержка нервной системы и восстановления.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">1 290 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div></div>
             </div></div>
 
             <!-- S2 PRODUCT -->
             <div class="mascr" id="s2"><div class="mafeed" id="f2">
-              <img class="phero" src="img/reishi_s.jpg">
-              <div class="pcat" style="margin-top:15px">ИММУНИТЕТ И БАЛАНС</div>
-              <div style="font-size:24px;font-weight:800;color:#292720;margin-top:5px;letter-spacing:-.5px">Экстракт рейши 30 мл</div>
-              <div style="font-size:13.5px;color:rgba(41,39,32,.62);line-height:1.45;margin-top:8px">Рейши — функциональный гриб для поддержки спокойствия, восстановления и естественного баланса организма. Подходит для вечернего ритуала и напряжённого графика.</div>
-              <div class="erow" style="margin:15px 0 16px"><div class="qty"><i>−</i>1<i>+</i></div><div class="pprice" style="margin-left:auto;font-size:26px">3 400 ₽</div></div>
+              <div class="phero2"><svg viewBox="0 0 120 176"><defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6a4a"/><stop offset="1" stop-color="#1c422e"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#gh)"/><rect x="27" y="37" width="20" height="134" rx="15" fill="currentColor" opacity=".10"/>
+<rect x="35" y="68" width="50" height="62" rx="7" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="7" font-weight="800" fill="#1E6A4F" letter-spacing="1">ФИТОТЕКА</text>
+<line x1="42" y1="90" x2="78" y2="90" stroke="#1E6A4F" stroke-opacity=".35"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="9" font-weight="800" fill="#1B1F1C">ЭХИНАЦЕЯ</text>
+<text x="60" y="117" text-anchor="middle" font-family="Inter" font-size="6" font-weight="600" fill="#6d7d72">FORTE</text>
+<text x="60" y="152" text-anchor="middle" font-family="Inter" font-size="7" font-weight="700" fill="currentColor" opacity=".8">30 ml</text></svg></div>
+              <div class="pcat" style="margin-top:15px">ИММУНИТЕТ</div>
+              <div style="font-size:24px;font-weight:800;color:#1B1F1C;margin-top:5px;letter-spacing:-.5px">Эхинацея форте 30 мл</div>
+              <div style="font-size:13.5px;color:rgba(27,31,28,.62);line-height:1.45;margin-top:8px">Эхинацея — поддержка естественных защитных сил организма в сезон простуд. Двойной экстракт корня и травы, без спирта и сахара.</div>
+              <div class="erow" style="margin:15px 0 16px"><div class="qty"><i>−</i>1<i>+</i></div><div class="pprice" style="margin-left:auto;font-size:26px">1 890 ₽</div></div>
               <div class="erow" style="margin-bottom:16px"><div class="phrt" id="hP2" style="width:46px;height:46px;border-radius:14px;font-size:19px">♡</div><div class="ebtn" id="bAdd">В КОРЗИНУ</div></div>
-              <img src="img/reishi-info_s.jpg" style="width:100%;border-radius:18px;display:block">
-              <div class="ecard" style="margin-top:16px"><div style="font-size:15px;font-weight:800;color:#292720">Похожие товары</div>
-                <div class="erow" style="margin-top:11px"><img src="img/trametes_s.jpg" style="width:62px;height:62px;border-radius:13px;object-fit:cover"><div><div class="cname">Экстракт траметеса 30 мл</div><div class="pprice" style="font-size:16px;margin-top:4px">2 900 ₽</div></div></div>
+              <div class="ecard">
+                <div class="inf"><i>❧</i><div><div class="k">СОСТАВ</div><div class="t">двойной экстракт эхинацеи пурпурной, растительный глицерин, очищенная вода</div></div></div>
+                <div class="inf"><i>◔</i><div><div class="k">ПРИМЕНЕНИЕ</div><div class="t">взрослым по 1 мл 1–2 раза в день во время еды</div></div></div>
+                <div class="inf"><i>!</i><div><div class="k">ПРОТИВОПОКАЗАНИЯ</div><div class="t">индивидуальная непереносимость, беременность и период грудного вскармливания</div></div></div>
+                <div class="inf"><i>❄</i><div><div class="k">ХРАНЕНИЕ</div><div class="t">от +5 до +25 °C, беречь от прямых солнечных лучей</div></div></div>
+              </div>
+              <div class="ecard" style="margin-top:16px"><div style="font-size:15px;font-weight:800;color:#1B1F1C">Похожие товары</div>
+                <div class="erow" style="margin-top:11px"><div style="width:64px;height:64px;border-radius:13px;background:linear-gradient(160deg,#e9efea,#d3e1d8);display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 120 176" style="height:56px"><defs><linearGradient id="gmx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a6a22"/><stop offset="1" stop-color="#6a4512"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#gmx)"/><rect x="35" y="72" width="50" height="46" rx="6" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#1B1F1C">О</text></svg></div><div><div class="cname">Экстракт облепихи 30 мл</div><div class="pprice" style="font-size:16px;margin-top:4px">1 690 ₽</div></div></div>
               </div>
             </div></div>
 
             <!-- S3 CART -->
             <div class="mascr" id="s3"><div class="mafeed" id="f3">
               <div class="ecard">
-                <div class="citem"><img src="img/reishi_s.jpg"><div style="flex:1"><div class="cname">Экстракт рейши 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">3 400 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
-                <div style="height:1px;background:rgba(41,39,32,.12);margin:13px 0"></div>
-                <div class="citem"><img src="img/ezhovik_s.jpg"><div style="flex:1"><div class="cname">Экстракт ежовика 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">2 700 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
+                <div class="citem"><div style="width:64px;height:64px;border-radius:13px;background:linear-gradient(160deg,#e9efea,#d3e1d8);display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 120 176" style="height:56px"><defs><linearGradient id="gmc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6a4a"/><stop offset="1" stop-color="#1c422e"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#gmc1)"/><rect x="35" y="72" width="50" height="46" rx="6" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#1B1F1C">Э</text></svg></div><div style="flex:1"><div class="cname">Эхинацея форте 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">1 890 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
+                <div style="height:1px;background:rgba(27,31,28,.12);margin:13px 0"></div>
+                <div class="citem"><div style="width:64px;height:64px;border-radius:13px;background:linear-gradient(160deg,#e9efea,#d3e1d8);display:flex;align-items:center;justify-content:center;flex:none"><svg viewBox="0 0 120 176" style="height:56px"><defs><linearGradient id="gmc2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5f2b"/><stop offset="1" stop-color="#5a3c18"/></linearGradient></defs>
+<rect x="45" y="4" width="30" height="24" rx="7" fill="#24282a"/><rect x="52" y="26" width="16" height="13" fill="#31363a"/>
+<rect x="27" y="37" width="66" height="134" rx="15" fill="url(#gmc2)"/><rect x="35" y="72" width="50" height="46" rx="6" fill="#fdfdfb" opacity=".95"/>
+<text x="60" y="104" text-anchor="middle" font-family="Inter" font-size="13" font-weight="800" fill="#1B1F1C">Ж</text></svg></div><div style="flex:1"><div class="cname">Экстракт женьшеня 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">2 490 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
               </div>
               <div class="ecard">
-                <div style="font-size:15px;font-weight:800;color:#292720">Промокод</div>
+                <div style="font-size:15px;font-weight:800;color:#1B1F1C">Промокод</div>
                 <div class="promo"><div class="f" id="promoF"></div><div class="b" id="promoB">Применить</div></div>
-                <div class="pok" id="promoOK">✓ Промокод ECO10 применён — скидка 610 ₽</div>
-                <div class="csum"><span>Товары</span><b>6 100 ₽</b></div>
-                <div class="csum" id="cDisc" style="opacity:0"><span>Скидка</span><b style="color:#2f7a3f">− 610 ₽</b></div>
+                <div class="pok" id="promoOK">✓ Промокод FITO10 применён — скидка 440 ₽</div>
+                <div class="csum"><span>Товары</span><b>4 380 ₽</b></div>
+                <div class="csum" id="cDisc" style="opacity:0"><span>Скидка</span><b style="color:#1E6A4F">− 440 ₽</b></div>
                 <div class="csum"><span>Доставка СДЭК</span><b>390 ₽</b></div>
-                <div class="ctot"><span>К оплате</span><b id="cTotal">6 490 ₽</b></div>
+                <div class="ctot"><span>К оплате</span><b id="cTotal">4 770 ₽</b></div>
               </div>
               <div class="ebtn wide" id="bCheckout">Оформить заказ</div>
             </div></div>
@@ -377,41 +489,41 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
             <!-- S4 CHECKOUT -->
             <div class="mascr" id="s4"><div class="mafeed" id="f4">
               <div class="ecard"><div class="step">ШАГ 1 ИЗ 4 · КОНТАКТНЫЕ ДАННЫЕ</div>
-                <div class="fl">Имя *</div><div class="fi">Максим</div>
-                <div class="fl">Телефон *</div><div class="fi">+7 924 725-04-93</div>
+                <div class="fl">Имя *</div><div class="fi">Анна</div>
+                <div class="fl">Телефон *</div><div class="fi">+7 999 123-45-67</div>
                 <div class="fl">Email для чека</div><div class="fi">client@example.com</div></div>
               <div class="ecard"><div class="step">ШАГ 2 ИЗ 4 · СПОСОБ ДОСТАВКИ</div>
-                <div class="dopt"><div class="rd"></div><div><div class="dn">Курьер СДЭК</div><div class="dd">до двери, 9–10 дней</div></div><div class="dp">690 ₽</div></div>
-                <div class="dopt on" id="dPvz"><div class="rd"></div><div><div class="dn">Пункт выдачи СДЭК</div><div class="dd">Владивосток, ул. Светланская, 152</div></div><div class="dp">390 ₽</div></div>
-                <div class="dopt"><div class="rd"></div><div><div class="dn">Самовывоз</div><div class="dd">склад во Владивостоке</div></div><div class="dp">0 ₽</div></div></div>
+                <div class="dopt"><div class="rd"></div><div><div class="dn">Курьер СДЭК</div><div class="dd">до двери, 3–5 дней</div></div><div class="dp">590 ₽</div></div>
+                <div class="dopt on" id="dPvz"><div class="rd"></div><div><div class="dn">Пункт выдачи СДЭК</div><div class="dd">Москва, ул. Лесная, 12</div></div><div class="dp">390 ₽</div></div>
+                <div class="dopt"><div class="rd"></div><div><div class="dn">Самовывоз</div><div class="dd">склад в Москве</div></div><div class="dp">0 ₽</div></div></div>
               <div class="ecard"><div class="step">ШАГ 3 ИЗ 4 · АДРЕС ДОСТАВКИ</div>
-                <div class="fi" style="line-height:1.4">690001, Россия, Приморский край,<br>Владивосток, ул. Светланская, 152<br><span style="color:rgba(41,39,32,.5);font-size:12.5px">ПВЗ VLK112 · срок 9–10 дней</span></div></div>
+                <div class="fi" style="line-height:1.4">125047, Россия, Москва,<br>ул. Лесная, 12<br><span style="color:rgba(27,31,28,.5);font-size:12.5px">ПВЗ MSK418 · срок 3–5 дней</span></div></div>
               <div class="ecard"><div class="step">ШАГ 4 ИЗ 4 · ОПЛАТА</div>
                 <div class="fl">Номер карты</div><div class="fi" id="ccN"></div>
                 <div class="erow" style="gap:9px"><div style="flex:1"><div class="fl">Срок</div><div class="fi" id="ccE"></div></div><div style="flex:1"><div class="fl">CVC</div><div class="fi" id="ccC"></div></div></div>
-                <div class="ctot"><span>К оплате</span><b>6 490 ₽</b></div>
-                <div class="ebtn wide" id="bPay" style="margin-top:12px"><span id="payT">Оплатить 6 490 ₽</span>
+                <div class="ctot"><span>К оплате</span><b>4 770 ₽</b></div>
+                <div class="ebtn wide" id="bPay" style="margin-top:12px"><span id="payT">Оплатить 4 770 ₽</span>
                   <svg id="paySp" class="spin2" width="28" height="28" viewBox="0 0 30 30"><circle cx="15" cy="15" r="11" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="3"/><path d="M15 4a11 11 0 0 1 11 11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
                   <svg id="payOk" class="spin2" width="32" height="32" viewBox="0 0 34 34"><path id="payOkP" d="M8 17.5l6 6 12-13" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30"/></svg>
                 </div>
-                <div style="text-align:center;font-size:11.5px;color:rgba(41,39,32,.45);margin-top:10px">Защищённый платёж · 3-D Secure</div></div>
+                <div style="text-align:center;font-size:11.5px;color:rgba(27,31,28,.45);margin-top:10px">Защищённый платёж · 3-D Secure</div></div>
             </div></div>
 
             <!-- S5 ORDER -->
             <div class="mascr" id="s5"><div class="mafeed" id="f5">
-              <div class="ordh">Заказ № DM-260817-4465B8</div>
+              <div class="ordh">Заказ № FT-240517-8821C4</div>
               <div class="ecard" style="margin-top:14px">
-                <div style="font-size:13px;color:rgba(41,39,32,.62);line-height:1.4">ПВЗ VLK112 · 690001, Россия, Приморский край, Владивосток, ул. Светланская, 152</div>
-                <div style="font-size:13px;color:rgba(41,39,32,.62);margin-top:6px">Ориентировочный срок: 9–10 дн.</div>
-                <div class="trk" id="trk"><div><div class="l">Трек-номер СДЭК</div><div class="v">10308068440</div></div><div class="c">Скопировать</div></div>
+                <div style="font-size:13px;color:rgba(27,31,28,.62);line-height:1.4">ПВЗ MSK418 · 125047, Россия, Москва, ул. Лесная, 12</div>
+                <div style="font-size:13px;color:rgba(27,31,28,.62);margin-top:6px">Ориентировочный срок: 3–5 дн.</div>
+                <div class="trk" id="trk"><div><div class="l">Трек-номер СДЭК</div><div class="v">78214905331</div></div><div class="c">Скопировать</div></div>
               </div>
               <div class="ecard">
-                <div style="font-size:17px;font-weight:800;color:#292720;margin-bottom:6px">История заказа</div>
+                <div style="font-size:17px;font-weight:800;color:#1B1F1C;margin-bottom:6px">История заказа</div>
                 <div class="tl2">
-                  <div class="ti" id="t1"><div class="dot">✓</div><b>Ожидает оплаты</b><span>17 авг., 16:19 · заказ создан покупателем</span></div>
-                  <div class="ti" id="t2"><div class="dot">✓</div><b>Оплачен</b><span>17 авг., 16:19 · оплата подтверждена</span></div>
-                  <div class="ti" id="t3"><div class="dot">✓</div><b>Собирается</b><span>17 авг., 16:21</span></div>
-                  <div class="ti" id="t4"><div class="dot">✓</div><b>Собран</b><span>17 авг., 16:21</span></div>
+                  <div class="ti" id="t1"><div class="dot">✓</div><b>Ожидает оплаты</b><span>17 мая, 16:19 · заказ создан покупателем</span></div>
+                  <div class="ti" id="t2"><div class="dot">✓</div><b>Оплачен</b><span>17 мая, 16:19 · оплата подтверждена</span></div>
+                  <div class="ti" id="t3"><div class="dot">✓</div><b>Собирается</b><span>17 мая, 16:21</span></div>
+                  <div class="ti" id="t4"><div class="dot">✓</div><b>Собран</b><span>17 мая, 16:21</span></div>
                   <div class="ti cur" id="t5"><div class="dot">•</div><b>Передан в СДЭК</b><span>ожидает принятия в пункте отправления</span></div>
                   <div class="ti next" id="t6"><div class="dot"></div><b>Принят в пункте отправления</b><span>следующий этап</span></div>
                 </div>
@@ -421,7 +533,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
 
             <!-- S6 ADMIN -->
             <div class="mascr" id="s6"><div class="mafeed" id="f6">
-              <div class="erow"><div><div class="akicker">ECO NEURONOVA</div><div class="atitle2">Управление магазином</div></div><div class="achip" style="margin-left:auto">Магазин</div></div>
+              <div class="erow"><div><div class="akicker">ФИТОТЕКА</div><div class="atitle2">Управление магазином</div></div><div class="achip" style="margin-left:auto">Магазин</div></div>
               <div class="atiles">
                 <div class="atile"><div class="l">Все заказы</div><div class="v" id="a1">0</div></div>
                 <div class="atile"><div class="l">Новые</div><div class="v" id="a2">0</div></div>
@@ -432,7 +544,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
               </div>
               <div class="achips"><div class="achip on">Заказы</div><div class="achip">Статистика</div><div class="achip">Товары</div><div class="achip">Промокоды</div><div class="achip">Отзывы</div></div>
               <div class="ecard" style="margin-top:14px">
-                <div style="font-size:11px;font-weight:800;letter-spacing:1.2px;color:rgba(41,39,32,.5)">ВЫРУЧКА ЗА 14 ДНЕЙ</div>
+                <div style="font-size:11px;font-weight:800;letter-spacing:1.2px;color:rgba(27,31,28,.5)">ВЫРУЧКА ЗА 14 ДНЕЙ</div>
                 <div class="achart" id="achart"></div>
               </div>
             </div></div>
@@ -447,21 +559,21 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
         </div>
       </div>
 
-      <div class="status"><span>9:41</span>
+      <div class="status" id="statusbar"><span>9:41</span>
         <span style="display:flex;gap:6px;align-items:center">
-          <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.2" height="4" rx="1" fill="#fff"/><rect x="5" y="5.5" width="3.2" height="6.5" rx="1" fill="#fff"/><rect x="10" y="3" width="3.2" height="9" rx="1" fill="#fff"/><rect x="15" y="0" width="3.2" height="12" rx="1" fill="#fff"/></svg>
-          <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.4a7 7 0 0 1 9.8 0l1.6-1.9a9.6 9.6 0 0 0-13 0zM.2 3.3a12 12 0 0 1 16.6 0" fill="#fff"/></svg>
-          <svg width="28" height="13" viewBox="0 0 28 13"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="#fff" opacity=".5"/><rect x="2.3" y="2.3" width="19" height="8.4" rx="2.2" fill="#fff"/><rect x="25.5" y="4.3" width="1.8" height="4.4" rx=".9" fill="#fff" opacity=".5"/></svg>
+          <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.2" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3.2" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3.2" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3.2" height="12" rx="1" fill="currentColor"/></svg>
+          <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.4a7 7 0 0 1 9.8 0l1.6-1.9a9.6 9.6 0 0 0-13 0zM.2 3.3a12 12 0 0 1 16.6 0" fill="currentColor"/></svg>
+          <svg width="28" height="13" viewBox="0 0 28 13"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".5"/><rect x="2.3" y="2.3" width="19" height="8.4" rx="2.2" fill="currentColor"/><rect x="25.5" y="4.3" width="1.8" height="4.4" rx=".9" fill="currentColor" opacity=".5"/></svg>
         </span></div>
       <div class="island"></div>
       <div id="homebar" style="background:#fff;opacity:.55"></div>
       <div class="tap" id="tap"><div class="ring"></div><div class="dot"></div></div>
     </div>
 
-    <div class="chip" id="cA" style="left:245px;top:665px"><div class="ci emo" style="background:#f6efdf">🛍</div><div><div class="a">Витрина Mini App</div><div class="b">✓ Каталог прямо в Telegram</div></div></div>
-    <div class="chip" id="cB" style="left:-70px;top:470px"><div class="ci emo" style="background:#e6f0e8">🚚</div><div><div class="a">Доставка СДЭК</div><div class="b">✓ Расчёт и ПВЗ в заказе</div></div></div>
-    <div class="chip" id="cC" style="left:220px;top:180px"><div class="ci emo" style="background:#e6f0e8">📦</div><div><div class="a">Трек-номер в боте</div><div class="b">✓ Статусы приходят сами</div></div></div>
-    <div class="chip" id="cD" style="left:-40px;top:700px"><div class="ci emo" style="background:#f6efdf">📈</div><div><div class="a">+74% заказов за месяц</div><div class="b">✓ Магазин работает сам</div></div></div>
+    <div class="chip" id="cA" style="left:250px;top:120px"><div class="ci emo" style="background:#e7f1ec">🛍</div><div><div class="a">Витрина Mini App</div><div class="b">✓ Каталог прямо в Telegram</div></div></div>
+    <div class="chip" id="cB" style="left:-70px;top:470px"><div class="ci emo" style="background:#e7f1ec">🚚</div><div><div class="a">Доставка СДЭК</div><div class="b">✓ Расчёт и ПВЗ в заказе</div></div></div>
+    <div class="chip" id="cC" style="left:220px;top:180px"><div class="ci emo" style="background:#e7f1ec">📦</div><div><div class="a">Трек-номер в боте</div><div class="b">✓ Статусы приходят сами</div></div></div>
+    <div class="chip" id="cD" style="left:-40px;top:700px"><div class="ci emo" style="background:#e7f1ec">📈</div><div><div class="a">+74% заказов за месяц</div><div class="b">✓ Магазин работает сам</div></div></div>
   </div></div></div>
 
   <div id="scrim"></div>
@@ -472,7 +584,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
   </div>
 
   <div id="intro">
-    <div class="tag" id="itag">ECO NEURONOVA · TELEGRAM MINI APP</div>
+    <div class="tag" id="itag">ФИТОТЕКА · TELEGRAM MINI APP</div>
     <div class="big" id="ib1"></div>
     <div class="big big2" id="ib2"></div>
     <div class="sm" id="ism">Витрина · Оплата · Доставка</div>
@@ -481,7 +593,7 @@ body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:anti
   <div id="outro">
     <div class="big" id="ob"><div id="ob1"></div><div id="ob2" class="hl"></div></div>
     <div class="feats" id="feats"></div>
-    <div class="foot" id="ofoot">ECO NEURONOVA · МАГАЗИН В TELEGRAM · MINI APP</div>
+    <div class="foot" id="ofoot">ФИТОТЕКА · МАГАЗИН В TELEGRAM · MINI APP</div>
   </div>
 
   <div id="flash"></div>
@@ -505,15 +617,17 @@ function rng(s0){let s=s0;return()=>{s=(s*16807)%2147483647;return(s-1)/21474836
 function splitWords(el,text){el.innerHTML=text.split(' ').map(w=>`<span class="w"><span>${w}</span></span>`).join(' ');return [...el.querySelectorAll('.w>span')]}
 function splitChars(el,text){el.innerHTML=[...text].map(c=>`<span class="ch">${c===' '?'&nbsp;':c}</span>`).join('');return [...el.querySelectorAll('.ch')]}
 function fmt(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+(function(){const sv=`<svg xmlns='http://www.w3.org/2000/svg' width='170' height='170' viewBox='0 0 170 170'><g fill='none' stroke='%23ffffff' stroke-opacity='.65' stroke-width='2' stroke-linecap='round'><path d='M24 30c0-9 13-9 13 0 0-9 13-9 13 0 0 9-13 18-13 18s-13-9-13-18z'/><circle cx='120' cy='34' r='11'/><path d='M112 34h16M120 26v16'/><path d='M140 96l5 11 12 2-8 8 2 12-11-6-11 6 2-12-8-8 12-2z'/><path d='M30 110v26M24 110v9a6 6 0 0 0 12 0v-9'/><rect x='62' y='68' width='24' height='17' rx='5'/><path d='M96 140a11 11 0 1 0 .1 0'/><path d='M8 76q9-9 18 0t18 0'/></g></svg>`;
+document.getElementById('cpat').style.backgroundImage=`url("data:image/svg+xml;utf8,${sv}")`;})();
 (function(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');const d=x.createImageData(256,256);const r=rng(7);
 for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}x.putImageData(d,0,0);$('grain').style.backgroundImage=`url(${c.toDataURL()})`})();
 
 const DUR=33;
 // screen id, in, out
-const SCR=[['s1',2.60,9.95],['s2',9.80,13.35],['s3',13.20,16.35],['s4',16.20,20.60],['s5',20.45,24.60],['s6',24.45,28.60]];
+const SCR=[['s1',4.60,9.95],['s2',9.80,13.35],['s3',13.20,16.35],['s4',16.20,20.60],['s5',20.45,24.60],['s6',24.45,28.60]];
 // per-screen scroll keyframes
 const SCROLL={
- f1:[[2.80,0],[4.60,0],[5.90,250],[6.70,250],[7.60,560],[8.40,560],[9.20,760],[9.80,760]],
+ f1:[[5.30,0],[6.20,0],[7.05,250],[7.60,250],[8.30,560],[8.75,560],[9.25,760],[9.80,760]],
  f2:[[10.00,0],[10.90,0],[11.60,300],[12.10,300],[12.70,120],[13.30,120]],
  f3:[[13.40,0],[16.30,0]],
  f4:[[16.40,0],[17.20,0],[17.80,250],[18.40,250],[18.95,520],[19.35,760],[20.55,760]],
@@ -521,20 +635,20 @@ const SCROLL={
  f6:[[24.65,0],[25.60,0],[26.60,96],[28.55,96]],
 };
 const STEPS=[
- {n:'01',t0:2.85,t1:6.30,title:'Витрина в Telegram',sub:'Mini App открывается прямо в чате'},
- {n:'02',t0:6.40,t1:9.60,title:'Каталог по задачам',sub:'Категории, фото и цены'},
+ {n:'01',t0:2.85,t1:5.60,title:'Открывается из чата',sub:'Мини-приложение внутри Telegram'},
+ {n:'02',t0:5.70,t1:9.60,title:'Витрина и каталог',sub:'Категории, карточки и цены'},
  {n:'03',t0:9.70,t1:13.20,title:'Карточка товара',sub:'Состав, приём, противопоказания'},
  {n:'04',t0:13.30,t1:16.20,title:'Корзина и промокод',sub:'Скидка считается сразу'},
  {n:'05',t0:16.30,t1:20.40,title:'Оформление за 4 шага',sub:'Доставка СДЭК и оплата картой'},
  {n:'06',t0:20.50,t1:24.40,title:'Заказ и трек-номер',sub:'Статусы обновляются автоматически'},
  {n:'07',t0:24.50,t1:28.00,title:'Админ-панель',sub:'Заказы, выручка и остатки'},
 ];
-const TAPS=[['bReishi',9.30],['hP2',10.60],['bAdd',12.80],['promoB',14.95],['bCheckout',15.85],['dPvz',18.10],['bPay',19.55],['trk',22.90]];
-const PRESS={bReishi:9.30,bAdd:12.80,promoB:14.95,bCheckout:15.85,bPay:19.55};
-const CHIPS=[['cA',4.30,6.25,80],['cB',18.20,20.35,-80],['cC',22.95,24.35,80],['cD',26.55,27.95,-80]];
+const TAPS=[['openApp',3.95],['bReishi',9.30],['hP2',10.60],['bAdd',12.80],['promoB',14.95],['bCheckout',15.85],['dPvz',18.10],['bPay',19.55],['trk',22.90]];
+const PRESS={openApp:3.95,bReishi:9.30,bAdd:12.80,promoB:14.95,bCheckout:15.85,bPay:19.55};
+const CHIPS=[['cA',5.95,8.10,80],['cB',18.20,20.35,-80],['cC',22.95,24.35,80],['cD',26.55,27.95,-80]];
 window.CUES=[
  {t:0.15,s:'swell'},{t:1.75,s:'whoosh'},{t:2.55,s:'impact'},
- {t:4.30,s:'chip'},{t:6.35,s:'whoosh'},{t:9.30,s:'tap'},{t:9.80,s:'whoosh_soft'},
+ {t:3.95,s:'tap'},{t:4.10,s:'sheet'},{t:5.00,s:'notif'},{t:5.95,s:'chip'},{t:6.35,s:'whoosh_soft'},{t:9.30,s:'tap'},{t:9.80,s:'whoosh_soft'},
  {t:10.60,s:'tap'},{t:12.80,s:'tap'},{t:13.20,s:'whoosh_soft'},
  {t:14.95,s:'tap'},{t:15.15,s:'success_short'},{t:15.85,s:'tap'},{t:16.20,s:'whoosh_soft'},
  {t:18.10,s:'tap'},{t:18.20,s:'chip'},{t:19.55,s:'tap'},{t:19.70,s:'process'},{t:20.20,s:'success'},
@@ -603,6 +717,19 @@ function render(t){
     el.style.zIndex=10+i;});
   Object.keys(SCROLL).forEach(key=>setT($(key),`translateY(${-scrollOf(key,t)}px)`));
   $('mLeft').textContent=(t>9.8&&t<24.4)?'Назад':'Закрыть';
+  // ---- mini app open ----
+  const open=E.outQuint(k(t,4.10,4.70));
+  setT($('masheet'),`translateY(${(1-open)*800}px)`);
+  $('chatscr').style.filter=open>.02?`brightness(${1-.35*open})`:'none';
+  setT($('chatscr'),`scale(${1-.03*open})`);
+  const ld=1-k(t,4.85,5.20);
+  $('maload').style.opacity=ld;$('maload').style.display=ld<=0?'none':'flex';
+  setT($('maload').querySelector('.ring'),`rotate(${t*900}deg)`);
+  $('maprog').style.width=(k(t,4.25,5.00)*100)+'%';
+  $('maprog').style.opacity=1-k(t,5.00,5.20);
+  $('statusbar').style.color=t<4.25?'#111':'#fff';
+  $('cm1').style.opacity=k(t,3.05,3.25);
+  setT($('cm1'),`translateY(${(1-E.outBack(k(t,3.05,3.55)))*22}px) scale(${.85+.15*E.outBack(k(t,3.05,3.55))})`);
   // nav state
   const navs=[...$('manav').children];
   const navIdx=t<13.2?0:(t<20.4?1:0);
@@ -613,11 +740,11 @@ function render(t){
   const h1=k(t,10.65,10.85);$('hP2').className='phrt'+(h1>.5?' on':'');$('hP2').textContent=h1>.5?'♥':'♡';
   setT($('hP2'),`scale(${1+.22*(k(t,10.6,10.75)*(1-k(t,10.8,11.1)))})`);
   // promo
-  const pc='ECO10';const pn=Math.floor(k(t,14.05,14.75)*pc.length);
+  const pc='FITO10';const pn=Math.floor(k(t,14.05,14.75)*pc.length);
   $('promoF').textContent=pc.slice(0,pn)+((pn<pc.length&&t>14.0&&Math.floor(t*3)%2===0)?'|':'');
   $('promoOK').style.opacity=k(t,15.05,15.30);
   $('cDisc').style.opacity=k(t,15.05,15.30);
-  $('cTotal').textContent=t>15.15?'5 880 ₽':'6 490 ₽';
+  $('cTotal').textContent=t>15.15?'4 330 ₽':'4 770 ₽';
   setT($('cTotal'),`scale(${1+.14*(k(t,15.15,15.3)*(1-k(t,15.4,15.75)))})`);
   // card typing
   const num='2200 7012 4417 3391';const nc=Math.floor(k(t,18.55,19.25)*num.length);
