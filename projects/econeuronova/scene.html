@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts/all.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07100b}
+body{font-family:Inter,'Noto Color Emoji',sans-serif;-webkit-font-smoothing:antialiased}
+.emo{font-family:'Noto Color Emoji'}
+#stage{position:absolute;inset:0;overflow:hidden;background:#08120d}
+#bg{position:absolute;inset:-200px}
+.blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.55}
+#gridl{position:absolute;inset:0;background-image:radial-gradient(rgba(220,255,200,.09) 1.4px,transparent 1.6px);background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000 20%,transparent 75%)}
+#redtint{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(120,30,30,.0),rgba(70,12,16,.75));opacity:0}
+#camfx{position:absolute;inset:0}
+#persp{position:absolute;inset:0;perspective:2600px;perspective-origin:540px 960px}
+#world{position:absolute;left:345px;top:538px;width:390px;height:844px;transform-style:preserve-3d;transform-origin:195px 422px}
+#shadow{position:absolute;left:-20px;right:-20px;top:40px;bottom:-40px;border-radius:70px;background:rgba(0,0,0,.55);filter:blur(50px);transform:translateZ(-60px)}
+#phone{position:absolute;left:-12px;top:-12px;width:414px;height:868px;border-radius:66px;background:linear-gradient(145deg,#3b4a40,#111a14 40%,#2a352e 70%,#0d140f);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),inset 0 0 0 5px #0a0f0c,0 2px 0 rgba(255,255,255,.08)}
+#screen{position:absolute;left:0;top:0;width:390px;height:844px;border-radius:54px;overflow:hidden;background:#a9c890}
+#wall{position:absolute;inset:0;background:linear-gradient(165deg,#c4dca2 0%,#9fc48b 35%,#b8d49a 62%,#8fb87f 100%)}
+#wallpat{position:absolute;inset:0;opacity:.5}
+#feedclip{position:absolute;left:0;right:0;top:0;height:758px;overflow:hidden}
+#feed{position:absolute;left:0;right:0;top:112px}
+.m{padding:0 10px;margin-top:9px;transform-origin:0% 100%;}
+.m.out{display:flex;justify-content:flex-end;transform-origin:100% 100%}
+.m.wide .bubble{width:100%}
+.m.wide{width:350px}
+.bubble{background:#fff;border-radius:19px;padding:9px 13px 8px;font-size:15.2px;line-height:1.38;color:#111;max-width:330px;position:relative;
+  box-shadow:0 1px 1.5px rgba(30,50,20,.18)}
+.out .bubble{background:#e3fbc9}
+.bubble b{font-weight:700}
+.bubble i{font-style:italic}
+.time{float:right;font-size:11.5px;color:#8f988c;margin:7px -3px -4px 12px;display:flex;align-items:center;gap:3px}
+.out .time{color:#5f9a4a}
+.lnk{color:#2b6fc0}
+.ibtn{height:42px;border-radius:14px;background:rgba(74,118,60,.66);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;
+  margin-top:5px;position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(6px);gap:6px;white-space:nowrap}
+.ibtn .arr{position:absolute;right:9px;top:5px;font-size:12px;opacity:.9}
+.datepill{display:flex;justify-content:center;margin-top:12px}
+.datepill span{background:rgba(70,105,58,.55);color:#fff;font-size:13px;font-weight:600;padding:4px 11px;border-radius:12px}
+.hero{height:118px;border-radius:13px;margin:-4px -9px 9px;background:linear-gradient(135deg,#f7efe2,#efe0c6);position:relative;overflow:hidden;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px}
+.hero div{border-radius:10px;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 2px 6px rgba(120,90,50,.15)}
+.li{display:flex;gap:7px;margin-top:3px}
+.status{position:absolute;left:0;right:0;top:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 44px;font-weight:700;font-size:16.5px;color:#111;z-index:5}
+.island{position:absolute;left:50%;top:11px;width:122px;height:35px;margin-left:-61px;background:#000;border-radius:20px;z-index:6}
+#header{position:absolute;left:0;right:0;top:54px;height:58px;z-index:5}
+.glass{background:rgba(245,255,235,.72);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 2px 10px rgba(40,70,30,.12),inset 0 0 0 .5px rgba(255,255,255,.6)}
+#back{position:absolute;left:12px;top:5px;height:44px;border-radius:22px;display:flex;align-items:center;padding:0 9px 0 10px;gap:4px}
+#back .cnt{background:#141a14;color:#fff;font-size:13.5px;font-weight:600;border-radius:11px;padding:2px 8px}
+#title{position:absolute;left:50%;top:3px;transform:translateX(-50%);height:48px;border-radius:24px;padding:0 20px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#title .n{font-weight:700;font-size:16px;color:#111;white-space:nowrap}
+#title .s{font-size:12.5px;color:#6c7a66;margin-top:-1px}
+#ava{position:absolute;right:12px;top:4px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fbf6e8,#d9c9a4);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 0 2.5px rgba(255,255,255,.8),0 2px 8px rgba(0,0,0,.15)}
+#composer{position:absolute;left:0;right:0;bottom:0;height:90px;z-index:5}
+#menu{position:absolute;left:12px;top:8px;height:42px;border-radius:21px;background:#2f86f6;color:#fff;font-weight:600;font-size:15.5px;display:flex;align-items:center;gap:7px;padding:0 15px;box-shadow:0 0 0 3px rgba(255,255,255,.55)}
+.cbtn{position:absolute;top:8px;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#input{position:absolute;left:162px;right:62px;top:8px;height:42px;border-radius:21px;display:flex;align-items:center;padding-left:14px;color:#8a9787;font-size:15.5px}
+#homebar{position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;background:#111;border-radius:3px}
+/* pay sheet */
+#dim{position:absolute;inset:0;background:rgba(10,20,10,.45);z-index:8;opacity:0}
+#sheet{position:absolute;left:0;right:0;bottom:0;height:610px;z-index:9;background:#f6f7f4;border-radius:30px 30px 0 0;padding:10px 20px 0;transform:translateY(110%);box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.grab{width:38px;height:5px;border-radius:3px;background:#cfd3cb;margin:0 auto 14px}
+.sh-top{display:flex;align-items:center;gap:11px}
+.sh-ava{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fbf6e8,#d9c9a4);display:flex;align-items:center;justify-content:center;font-size:20px}
+.sh-m{font-weight:700;font-size:16px;color:#111}.sh-s{font-size:13px;color:#7b8478}
+.amount{font-family:Unbounded;font-weight:700;font-size:40px;color:#111;margin:18px 0 2px;letter-spacing:-.5px}
+.prod{font-size:14px;color:#6b7568}
+.tabs{display:flex;gap:8px;margin:18px 0 14px}
+.tab{flex:1;height:40px;border-radius:12px;background:#fff;border:1.5px solid #e2e6de;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#333}
+.tab.on{border-color:#3f7a35;background:#eef7e8;color:#2f6a26}
+.field{background:#fff;border-radius:14px;border:1.5px solid #e2e6de;padding:9px 14px;margin-bottom:9px}
+.field .l{font-size:11.5px;color:#8a9387;font-weight:500}
+.field .v{font-size:17px;font-weight:600;color:#111;letter-spacing:1px;height:24px;display:flex;align-items:center}
+.caret{display:inline-block;width:2px;height:19px;background:#3f7a35;margin-left:2px}
+.frow{display:flex;gap:9px}.frow .field{flex:1}
+.toggle{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 14px;font-size:14.5px;font-weight:600;color:#222}
+.tg{width:46px;height:28px;border-radius:14px;background:#4f9a3f;position:relative}
+.tg:after{content:'';position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+#paybtn{height:54px;border-radius:16px;background:#1f3d1c;color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.secure{text-align:center;font-size:12.5px;color:#8a9387;margin-top:12px}
+/* push */
+#push{position:absolute;left:10px;right:10px;top:10px;height:78px;border-radius:24px;z-index:12;display:flex;align-items:center;gap:11px;padding:0 14px;
+  background:rgba(250,252,247,.86);backdrop-filter:blur(18px);box-shadow:0 10px 30px rgba(0,0,0,.25);transform:translateY(-130px)}
+#push .ic{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#6db85a,#2f6a26);display:flex;align-items:center;justify-content:center;font-size:21px;flex:none}
+#push .t1{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:#111;width:100%}
+#push .t1 span{font-weight:400;color:#888;font-size:13px}
+#push .t2{font-size:13.5px;color:#333;margin-top:1px}
+/* tap */
+.tap{position:absolute;z-index:20;width:0;height:0}
+.tap .dot{position:absolute;left:-23px;top:-23px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 4px 18px rgba(0,0,0,.25),inset 0 0 0 2px rgba(255,255,255,.9)}
+.tap .ring{position:absolute;left:-23px;top:-23px;width:46px;height:46px;border-radius:50%;border:2.5px solid rgba(255,255,255,.95)}
+/* lock */
+#lock{position:absolute;left:50%;top:330px;width:150px;height:150px;margin-left:-75px;border-radius:50%;z-index:15;display:flex;align-items:center;justify-content:center;
+  background:rgba(30,30,30,.55);backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.25);opacity:0}
+/* chips (world) */
+.chip{position:absolute;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 12px;border-radius:22px;background:rgba(255,255,255,.94);
+  box-shadow:0 18px 40px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.15);white-space:nowrap;transform-origin:0 50%}
+.chip .ci{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex:none}
+.chip .a{font-weight:700;font-size:15px;color:#111}.chip .b{font-size:13px;color:#4c8a3c;font-weight:600;margin-top:1px}
+.chip.red .b{color:#c0392b}
+/* overlay text */
+#scrim{position:absolute;left:0;right:0;top:0;height:600px;z-index:29;background:linear-gradient(to bottom,rgba(6,14,9,.96) 0,rgba(6,14,9,.9) 300px,rgba(6,14,9,.55) 430px,transparent 600px)}
+#topfade{position:absolute;left:0;right:0;top:0;height:122px;z-index:4;background:linear-gradient(to bottom,rgba(190,216,160,.97) 0,rgba(184,212,154,.9) 60%,rgba(184,212,154,0));backdrop-filter:blur(8px);-webkit-mask-image:linear-gradient(#000 75%,transparent)}
+#titles{position:absolute;left:84px;top:118px;right:60px;z-index:30}
+.stepn{display:flex;align-items:center;gap:16px;font-family:Unbounded;font-weight:500;font-size:22px;color:#cfe8b0;letter-spacing:2px}
+.prog{display:flex;gap:6px}
+.prog i{display:block;width:34px;height:4px;border-radius:2px;background:rgba(207,232,176,.22);position:relative;overflow:hidden}
+.prog i b{position:absolute;inset:0;background:#d6f29a;transform-origin:0 50%;transform:scaleX(0)}
+.ttl{font-family:Unbounded;font-weight:700;font-size:60px;line-height:1.08;color:#f3fbe9;margin-top:22px;letter-spacing:-1px;position:relative;height:72px}
+.sub{font-size:29px;color:rgba(230,245,215,.72);margin-top:14px;position:relative;height:40px;font-weight:500}
+.tl{position:absolute;left:0;top:0;white-space:nowrap}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:8px;margin-bottom:-8px}
+.w>span{display:inline-block}
+#intro{position:absolute;left:0;right:0;top:640px;z-index:31;text-align:center}
+#intro .tag{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:30px;border:1.5px solid rgba(214,242,154,.45);color:#d6f29a;font-family:Unbounded;font-weight:500;font-size:22px;letter-spacing:4px}
+#intro .big{font-family:Unbounded;font-weight:800;font-size:132px;line-height:1.02;color:#f3fbe9;letter-spacing:-3px;margin-top:34px}
+#intro .big2{color:#d6f29a}
+#intro .ch{display:inline-block}
+#intro .sm{font-size:34px;color:rgba(230,245,215,.7);margin-top:30px;font-weight:500;letter-spacing:.5px}
+#outro{position:absolute;left:0;right:0;top:150px;z-index:31;text-align:center}
+#outro .big{font-family:Unbounded;font-weight:800;font-size:84px;line-height:1.08;color:#f3fbe9;letter-spacing:-2px}
+#outro .big .hl{color:#d6f29a}
+#outro .feats{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:38px 90px 0}
+#outro .f{padding:14px 24px;border-radius:30px;background:rgba(214,242,154,.1);border:1.5px solid rgba(214,242,154,.35);color:#e8f7d2;font-size:27px;font-weight:600}
+#outro .foot{position:absolute;left:0;right:0;top:-72px;font-family:Unbounded;font-size:22px;letter-spacing:5px;color:rgba(214,242,154,.75)}
+#flash{position:absolute;inset:0;background:#e9f6ff;opacity:0;z-index:40;mix-blend-mode:soft-light}
+#vig{position:absolute;inset:0;z-index:41;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+#grain{position:absolute;inset:-100px;z-index:42;opacity:.07;mix-blend-mode:overlay}
+#fade{position:absolute;inset:0;background:#07100b;z-index:50}
+.conf{position:absolute;width:10px;height:14px;border-radius:2px;z-index:25}
+</style><style>
+#stage{background:#07070a!important}
+#b1{background:#7c6cff!important}#b2{background:#31d8c9!important;opacity:.28!important}#b3{background:#4a3fd0!important}
+.blob{opacity:.42}
+#gridl{background-image:radial-gradient(rgba(49,216,201,.14) 1.2px,transparent 1.4px)!important}
+#scrim{background:linear-gradient(to bottom,rgba(7,7,10,.96) 0,rgba(7,7,10,.9) 300px,rgba(7,7,10,.55) 430px,transparent 600px)!important}
+.stepn{font-family:Inter!important;font-weight:600!important;color:#31d8c9!important;font-size:20px!important;letter-spacing:3px!important}
+.prog i b{background:linear-gradient(90deg,#7c6cff,#31d8c9)!important}
+.prog i{background:rgba(255,255,255,.1)!important}
+.ttl,#intro .big,#outro .big{font-family:Inter!important;font-weight:800!important;letter-spacing:-2px!important;color:#f3f4f7!important}
+.ttl{font-size:68px!important}
+.sub{color:#8d9099!important}
+#intro .big2,#outro .big .hl{background:linear-gradient(90deg,#9a8cff,#31d8c9);-webkit-background-clip:text;color:transparent!important}
+#outro .big .hl span,#intro .big2 span{background:linear-gradient(90deg,#9a8cff,#31d8c9);-webkit-background-clip:text;color:transparent}
+#outro .f{background:rgba(255,255,255,.04)!important;border-color:rgba(255,255,255,.12)!important;color:#f3f4f7!important}
+#outro .foot,#intro .tag{color:#31d8c9!important;border-color:rgba(49,216,201,.4)!important;font-family:Inter!important}
+#fade{background:#07070a!important}
+#vig{background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.6))!important}
+</style><style>#phone{background:linear-gradient(150deg,#a99dff 0%,#7c6cff 25%,#262833 45%,#262833 60%,#31d8c9 85%,#9af2e8 100%)!important;box-shadow:none!important}
+#phone:after{content:'';position:absolute;inset:2.5px;border-radius:64px;background:linear-gradient(145deg,#2b2e37,#121318 45%,#22252d)!important;box-shadow:inset 0 0 0 4px #0a0b0e}
+#shadow{background:radial-gradient(ellipse at 30% 25%,rgba(124,108,255,.7),transparent 60%),radial-gradient(ellipse at 75% 80%,rgba(49,216,201,.55),transparent 60%)!important;filter:blur(80px)!important;left:-70px!important;right:-70px!important;top:-50px!important;bottom:-50px!important}</style></head>
+<style>
+/* ===== Mini App ===== */
+#screen{background:#000!important}
+#appwrap{position:absolute;inset:0;z-index:5}
+.masheet{position:absolute;left:0;right:0;top:46px;bottom:0;background:#F7F2E8;border-radius:22px 22px 0 0;overflow:hidden}
+.mahdr{position:absolute;left:0;right:0;top:0;height:64px;background:#fff;display:flex;align-items:center;padding:0 14px;z-index:3}
+.mahdr .lf{font-size:15.5px;color:#111;font-weight:500;width:74px}
+.mahdr .ct{flex:1;text-align:center}
+.mahdr .ct b{display:block;font-size:16px;font-weight:700;color:#111;letter-spacing:-.1px}
+.mahdr .ct span{display:block;font-size:12.5px;color:#8a8f86;margin-top:-1px}
+.mahdr .rt{width:74px;display:flex;justify-content:flex-end}
+.mahdr .rt i{width:28px;height:28px;border-radius:50%;border:1.6px solid #c9ccc4;display:flex;align-items:center;justify-content:center;font-size:13px;color:#555;font-style:normal;letter-spacing:1px}
+.maclip{position:absolute;left:0;right:0;top:64px;bottom:0;overflow:hidden}
+.mascr{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden}
+.mafeed{position:absolute;left:0;right:0;top:0;padding:14px 13px 90px}
+.manav{position:absolute;left:0;right:0;bottom:0;height:74px;background:#FFFCF6;border-top:1px solid rgba(41,39,32,.10);display:flex;z-index:4}
+.manav div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11.5px;color:#9a9287;font-weight:600;position:relative}
+.manav div.on{color:#5A3827}
+.manav .ico{width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:19px;opacity:.85}
+.manav .bdg{position:absolute;top:10px;left:calc(50% + 7px);min-width:17px;height:17px;border-radius:9px;background:#B97818;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}
+/* cards */
+.ecard{background:#FFFCF6;border-radius:22px;padding:16px;box-shadow:0 12px 34px rgba(41,39,32,.07);margin-bottom:16px}
+.elogo{text-align:center;font-weight:800;font-size:17px;color:#B97818;letter-spacing:.5px;margin-bottom:9px}
+.elogo span{display:block;font-size:11px;letter-spacing:2px;color:#8a7a5e;font-weight:700;margin-top:-2px}
+.eh1{font-size:22px;font-weight:800;color:#292720;line-height:1.18;text-align:center;letter-spacing:-.4px}
+.esub{font-size:13px;color:rgba(41,39,32,.64);text-align:center;margin-top:7px;line-height:1.35}
+.efeat{display:flex;gap:6px;margin:13px 0;padding:11px 0;border-top:1px solid rgba(41,39,32,.12);border-bottom:1px solid rgba(41,39,32,.12)}
+.efeat div{flex:1;text-align:center;font-size:10px;font-weight:700;color:#292720;line-height:1.25}
+.efeat i{display:block;width:26px;height:26px;margin:0 auto 5px;border-radius:50%;border:1.4px solid rgba(185,120,24,.45);font-style:normal;font-size:12px;display:flex;align-items:center;justify-content:center}
+.erow{display:flex;gap:10px;align-items:center}
+.ebtn{height:44px;border-radius:13px;background:#B97818;color:#fff;font-size:14.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:1;position:relative;overflow:hidden}
+.ebtn.gh{background:transparent;color:#B97818;flex:0 0 auto;padding:0 6px}
+.ebtn.wide{width:100%}
+.esec{display:flex;align-items:baseline;justify-content:space-between;margin:4px 2px 10px}
+.esec b{font-size:21px;font-weight:800;color:#292720;letter-spacing:-.4px}
+.esec span{font-size:12.5px;color:#B97818;font-weight:600}
+.eline{height:1px;background:rgba(41,39,32,.14);margin:-6px 2px 12px}
+.erail{display:flex;gap:12px;margin-bottom:18px}
+.pcard{flex:0 0 272px;background:#FFFCF6;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(41,39,32,.07)}
+.pcard img{width:100%;height:188px;object-fit:cover;display:block}
+.pc{padding:12px 13px 14px}
+.pcat{font-size:9.5px;font-weight:800;letter-spacing:1.1px;color:#365443}
+.pname{font-size:16px;font-weight:800;color:#292720;margin:5px 0 5px;letter-spacing:-.2px}
+.pdesc{font-size:11.5px;color:rgba(41,39,32,.6);line-height:1.38;height:46px;overflow:hidden}
+.ppr{display:flex;align-items:center;justify-content:space-between;margin:9px 0 10px}
+.phrt{width:34px;height:34px;border-radius:11px;border:1.4px solid rgba(41,39,32,.18);display:flex;align-items:center;justify-content:center;font-size:15px;color:#9a9287}
+.phrt.on{border-color:#B97818;color:#B97818;background:rgba(185,120,24,.08)}
+.pprice{font-size:19px;font-weight:800;color:#292720;letter-spacing:-.3px}
+.pbuy{height:40px;border-radius:12px;background:#B97818;color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.8px;display:flex;align-items:center;justify-content:center}
+.dots{display:flex;gap:5px;justify-content:center;margin:-6px 0 16px}
+.dots i{width:6px;height:6px;border-radius:3px;background:rgba(41,39,32,.2)}
+.dots i.on{width:16px;background:#B97818}
+/* product screen */
+.phero{width:100%;height:290px;object-fit:cover;border-radius:18px;display:block}
+.qty{display:flex;align-items:center;gap:14px;border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:7px 14px;font-size:16px;font-weight:800;color:#292720}
+.qty i{font-style:normal;color:#B97818;font-size:19px}
+/* cart */
+.citem{display:flex;gap:12px;align-items:center}
+.citem img{width:64px;height:64px;border-radius:13px;object-fit:cover}
+.cname{font-size:14px;font-weight:700;color:#292720;line-height:1.25}
+.csum{display:flex;justify-content:space-between;font-size:13.5px;color:rgba(41,39,32,.66);margin-top:9px}
+.csum b{color:#292720;font-weight:700}
+.ctot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(41,39,32,.14);margin-top:11px;padding-top:11px}
+.ctot span{font-size:14px;font-weight:700;color:#292720}
+.ctot b{font-size:23px;font-weight:800;color:#292720;letter-spacing:-.4px}
+.promo{display:flex;gap:8px;margin-top:12px}
+.promo .f{flex:1;border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600;color:#292720;background:#fff;min-height:42px}
+.promo .b{width:104px;border-radius:12px;background:rgba(185,120,24,.12);color:#B97818;font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pok{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#2f7a3f;font-weight:700;margin-top:9px;opacity:0}
+/* checkout */
+.step{font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#B97818;margin-bottom:8px}
+.fl{font-size:11px;color:rgba(41,39,32,.55);font-weight:600;margin:10px 0 4px}
+.fi{border:1.4px solid rgba(41,39,32,.16);border-radius:12px;padding:10px 12px;font-size:14.5px;color:#292720;background:#fff;min-height:42px;font-weight:600}
+.dopt{display:flex;align-items:center;gap:11px;border:1.4px solid rgba(41,39,32,.14);border-radius:14px;padding:12px;margin-bottom:9px;background:#fff}
+.dopt.on{border-color:#B97818;background:rgba(185,120,24,.07)}
+.dopt .rd{width:20px;height:20px;border-radius:50%;border:2px solid rgba(41,39,32,.25);flex:none}
+.dopt.on .rd{border-color:#B97818;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 12px #B97818}
+.dopt .dn{font-size:14px;font-weight:700;color:#292720}
+.dopt .dd{font-size:11.5px;color:rgba(41,39,32,.55);margin-top:2px}
+.dopt .dp{margin-left:auto;font-size:14px;font-weight:800;color:#292720}
+/* order */
+.ordh{font-size:18px;font-weight:800;color:#292720;text-align:center;letter-spacing:-.3px}
+.trk{background:#F4EFE4;border-radius:13px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;margin-top:11px}
+.trk .l{font-size:11px;color:rgba(41,39,32,.55);font-weight:600}
+.trk .v{font-size:17px;font-weight:800;color:#292720;letter-spacing:.3px;margin-top:2px}
+.trk .c{background:#EDE5D6;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:700;color:#5A3827}
+.tl2{position:relative;padding-left:30px;margin-top:4px}
+.tl2:before{content:'';position:absolute;left:9px;top:8px;bottom:14px;width:2px;background:rgba(41,39,32,.14)}
+.ti{position:relative;padding:9px 0}
+.ti .dot{position:absolute;left:-30px;top:11px;width:20px;height:20px;border-radius:50%;background:#2f7a3f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
+.ti.cur .dot{background:#B97818}
+.ti.next .dot{background:#fff;border:2px solid rgba(41,39,32,.22)}
+.ti b{font-size:15px;font-weight:800;color:#292720;display:block}
+.ti.cur b{color:#B97818}
+.ti.next b{color:rgba(41,39,32,.42)}
+.ti span{font-size:11.5px;color:rgba(41,39,32,.5);display:block;margin-top:1px}
+/* admin */
+.akicker{font-size:10.5px;font-weight:800;letter-spacing:1.6px;color:#365443}
+.atitle2{font-size:25px;font-weight:800;color:#292720;letter-spacing:-.6px;margin-top:3px}
+.atiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.atile{background:#FFFCF6;border-radius:16px;padding:12px 13px;box-shadow:0 7px 20px rgba(41,39,32,.045)}
+.atile .l{font-size:11.5px;color:rgba(41,39,32,.55);font-weight:600}
+.atile .v{font-size:23px;font-weight:800;color:#292720;letter-spacing:-.6px;margin-top:3px}
+.atile .v.g{color:#2f7a3f}
+.achips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.achip{border:1.4px solid rgba(41,39,32,.16);border-radius:11px;padding:9px 15px;font-size:12.5px;font-weight:700;color:#292720;background:#FFFCF6}
+.achip.on{border-color:#365443;background:rgba(54,84,67,.09);color:#365443}
+.achart{display:flex;align-items:flex-end;gap:5px;height:76px;margin-top:14px}
+.achart i{flex:1;background:linear-gradient(180deg,#d8a24a,#B97818);border-radius:4px 4px 0 0;transform-origin:50% 100%;transform:scaleY(0)}
+.achart i.g{background:linear-gradient(180deg,#5c9a6c,#365443)}
+/* bits */
+.spin2{position:absolute;opacity:0}
+#topfade{display:none}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="mb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter></svg>
+<div id="stage">
+  <div id="bg">
+    <div class="blob" id="b1" style="width:900px;height:900px"></div>
+    <div class="blob" id="b2" style="width:800px;height:800px"></div>
+    <div class="blob" id="b3" style="width:700px;height:700px"></div>
+  </div>
+  <div id="gridl"></div>
+  <div id="redtint"></div>
+
+  <div id="camfx"><div id="persp"><div id="world">
+    <div id="shadow"></div>
+    <div id="phone"></div>
+    <div id="screen">
+      <div id="appwrap">
+        <div class="masheet">
+          <div class="mahdr">
+            <div class="lf" id="mLeft">Закрыть</div>
+            <div class="ct"><b>Eco NeuroNova</b><span>мини-приложение</span></div>
+            <div class="rt"><i>•••</i></div>
+          </div>
+          <div class="maclip">
+
+            <!-- S1 CATALOG -->
+            <div class="mascr" id="s1"><div class="mafeed" id="f1">
+              <div class="ecard">
+                <div class="elogo">ECO<span>NeuroNova</span></div>
+                <div class="eh1">Экстракты для энергии, фокуса и баланса</div>
+                <div class="esub">Подбор по задачам: энергия, концентрация, восстановление и иммунный баланс.</div>
+                <div class="efeat">
+                  <div><i>◎</i>Лабораторно подтверждённый состав</div>
+                  <div><i>◈</i>Full Spectrum Technology</div>
+                  <div><i>✓</i>Контроль каждой партии</div>
+                </div>
+                <div class="erow"><div class="ebtn" id="bChoose">Выбрать экстракт</div><div class="ebtn gh">База знаний →</div></div>
+              </div>
+
+              <div class="esec"><b>Энергия и фокус</b><span>Смотреть все →</span></div><div class="eline"></div>
+              <div class="erail">
+                <div class="pcard"><img src="img/kordiceps_s.jpg">
+                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт кордицепса 30 мл</div>
+                  <div class="pdesc">Кордицепс — гриб для выносливости, энергии и поддержки работоспособности в течение дня.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">3 300 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
+                <div class="pcard"><img src="img/ezhovik_s.jpg">
+                  <div class="pc"><div class="pcat">ЭНЕРГИЯ И ФОКУС</div><div class="pname">Экстракт ежовика 30 мл</div>
+                  <div class="pdesc">Ежовик — поддержка памяти, концентрации и ясности мышления.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 700 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
+              </div>
+              <div class="dots"><i class="on"></i><i></i><i></i></div>
+
+              <div class="esec"><b>Иммунитет и баланс</b><span>Смотреть все →</span></div><div class="eline"></div>
+              <div class="erail">
+                <div class="pcard" id="pReishi"><img src="img/reishi_s.jpg">
+                  <div class="pc"><div class="pcat">ИММУНИТЕТ И БАЛАНС</div><div class="pname">Экстракт рейши 30 мл</div>
+                  <div class="pdesc">Рейши — функциональный гриб для поддержки спокойствия, восстановления и естественного баланса организма.</div>
+                  <div class="ppr"><div class="phrt" id="hReishi">♡</div><div class="pprice">3 400 ₽</div></div><div class="pbuy" id="bReishi">В КОРЗИНУ</div></div></div>
+                <div class="pcard"><img src="img/trametes_s.jpg">
+                  <div class="pc"><div class="pcat">ИММУНИТЕТ И БАЛАНС</div><div class="pname">Экстракт траметеса 30 мл</div>
+                  <div class="pdesc">Траметес — поддержка естественных защитных сил и микрофлоры кишечника.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">2 900 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
+              </div>
+              <div class="dots"><i class="on"></i><i></i><i></i></div>
+
+              <div class="esec"><b>Наружный уход</b><span>Смотреть все →</span></div><div class="eline"></div>
+              <div class="erail">
+                <div class="pcard"><img src="img/muhomor_s.jpg">
+                  <div class="pc"><div class="pcat">НАРУЖНЫЙ УХОД</div><div class="pname">Экстракт мухомора 30 мл</div>
+                  <div class="pdesc">Amanita Regalis — энергия, выносливость и адаптация к стрессу.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">3 100 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
+                <div class="pcard"><img src="img/chaga_s.jpg">
+                  <div class="pc"><div class="pcat">НАРУЖНЫЙ УХОД</div><div class="pname">Экстракт чаги 30 мл</div>
+                  <div class="pdesc">Чага — антиоксидантная защита и очищение организма.</div>
+                  <div class="ppr"><div class="phrt">♡</div><div class="pprice">1 690 ₽</div></div><div class="pbuy">В КОРЗИНУ</div></div></div>
+              </div>
+            </div></div>
+
+            <!-- S2 PRODUCT -->
+            <div class="mascr" id="s2"><div class="mafeed" id="f2">
+              <img class="phero" src="img/reishi_s.jpg">
+              <div class="pcat" style="margin-top:15px">ИММУНИТЕТ И БАЛАНС</div>
+              <div style="font-size:24px;font-weight:800;color:#292720;margin-top:5px;letter-spacing:-.5px">Экстракт рейши 30 мл</div>
+              <div style="font-size:13.5px;color:rgba(41,39,32,.62);line-height:1.45;margin-top:8px">Рейши — функциональный гриб для поддержки спокойствия, восстановления и естественного баланса организма. Подходит для вечернего ритуала и напряжённого графика.</div>
+              <div class="erow" style="margin:15px 0 16px"><div class="qty"><i>−</i>1<i>+</i></div><div class="pprice" style="margin-left:auto;font-size:26px">3 400 ₽</div></div>
+              <div class="erow" style="margin-bottom:16px"><div class="phrt" id="hP2" style="width:46px;height:46px;border-radius:14px;font-size:19px">♡</div><div class="ebtn" id="bAdd">В КОРЗИНУ</div></div>
+              <img src="img/reishi-info_s.jpg" style="width:100%;border-radius:18px;display:block">
+              <div class="ecard" style="margin-top:16px"><div style="font-size:15px;font-weight:800;color:#292720">Похожие товары</div>
+                <div class="erow" style="margin-top:11px"><img src="img/trametes_s.jpg" style="width:62px;height:62px;border-radius:13px;object-fit:cover"><div><div class="cname">Экстракт траметеса 30 мл</div><div class="pprice" style="font-size:16px;margin-top:4px">2 900 ₽</div></div></div>
+              </div>
+            </div></div>
+
+            <!-- S3 CART -->
+            <div class="mascr" id="s3"><div class="mafeed" id="f3">
+              <div class="ecard">
+                <div class="citem"><img src="img/reishi_s.jpg"><div style="flex:1"><div class="cname">Экстракт рейши 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">3 400 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
+                <div style="height:1px;background:rgba(41,39,32,.12);margin:13px 0"></div>
+                <div class="citem"><img src="img/ezhovik_s.jpg"><div style="flex:1"><div class="cname">Экстракт ежовика 30 мл</div><div class="pprice" style="font-size:17px;margin-top:5px">2 700 ₽</div></div><div class="qty" style="padding:5px 11px;font-size:14px"><i>−</i>1<i>+</i></div></div>
+              </div>
+              <div class="ecard">
+                <div style="font-size:15px;font-weight:800;color:#292720">Промокод</div>
+                <div class="promo"><div class="f" id="promoF"></div><div class="b" id="promoB">Применить</div></div>
+                <div class="pok" id="promoOK">✓ Промокод ECO10 применён — скидка 610 ₽</div>
+                <div class="csum"><span>Товары</span><b>6 100 ₽</b></div>
+                <div class="csum" id="cDisc" style="opacity:0"><span>Скидка</span><b style="color:#2f7a3f">− 610 ₽</b></div>
+                <div class="csum"><span>Доставка СДЭК</span><b>390 ₽</b></div>
+                <div class="ctot"><span>К оплате</span><b id="cTotal">6 490 ₽</b></div>
+              </div>
+              <div class="ebtn wide" id="bCheckout">Оформить заказ</div>
+            </div></div>
+
+            <!-- S4 CHECKOUT -->
+            <div class="mascr" id="s4"><div class="mafeed" id="f4">
+              <div class="ecard"><div class="step">ШАГ 1 ИЗ 4 · КОНТАКТНЫЕ ДАННЫЕ</div>
+                <div class="fl">Имя *</div><div class="fi">Максим</div>
+                <div class="fl">Телефон *</div><div class="fi">+7 924 725-04-93</div>
+                <div class="fl">Email для чека</div><div class="fi">client@example.com</div></div>
+              <div class="ecard"><div class="step">ШАГ 2 ИЗ 4 · СПОСОБ ДОСТАВКИ</div>
+                <div class="dopt"><div class="rd"></div><div><div class="dn">Курьер СДЭК</div><div class="dd">до двери, 9–10 дней</div></div><div class="dp">690 ₽</div></div>
+                <div class="dopt on" id="dPvz"><div class="rd"></div><div><div class="dn">Пункт выдачи СДЭК</div><div class="dd">Владивосток, ул. Светланская, 152</div></div><div class="dp">390 ₽</div></div>
+                <div class="dopt"><div class="rd"></div><div><div class="dn">Самовывоз</div><div class="dd">склад во Владивостоке</div></div><div class="dp">0 ₽</div></div></div>
+              <div class="ecard"><div class="step">ШАГ 3 ИЗ 4 · АДРЕС ДОСТАВКИ</div>
+                <div class="fi" style="line-height:1.4">690001, Россия, Приморский край,<br>Владивосток, ул. Светланская, 152<br><span style="color:rgba(41,39,32,.5);font-size:12.5px">ПВЗ VLK112 · срок 9–10 дней</span></div></div>
+              <div class="ecard"><div class="step">ШАГ 4 ИЗ 4 · ОПЛАТА</div>
+                <div class="fl">Номер карты</div><div class="fi" id="ccN"></div>
+                <div class="erow" style="gap:9px"><div style="flex:1"><div class="fl">Срок</div><div class="fi" id="ccE"></div></div><div style="flex:1"><div class="fl">CVC</div><div class="fi" id="ccC"></div></div></div>
+                <div class="ctot"><span>К оплате</span><b>6 490 ₽</b></div>
+                <div class="ebtn wide" id="bPay" style="margin-top:12px"><span id="payT">Оплатить 6 490 ₽</span>
+                  <svg id="paySp" class="spin2" width="28" height="28" viewBox="0 0 30 30"><circle cx="15" cy="15" r="11" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="3"/><path d="M15 4a11 11 0 0 1 11 11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+                  <svg id="payOk" class="spin2" width="32" height="32" viewBox="0 0 34 34"><path id="payOkP" d="M8 17.5l6 6 12-13" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30"/></svg>
+                </div>
+                <div style="text-align:center;font-size:11.5px;color:rgba(41,39,32,.45);margin-top:10px">Защищённый платёж · 3-D Secure</div></div>
+            </div></div>
+
+            <!-- S5 ORDER -->
+            <div class="mascr" id="s5"><div class="mafeed" id="f5">
+              <div class="ordh">Заказ № DM-260817-4465B8</div>
+              <div class="ecard" style="margin-top:14px">
+                <div style="font-size:13px;color:rgba(41,39,32,.62);line-height:1.4">ПВЗ VLK112 · 690001, Россия, Приморский край, Владивосток, ул. Светланская, 152</div>
+                <div style="font-size:13px;color:rgba(41,39,32,.62);margin-top:6px">Ориентировочный срок: 9–10 дн.</div>
+                <div class="trk" id="trk"><div><div class="l">Трек-номер СДЭК</div><div class="v">10308068440</div></div><div class="c">Скопировать</div></div>
+              </div>
+              <div class="ecard">
+                <div style="font-size:17px;font-weight:800;color:#292720;margin-bottom:6px">История заказа</div>
+                <div class="tl2">
+                  <div class="ti" id="t1"><div class="dot">✓</div><b>Ожидает оплаты</b><span>17 авг., 16:19 · заказ создан покупателем</span></div>
+                  <div class="ti" id="t2"><div class="dot">✓</div><b>Оплачен</b><span>17 авг., 16:19 · оплата подтверждена</span></div>
+                  <div class="ti" id="t3"><div class="dot">✓</div><b>Собирается</b><span>17 авг., 16:21</span></div>
+                  <div class="ti" id="t4"><div class="dot">✓</div><b>Собран</b><span>17 авг., 16:21</span></div>
+                  <div class="ti cur" id="t5"><div class="dot">•</div><b>Передан в СДЭК</b><span>ожидает принятия в пункте отправления</span></div>
+                  <div class="ti next" id="t6"><div class="dot"></div><b>Принят в пункте отправления</b><span>следующий этап</span></div>
+                </div>
+              </div>
+              <div class="ebtn wide">Повторить заказ</div>
+            </div></div>
+
+            <!-- S6 ADMIN -->
+            <div class="mascr" id="s6"><div class="mafeed" id="f6">
+              <div class="erow"><div><div class="akicker">ECO NEURONOVA</div><div class="atitle2">Управление магазином</div></div><div class="achip" style="margin-left:auto">Магазин</div></div>
+              <div class="atiles">
+                <div class="atile"><div class="l">Все заказы</div><div class="v" id="a1">0</div></div>
+                <div class="atile"><div class="l">Новые</div><div class="v" id="a2">0</div></div>
+                <div class="atile"><div class="l">В работе</div><div class="v" id="a3">0</div></div>
+                <div class="atile"><div class="l">Оплачено</div><div class="v g" id="a4">0 ₽</div></div>
+                <div class="atile"><div class="l">Выполнено</div><div class="v" id="a5">0</div></div>
+                <div class="atile"><div class="l">Активные товары</div><div class="v" id="a6">0</div></div>
+              </div>
+              <div class="achips"><div class="achip on">Заказы</div><div class="achip">Статистика</div><div class="achip">Товары</div><div class="achip">Промокоды</div><div class="achip">Отзывы</div></div>
+              <div class="ecard" style="margin-top:14px">
+                <div style="font-size:11px;font-weight:800;letter-spacing:1.2px;color:rgba(41,39,32,.5)">ВЫРУЧКА ЗА 14 ДНЕЙ</div>
+                <div class="achart" id="achart"></div>
+              </div>
+            </div></div>
+
+          </div>
+          <div class="manav" id="manav">
+            <div class="on"><div class="ico">🧺</div>Каталог</div>
+            <div><div class="ico">🛍</div>Корзина<div class="bdg" id="navCart" style="opacity:0">1</div></div>
+            <div><div class="ico">🤍</div>Избранное<div class="bdg" id="navFav" style="opacity:0">1</div></div>
+            <div><div class="ico">👤</div>Профиль</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status"><span>9:41</span>
+        <span style="display:flex;gap:6px;align-items:center">
+          <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.2" height="4" rx="1" fill="#fff"/><rect x="5" y="5.5" width="3.2" height="6.5" rx="1" fill="#fff"/><rect x="10" y="3" width="3.2" height="9" rx="1" fill="#fff"/><rect x="15" y="0" width="3.2" height="12" rx="1" fill="#fff"/></svg>
+          <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.4a7 7 0 0 1 9.8 0l1.6-1.9a9.6 9.6 0 0 0-13 0zM.2 3.3a12 12 0 0 1 16.6 0" fill="#fff"/></svg>
+          <svg width="28" height="13" viewBox="0 0 28 13"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="#fff" opacity=".5"/><rect x="2.3" y="2.3" width="19" height="8.4" rx="2.2" fill="#fff"/><rect x="25.5" y="4.3" width="1.8" height="4.4" rx=".9" fill="#fff" opacity=".5"/></svg>
+        </span></div>
+      <div class="island"></div>
+      <div id="homebar" style="background:#fff;opacity:.55"></div>
+      <div class="tap" id="tap"><div class="ring"></div><div class="dot"></div></div>
+    </div>
+
+    <div class="chip" id="cA" style="left:245px;top:665px"><div class="ci emo" style="background:#f6efdf">🛍</div><div><div class="a">Витрина Mini App</div><div class="b">✓ Каталог прямо в Telegram</div></div></div>
+    <div class="chip" id="cB" style="left:-70px;top:470px"><div class="ci emo" style="background:#e6f0e8">🚚</div><div><div class="a">Доставка СДЭК</div><div class="b">✓ Расчёт и ПВЗ в заказе</div></div></div>
+    <div class="chip" id="cC" style="left:220px;top:180px"><div class="ci emo" style="background:#e6f0e8">📦</div><div><div class="a">Трек-номер в боте</div><div class="b">✓ Статусы приходят сами</div></div></div>
+    <div class="chip" id="cD" style="left:-40px;top:700px"><div class="ci emo" style="background:#f6efdf">📈</div><div><div class="a">+74% заказов за месяц</div><div class="b">✓ Магазин работает сам</div></div></div>
+  </div></div></div>
+
+  <div id="scrim"></div>
+  <div id="titles">
+    <div class="stepn"><span id="stepnum">01</span><div class="prog" id="prog"></div></div>
+    <div class="ttl" id="ttl"></div>
+    <div class="sub" id="sub"></div>
+  </div>
+
+  <div id="intro">
+    <div class="tag" id="itag">ECO NEURONOVA · TELEGRAM MINI APP</div>
+    <div class="big" id="ib1"></div>
+    <div class="big big2" id="ib2"></div>
+    <div class="sm" id="ism">Витрина · Оплата · Доставка</div>
+  </div>
+
+  <div id="outro">
+    <div class="big" id="ob"><div id="ob1"></div><div id="ob2" class="hl"></div></div>
+    <div class="feats" id="feats"></div>
+    <div class="foot" id="ofoot">ECO NEURONOVA · МАГАЗИН В TELEGRAM · MINI APP</div>
+  </div>
+
+  <div id="flash"></div>
+  <div id="vig"></div>
+  <div id="grain"></div>
+  <div id="fade"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const k=(t,a,b)=>clamp((t-a)/(b-a));
+const mix=(a,b,p)=>a+(b-a)*p;
+const E={lin:p=>p,outCubic:p=>1-Math.pow(1-p,3),inCubic:p=>p*p*p,
+ inOutCubic:p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2,
+ outQuint:p=>1-Math.pow(1-p,5),outExpo:p=>p>=1?1:1-Math.pow(2,-10*p),
+ inExpo:p=>p<=0?0:Math.pow(2,10*p-10),
+ inOutExpo:p=>p<=0?0:p>=1?1:p<.5?Math.pow(2,20*p-10)/2:(2-Math.pow(2,-20*p+10))/2,
+ outBack:p=>{const c1=1.5,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2)}};
+const tw=(t,a,b,e=E.outCubic)=>e(k(t,a,b));
+function rng(s0){let s=s0;return()=>{s=(s*16807)%2147483647;return(s-1)/2147483646}}
+function splitWords(el,text){el.innerHTML=text.split(' ').map(w=>`<span class="w"><span>${w}</span></span>`).join(' ');return [...el.querySelectorAll('.w>span')]}
+function splitChars(el,text){el.innerHTML=[...text].map(c=>`<span class="ch">${c===' '?'&nbsp;':c}</span>`).join('');return [...el.querySelectorAll('.ch')]}
+function fmt(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+(function(){const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');const d=x.createImageData(256,256);const r=rng(7);
+for(let i=0;i<d.data.length;i+=4){const v=r()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}x.putImageData(d,0,0);$('grain').style.backgroundImage=`url(${c.toDataURL()})`})();
+
+const DUR=33;
+// screen id, in, out
+const SCR=[['s1',2.60,9.95],['s2',9.80,13.35],['s3',13.20,16.35],['s4',16.20,20.60],['s5',20.45,24.60],['s6',24.45,28.60]];
+// per-screen scroll keyframes
+const SCROLL={
+ f1:[[2.80,0],[4.60,0],[5.90,250],[6.70,250],[7.60,560],[8.40,560],[9.20,760],[9.80,760]],
+ f2:[[10.00,0],[10.90,0],[11.60,300],[12.10,300],[12.70,120],[13.30,120]],
+ f3:[[13.40,0],[16.30,0]],
+ f4:[[16.40,0],[17.20,0],[17.80,250],[18.40,250],[18.95,520],[19.35,760],[20.55,760]],
+ f5:[[20.65,0],[21.30,0],[22.20,118],[24.55,118]],
+ f6:[[24.65,0],[25.60,0],[26.60,96],[28.55,96]],
+};
+const STEPS=[
+ {n:'01',t0:2.85,t1:6.30,title:'Витрина в Telegram',sub:'Mini App открывается прямо в чате'},
+ {n:'02',t0:6.40,t1:9.60,title:'Каталог по задачам',sub:'Категории, фото и цены'},
+ {n:'03',t0:9.70,t1:13.20,title:'Карточка товара',sub:'Состав, приём, противопоказания'},
+ {n:'04',t0:13.30,t1:16.20,title:'Корзина и промокод',sub:'Скидка считается сразу'},
+ {n:'05',t0:16.30,t1:20.40,title:'Оформление за 4 шага',sub:'Доставка СДЭК и оплата картой'},
+ {n:'06',t0:20.50,t1:24.40,title:'Заказ и трек-номер',sub:'Статусы обновляются автоматически'},
+ {n:'07',t0:24.50,t1:28.00,title:'Админ-панель',sub:'Заказы, выручка и остатки'},
+];
+const TAPS=[['bReishi',9.30],['hP2',10.60],['bAdd',12.80],['promoB',14.95],['bCheckout',15.85],['dPvz',18.10],['bPay',19.55],['trk',22.90]];
+const PRESS={bReishi:9.30,bAdd:12.80,promoB:14.95,bCheckout:15.85,bPay:19.55};
+const CHIPS=[['cA',4.30,6.25,80],['cB',18.20,20.35,-80],['cC',22.95,24.35,80],['cD',26.55,27.95,-80]];
+window.CUES=[
+ {t:0.15,s:'swell'},{t:1.75,s:'whoosh'},{t:2.55,s:'impact'},
+ {t:4.30,s:'chip'},{t:6.35,s:'whoosh'},{t:9.30,s:'tap'},{t:9.80,s:'whoosh_soft'},
+ {t:10.60,s:'tap'},{t:12.80,s:'tap'},{t:13.20,s:'whoosh_soft'},
+ {t:14.95,s:'tap'},{t:15.15,s:'success_short'},{t:15.85,s:'tap'},{t:16.20,s:'whoosh_soft'},
+ {t:18.10,s:'tap'},{t:18.20,s:'chip'},{t:19.55,s:'tap'},{t:19.70,s:'process'},{t:20.20,s:'success'},
+ {t:20.45,s:'whoosh'},{t:21.30,s:'notif'},{t:22.90,s:'tap'},{t:22.95,s:'chip'},
+ {t:24.45,s:'whoosh'},{t:25.10,s:'notif'},{t:26.55,s:'chip'},
+ {t:27.95,s:'whoosh'},{t:28.40,s:'tick'},{t:29.10,s:'tick'},{t:29.40,s:'tick'},{t:29.70,s:'tick'},{t:30.00,s:'tick'},{t:32.0,s:'outro_tail'}
+];
+const CAM=[
+ {t:0,    f:[195,422],s:1.45,sy:2950,rx:42,ry:0,rz:-8},
+ {t:1.55, f:[195,422],s:1.45,sy:2950,rx:42,ry:0,rz:-8,e:E.lin},
+ {t:2.75, f:[195,422],s:1.62,sy:1112,rx:0,ry:2,rz:0,e:E.outQuint},
+ {t:9.70, f:[195,422],s:1.635,sy:1112,rx:0,ry:-2,rz:0,e:E.lin},
+ {t:16.20,f:[195,422],s:1.645,sy:1112,rx:0,ry:2,rz:0,e:E.lin},
+ {t:24.40,f:[195,422],s:1.655,sy:1112,rx:0,ry:-2,rz:0,e:E.lin},
+ {t:28.00,f:[195,422],s:1.665,sy:1112,rx:0,ry:1,rz:0,e:E.lin},
+ {t:28.90,f:[195,422],s:1.30,sy:1330,rx:10,ry:-20,rz:4,e:E.inOutExpo},
+ {t:32.5, f:[195,422],s:1.22,sy:1345,rx:7,ry:-26,rz:4,e:E.lin},
+];
+let ready=false;
+function layoutOf(el){let x=0,y=0,e=el;while(e&&e.id!=='screen'){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent}return{x,y,w:el.offsetWidth,h:el.offsetHeight}}
+function scrollOf(key,t){const A=SCROLL[key];let y=A[0][1];for(let i=1;i<A.length;i++){const[a,va]=A[i-1],[b,vb]=A[i];y+=(vb-va)*E.inOutCubic(k(t,a,b));}return y}
+function posAt(id,t){const el=$(id);const L=layoutOf(el);let y=L.y;
+  const fd=el.closest('.mafeed'); if(fd) y-=scrollOf(fd.id,t);
+  return [L.x+L.w/2,y+L.h/2];}
+function camAt(t){let i=0;while(i<CAM.length-1&&CAM[i+1].t<=t)i++;
+  const a=CAM[i],b=CAM[Math.min(i+1,CAM.length-1)];
+  const p=b===a?0:(b.e||E.inOutCubic)(k(t,a.t,b.t));
+  const fa=typeof a.f==='string'?posAt(a.f,t):a.f, fb=typeof b.f==='string'?posAt(b.f,t):b.f;
+  const g=(n,d)=>mix(a[n]??d,b[n]??d,p);
+  const s=g('s',1.62),fx=mix(fa[0],fb[0],p),fy=mix(fa[1],fb[1],p),sx=g('sx',540),sy=g('sy',1112);
+  return {tx:sx-540-s*(fx-195),ty:sy-960-s*(fy-422),s,rx:g('rx',0),ry:g('ry',0),rz:g('rz',0)};}
+function init(){
+  $('prog').innerHTML=STEPS.map(()=>'<i><b></b></i>').join('');
+  window.IB1=splitChars($('ib1'),'Магазин');window.IB2=splitChars($('ib2'),'в Telegram');
+  window.OB1=splitWords($('ob1'),'Магазин в Telegram');window.OB2=splitWords($('ob2'),'работает сам');
+  $('feats').innerHTML=['🛍 Витрина Mini App','💳 Оплата картой','🚚 Доставка СДЭК','📦 Статусы заказа','🛠 Админ-панель']
+    .map(f=>`<div class="f">${f.replace(/^(\S+)/,'<span class="emo">$1</span>')}</div>`).join('');
+  $('ttl').innerHTML=STEPS.map((s,i)=>`<div class="tl" id="tt${i}"></div>`).join('');
+  $('sub').innerHTML=STEPS.map((s,i)=>`<div class="tl" id="ts${i}"></div>`).join('');
+  STEPS.forEach((s,i)=>{s.W=splitWords($('tt'+i),s.title);s.S=splitWords($('ts'+i),s.sub)});
+  const hs=[31,44,38,55,49,66,60,52,74,69,86,80,94,100];
+  $('achart').innerHTML=hs.map((h,i)=>`<i class="${i>=11?'g':''}" style="height:${h}%"></i>`).join('');
+  window.BARS=[...$('achart').children];
+  ready=true;
+}
+function setT(el,v){el.style.transform=v}
+function render(t){
+  if(!ready)init();
+  $('b1').style.backgroundColor='#7c6cff';$('b2').style.backgroundColor='#31d8c9';$('b3').style.backgroundColor='#4a3fd0';
+  $('b1').style.transform=`translate(${-100+Math.sin(t*.35)*160}px,${200+Math.cos(t*.27)*140}px)`;
+  $('b2').style.transform=`translate(${520+Math.cos(t*.3)*170}px,${900+Math.sin(t*.22)*200}px)`;
+  $('b3').style.transform=`translate(${200+Math.sin(t*.2+1)*200}px,${1500+Math.cos(t*.31)*120}px)`;
+  $('gridl').style.transform=`translateY(${-t*14%44}px)`;$('redtint').style.opacity=0;
+
+  const c=camAt(t),c2=camAt(t+1/60);
+  setT($('world'),`translate(${c.tx}px,${c.ty}px) rotateX(${c.rx}deg) rotateY(${c.ry}deg) rotateZ(${c.rz}deg) scale(${c.s})`);
+  const vx=Math.abs(c2.tx-c.tx),vy=Math.abs(c2.ty-c.ty),vs=Math.abs(c2.s-c.s)*400;
+  const bx=Math.min(16,Math.max(0,vx-2.5)*.45+Math.max(0,vs-1)*.3),by=Math.min(16,Math.max(0,vy-2.5)*.45+Math.max(0,vs-1)*.3);
+  if(bx+by>0.6){$('mbg').setAttribute('stdDeviation',`${bx.toFixed(2)} ${by.toFixed(2)}`);$('camfx').style.filter='url(#mb)'}else $('camfx').style.filter='none';
+
+  // screens
+  SCR.forEach(([id,a,b],i)=>{const el=$(id);
+    const pin=E.outCubic(k(t,a,a+.42)),pout=E.inCubic(k(t,b-.30,b));
+    el.style.opacity=pin*(1-pout);
+    el.style.transform=`translateX(${(1-pin)*34-pout*26}px) scale(${mix(.985,1,pin)})`;
+    el.style.zIndex=10+i;});
+  Object.keys(SCROLL).forEach(key=>setT($(key),`translateY(${-scrollOf(key,t)}px)`));
+  $('mLeft').textContent=(t>9.8&&t<24.4)?'Назад':'Закрыть';
+  // nav state
+  const navs=[...$('manav').children];
+  const navIdx=t<13.2?0:(t<20.4?1:0);
+  navs.forEach((n,i)=>n.className=(i===navIdx?'on':''));
+  $('navCart').style.opacity=k(t,12.95,13.15);$('navCart').textContent=t>12.95?'2':'1';
+  $('navFav').style.opacity=k(t,10.65,10.85);
+  // hearts
+  const h1=k(t,10.65,10.85);$('hP2').className='phrt'+(h1>.5?' on':'');$('hP2').textContent=h1>.5?'♥':'♡';
+  setT($('hP2'),`scale(${1+.22*(k(t,10.6,10.75)*(1-k(t,10.8,11.1)))})`);
+  // promo
+  const pc='ECO10';const pn=Math.floor(k(t,14.05,14.75)*pc.length);
+  $('promoF').textContent=pc.slice(0,pn)+((pn<pc.length&&t>14.0&&Math.floor(t*3)%2===0)?'|':'');
+  $('promoOK').style.opacity=k(t,15.05,15.30);
+  $('cDisc').style.opacity=k(t,15.05,15.30);
+  $('cTotal').textContent=t>15.15?'5 880 ₽':'6 490 ₽';
+  setT($('cTotal'),`scale(${1+.14*(k(t,15.15,15.3)*(1-k(t,15.4,15.75)))})`);
+  // card typing
+  const num='2200 7012 4417 3391';const nc=Math.floor(k(t,18.55,19.25)*num.length);
+  $('ccN').textContent=(nc>=19?'2200 •••• •••• 3391':num.slice(0,nc))+((nc<num.length&&Math.floor(t*3)%2===0)?'|':'');
+  $('ccE').textContent=t>19.30?'05/29':'';$('ccC').textContent=t>19.42?'•••':'';
+  // pay button
+  const pb=k(t,19.51,19.59)*(1-k(t,19.65,19.85));setT($('bPay'),`scale(${1-.035*pb})`);
+  const sp=k(t,19.68,19.78)*(1-k(t,20.15,20.20));
+  $('payT').style.opacity=1-k(t,19.63,19.73);
+  $('paySp').style.opacity=sp;setT($('paySp'),`rotate(${t*720}deg)`);
+  const ck=k(t,20.20,20.55);$('payOk').style.opacity=ck>0?1:0;$('payOkP').style.strokeDashoffset=30*(1-E.outCubic(ck));
+  setT($('payOk'),`scale(${.6+.4*E.outBack(k(t,20.20,20.5))})`);
+  $('bPay').style.background=ck>0?`rgb(${mix(185,47,ck)},${mix(120,138,ck)},${mix(24,63,ck)})`:'#B97818';
+  if(t<16)$('payT').style.opacity=1;
+  // order timeline
+  ['t1','t2','t3','t4','t5','t6'].forEach((id,i)=>{const a0=21.10+i*.16;const p=E.outBack(k(t,a0,a0+.45));
+    const e=$(id);e.style.opacity=k(t,a0,a0+.18);e.style.transform=`translateX(${(1-p)*20}px)`;});
+  const tg=k(t,22.90,23.1)*(1-k(t,23.9,24.3));
+  $('trk').style.boxShadow=`0 0 0 ${2.4*tg}px rgba(185,120,24,${.6*tg})`;
+  // admin counters
+  const av=[['a1',128,''],['a2',6,''],['a3',14,''],['a4',486300,' ₽'],['a5',96,''],['a6',6,'']];
+  av.forEach(([id,val,suf],i)=>{const a0=25.00+i*.11;
+    $(id).textContent=fmt(val*E.outExpo(k(t,a0,a0+1.1)))+suf;
+    const e=$(id).parentElement;e.style.opacity=k(t,a0-.1,a0+.15);
+    e.style.transform=`translateY(${(1-E.outCubic(k(t,a0-.1,a0+.5)))*16}px)`;});
+  BARS.forEach((b,i)=>{const a0=26.60+i*.045;b.style.transform=`scaleY(${E.outBack(k(t,a0,a0+.5))})`;});
+
+  // presses
+  for(const [id,tp] of Object.entries(PRESS)){const b=$(id);const pr=k(t,tp-.04,tp+.04)*(1-k(t,tp+.12,tp+.35));
+    if(pr>0){b.style.filter=`brightness(${1-.2*pr})`;if(id!=='bPay')b.style.transform=`scale(${1-.04*pr})`}else b.style.filter='none'}
+  // taps
+  let tapEl=$('tap'),shown=false;
+  for(const [id,tp] of TAPS){ if(t>tp-.35&&t<tp+.55){shown=true;const [x,y]=posAt(id,t);
+      tapEl.style.left=x+'px';tapEl.style.top=y+'px';
+      const app=E.outCubic(k(t,tp-.35,tp-.12)),out=k(t,tp+.25,tp+.55),press=k(t,tp-.06,tp)*(1-k(t,tp+.05,tp+.2));
+      const d=tapEl.querySelector('.dot'),r=tapEl.querySelector('.ring');
+      d.style.opacity=app*(1-out);d.style.transform=`scale(${(1.25-.25*app)*(1-.22*press)})`;
+      const rp=E.outCubic(k(t,tp,tp+.5));r.style.opacity=t>tp?(1-rp)*.9:0;r.style.transform=`scale(${1+rp*1.6})`;}}
+  tapEl.style.display=shown?'block':'none';
+  // chips
+  for(const [id,a,b,fx] of CHIPS){const el=$(id);const pi=E.outBack(k(t,a,a+.55)),po=E.inCubic(k(t,b-.35,b));
+    el.style.opacity=k(t,a,a+.15)*(1-po);
+    el.style.transform=`translate3d(${(1-pi)*fx+po*fx*.4}px,${(1-pi)*20-po*30}px,${90+(1-pi)*80}px) scale(${.8+.2*pi})`;
+    el.style.display=(t>a-.05&&t<b+.05)?'flex':'none';}
+  // titles
+  const show=STEPS.findIndex(s=>t>=s.t0-.05&&t<s.t1+.05);
+  STEPS.forEach((s,i)=>{const vis=i===show;$('tt'+i).style.display=vis?'block':'none';$('ts'+i).style.display=vis?'block':'none';
+    if(!vis)return;
+    s.W.forEach((w,j)=>{const a=s.t0+j*.06;const pin=E.outExpo(k(t,a,a+.6)),po=E.inCubic(k(t,s.t1-.32+j*.03,s.t1+j*.03));
+      w.style.transform=`translateY(${(1-pin)*110-po*110}%)`});
+    s.S.forEach((w,j)=>{const a=s.t0+.15+j*.035;const pin=E.outExpo(k(t,a,a+.6)),po=E.inCubic(k(t,s.t1-.3,s.t1));
+      w.style.transform=`translateY(${(1-pin)*110-po*110}%)`;w.style.opacity=1-po});});
+  const tin=k(t,2.8,3.1),tout=k(t,27.9,28.4);
+  $('titles').style.opacity=tin*(1-tout);$('scrim').style.opacity=tin*(1-tout);
+  if(show>=0)$('stepnum').textContent=STEPS[show].n;
+  [...$('prog').children].forEach((seg,i)=>{const s=STEPS[i];seg.firstChild.style.transform=`scaleX(${E.inOutCubic(k(t,s.t0,s.t1))})`});
+  // intro
+  const io=E.inExpo(k(t,1.65,2.35));
+  $('intro').style.display=t<2.5?'block':'none';
+  setT($('intro'),`translateY(${-io*260}px) scale(${1-io*.15})`);$('intro').style.opacity=1-io;$('intro').style.filter=io>0?`blur(${io*14}px)`:'none';
+  $('itag').style.opacity=k(t,.25,.6);setT($('itag'),`translateY(${(1-tw(t,.25,.8,E.outExpo))*30}px)`);
+  IB1.forEach((ch,j)=>{const a=.3+j*.045;const p=E.outExpo(k(t,a,a+.7));ch.style.transform=`translateY(${(1-p)*120}px) rotate(${(1-p)*8}deg)`;ch.style.opacity=k(t,a,a+.2)});
+  IB2.forEach((ch,j)=>{const a=.5+j*.04;const p=E.outExpo(k(t,a,a+.7));ch.style.transform=`translateY(${(1-p)*120}px) rotate(${(1-p)*8}deg)`;ch.style.opacity=k(t,a,a+.2)});
+  $('ism').style.opacity=k(t,1.0,1.3);setT($('ism'),`translateY(${(1-tw(t,1,1.5,E.outExpo))*24}px)`);$('ism').style.letterSpacing=mix(8,.5,tw(t,1,1.8,E.outExpo))+'px';
+  // outro
+  $('outro').style.display=t>28.1?'block':'none';
+  [...OB1,...OB2].forEach((w,j)=>{const a=28.35+j*.1;const p=E.outExpo(k(t,a,a+.8));w.style.transform=`translateY(${(1-p)*110}%)`});
+  [...$('feats').children].forEach((f,j)=>{const a=29.0+j*.28;const p=E.outBack(k(t,a,a+.5));f.style.opacity=k(t,a,a+.15);f.style.transform=`translateY(${(1-p)*30}px) scale(${.85+.15*p})`});
+  $('ofoot').style.opacity=k(t,30.6,31.2);$('ofoot').style.letterSpacing=mix(14,5,tw(t,30.6,32,E.outExpo))+'px';
+  // fx
+  const fl=Math.max(Math.exp(-Math.pow((t-20.3)/.12,2))*.5,Math.exp(-Math.pow((t-2.6)/.1,2))*.3);
+  $('flash').style.opacity=fl;
+  $('grain').style.transform=`translate(${Math.floor((t*60*37)%100)}px,${Math.floor((t*60*53)%100)}px)`;
+  $('fade').style.opacity=Math.max(1-k(t,0,.4),k(t,32.2,DUR));
+}
+window.render=render;
+</script>
+</body></html>
