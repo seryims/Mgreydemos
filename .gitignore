@@ -1,0 +1,6 @@
+projects/*/stills/
+projects/*/chk_*.jpg
+projects/*/video.mp4
+projects/*/tail.mp4
+projects/*/audio.wav
+projects/*/render.log
