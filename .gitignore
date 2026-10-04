@@ -6,3 +6,5 @@ projects/*/audio.wav
 projects/*/render.log
 projects/*/final*.jpg
 projects/*/sb*.jpg
+projects/*/msb*.jpg
+projects/*/chk*.jpg
