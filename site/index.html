@@ -135,8 +135,8 @@
   .vshow{ position:relative; margin:0 auto; aspect-ratio:9/16; height:min(660px, calc(100vh - 240px));
     border-radius:20px; overflow:hidden; background:#07070a;
     box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.07); }
-  .vshow video, .vshow img.vposter{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
-  .vshow img.vposter{ transition:opacity .45s ease; }
+  .vshow video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .vshow .vposter{ position:absolute; inset:0; background:#0b0b10 center/cover no-repeat; transition:opacity .45s ease; }
   .vshow video{ opacity:0; transition:opacity .45s ease; }
   .vshow video.on{ opacity:1; }
   .vshow .vfade{ position:absolute; left:0; right:0; bottom:0; height:150px;
@@ -164,7 +164,20 @@
   .phone-tabs{ max-width:100%; }
   .vfull{ white-space:nowrap; }
   @media (max-width:860px){
-    .vshow{ width:100%; height:auto; max-height:none; }
+    .hero{ display:flex; flex-direction:column; }
+    .hero > div:first-child{ display:contents; }
+    .hero .eyebrow{ order:1; }
+    .hero h1{ order:2; }
+    .hero .phone-wrap{ order:3; }
+    .hero .lede{ order:4; margin-top:18px; }
+    .hero h1{ font-size:clamp(28px,7.6vw,38px); line-height:1.1; margin:12px 0 12px; }
+    .hero p.lede{ font-size:15.5px; line-height:1.5; margin:0 0 16px; }
+    .hero .platforms-row{ margin-top:18px; }
+    .hero .platforms-row{ order:5; }
+    .hero .hero-ctas{ order:6; }
+    .hero .trust{ order:7; }
+    .vshow{ width:auto; height:min(62vh, calc((100vw - 36px) * 16 / 9)); max-height:none; }
+    @supports (height:1svh){ .vshow{ height:min(62svh, calc((100vw - 36px) * 16 / 9)); } }
     .vfull{ font-size:13px; }
     .vlabel{ font-size:11px; padding:6px 10px; }
     .vmute{ width:38px; height:38px; font-size:14px; right:12px; top:12px; }
@@ -175,7 +188,6 @@
     .vshow .vctl{ left:10px; right:10px; bottom:10px; justify-content:center; }
     .vfull{ height:40px; flex:0 0 auto; padding:0 22px; }
   }
-  @media (prefers-reduced-motion: reduce){ .vshow video{ display:none; } }
   .swipe-hint{
     text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim);
     margin-top:10px; opacity:.85; transition:opacity .4s ease, margin .4s ease, height .4s ease;
@@ -590,7 +602,7 @@
       <button type="button" data-bot="content">ВКонтакте</button>
     </div>
     <div class="vshow" id="vshow">
-      <img class="vposter" id="vposter" src="media/booking_poster.jpg" alt="Демо Telegram-бота">
+      <div class="vposter" id="vposter" style="background-image:url(media/booking_poster.jpg)" role="img" aria-label="Демо Telegram-бота"></div>
       <video id="vloop" muted playsinline autoplay preload="auto" poster="media/booking_poster.jpg">
         <source id="vloopWebm" src="media/booking_loop.webm" type="video/webm">
         <source id="vloopMp4" src="media/booking_loop.mp4" type="video/mp4">
@@ -936,14 +948,14 @@
     var heroKey = 'booking';
     var heroMuted = true;
     var saveData = (navigator.connection && navigator.connection.saveData) === true;
-    var lightMode = reduce || saveData;
+    var lightMode = saveData; // уважаем только экономию трафика: автоплей нужен всегда
     function playSafe(el){ var pr = el.play(); if(pr && pr.catch) pr.catch(function(){}); }
 
     function renderBot(key){
       var d = HERO[key] || HERO.booking;
       heroKey = HERO[key] ? key : 'booking';
       vlabel.textContent = d.label;
-      vposter.src = d.poster;
+      vposter.style.backgroundImage = 'url(' + d.poster + ')';
       vposter.style.opacity = '1';
       if(lightMode) return;
       vloop.classList.remove('on');
@@ -989,7 +1001,7 @@
             if(document.getElementById('lightbox').classList.contains('open')) return;
             if(en.isIntersecting) playSafe(vloop); else vloop.pause();
           });
-        }, { threshold:.2 }).observe(document.getElementById('vshow'));
+        }, { threshold:0, rootMargin:'0px 0px -5% 0px' }).observe(document.getElementById('vshow'));
       }
     }
 
