@@ -533,7 +533,7 @@
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <div class="lightbox-box">
     <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button>
-    <div class="lightbox-frame"><video id="lightboxVideo" controls playsinline muted autoplay preload="none">
+    <div class="lightbox-frame"><video id="lightboxVideo" controls playsinline autoplay preload="none">
         <source id="lbWebm" type="video/webm"><source id="lbMp4" type="video/mp4"></video>
       <button type="button" class="lb-sound" id="lightboxSound">🔊 Включить звук</button></div>
     <div class="lightbox-cap"><strong id="lightboxTitle"></strong><span id="lightboxCap"></span></div>
@@ -1247,16 +1247,30 @@
       lbVideo.poster = d.poster;
       document.getElementById('lbWebm').src = d.src + '.webm';
       document.getElementById('lbMp4').src = d.src + '.mp4';
-      lbVideo.muted = true;
-      lbSound.classList.remove('hide');
+      lbVideo.muted = false;
+      lbVideo.volume = 1;
+      lbSound.classList.add('hide');
       lbVideo.load();
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       if(typeof vloop !== 'undefined') vloop.pause();
-      lbVideo.play().catch(function(){});
+      lbVideo.play().catch(function(){ lbVideo.muted = true; lbVideo.play().catch(function(){}); });
+      // request fullscreen — lightbox element first; iOS Safari needs video-level
+      (function tryFS(){
+        var el = lightbox;
+        var fn = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+        if(fn){ fn.call(el).catch(function(){}); return; }
+        if(lbVideo.webkitEnterFullscreen){
+          lbVideo.addEventListener('loadedmetadata', function onMeta(){ lbVideo.removeEventListener('loadedmetadata', onMeta); lbVideo.webkitEnterFullscreen(); }, { once:true });
+        }
+      })();
     }
     function closeDemo(){
+      try{
+        var exitFn = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+        if(exitFn && (document.fullscreenElement || document.webkitFullscreenElement)) exitFn.call(document);
+      }catch(e){}
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -1267,6 +1281,12 @@
       lbVideo.load();
       if(typeof vloop !== 'undefined' && !lightMode){ var pr = vloop.play(); if(pr && pr.catch) pr.catch(function(){}); }
     }
+    // close demo when user exits fullscreen via device UI (swipe-down, Escape, etc.)
+    ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
+      document.addEventListener(ev, function(){
+        if(!(document.fullscreenElement || document.webkitFullscreenElement) && lightbox.classList.contains('open')) closeDemo();
+      });
+    });
     document.querySelectorAll('[data-demo]').forEach(function(el){
       el.addEventListener('click', function(){ openDemo(el.dataset.demo); });
       el.addEventListener('keydown', function(e){
