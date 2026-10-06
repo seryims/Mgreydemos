@@ -106,7 +106,7 @@
 
   /* glass phone card */
   .phone-wrap{ perspective:1300px; }
-  .phone-tabs{ display:flex; gap:6px; margin-bottom:14px; padding:2px 0; background:none; border:none; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+  .phone-tabs{ display:flex; gap:6px; margin-top:14px; padding:2px 0; background:none; border:none; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
   .phone-tabs::-webkit-scrollbar{ display:none; }
   .phone-tabs button{
     flex:0 0 auto; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--text-dim);
@@ -140,7 +140,7 @@
   .vshow .vposter{ position:absolute; inset:0; background:#0b0b10 center/cover no-repeat; transition:opacity .45s ease; }
   .vshow video{ opacity:0; transition:opacity .45s ease; }
   .vshow video.on{ opacity:1; }
-  .vshow .vfade{ position:absolute; left:0; right:0; bottom:0; height:150px;
+  .vshow .vfade{ position:absolute; left:0; right:0; bottom:0; height:190px;
     background:linear-gradient(to top, rgba(7,7,10,.92), rgba(7,7,10,0)); pointer-events:none; }
   .vshow .vctl{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; gap:8px; align-items:center; }
   .vfull{ flex:1; height:44px; border:0; border-radius:12px; cursor:pointer;
@@ -188,6 +188,7 @@
     .vfull{ font-size:12.5px; }
     .vshow .vctl{ left:10px; right:10px; bottom:10px; justify-content:center; }
     .vfull{ height:40px; flex:0 0 auto; padding:0 22px; }
+    .vshow .vpager{ bottom:58px; }
   }
   .swipe-hint{
     text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim);
@@ -197,9 +198,12 @@
   .swipe-hint.hide{ opacity:0; height:0; margin-top:0; overflow:hidden; pointer-events:none; }
   @keyframes swipeNudge{ 0%,100%{ transform:translateX(0); } 50%{ transform:translateX(4px); } }
   @media (prefers-reduced-motion: reduce){ .swipe-hint{ animation:none; } }
-  .dotpager{ display:flex; justify-content:center; gap:6px; margin-top:12px; }
+  .dotpager{ display:flex; justify-content:center; gap:6px; }
   .dotpager span{ width:6px; height:6px; border-radius:50%; background:var(--border-strong); transition:background .2s ease, transform .2s ease; }
   .dotpager span.active{ background:linear-gradient(135deg,var(--accent-a),var(--accent-b)); transform:scale(1.3); }
+  .vshow .vpager{ position:absolute; left:0; right:0; bottom:66px; z-index:5; display:flex; flex-direction:column; align-items:center; gap:5px; pointer-events:none; }
+  .vshow .vpager .swipe-hint{ position:static; margin:0; pointer-events:none; }
+  .vshow .vpager .swipe-hint.hide{ opacity:0; height:0; overflow:hidden; }
   .bubble{ max-width:78%; padding:9px 13px; border-radius:12px; font-size:13.5px; line-height:1.45; animation:riseIn .45s ease both; }
   .bubble .t{ display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; opacity:.55; margin-top:4px; text-align:right; }
   .bubble.in{ align-self:flex-start; background:var(--surface-2); border:1px solid var(--border); border-bottom-left-radius:4px; }
@@ -595,13 +599,6 @@
   </div>
 
   <div class="phone-wrap">
-    <div class="phone-tabs" role="tablist">
-      <button type="button" class="active" data-bot="booking">Запись</button>
-      <button type="button" data-bot="subscription">Подписка</button>
-      <button type="button" data-bot="shop">Магазин</button>
-      <button type="button" data-bot="digital">Товары</button>
-      <button type="button" data-bot="content">ТГ→ВК</button>
-    </div>
     <div class="vshow" id="vshow">
       <div class="vposter" id="vposter" style="background-image:url(media/booking_poster.jpg)" role="img" aria-label="Демо Telegram-бота"></div>
       <video id="vloop" muted playsinline autoplay preload="auto" poster="media/booking_poster.jpg">
@@ -611,13 +608,22 @@
       <div class="vfade"></div>
       <div class="vlabel"><span class="d"></span><span id="vlabel">запись в студию</span></div>
       <button type="button" class="vmute" id="vmute" aria-label="Включить звук">🔇</button>
+      <div class="vpager">
+        <div class="swipe-hint" id="swipeHint">← свайп →</div>
+        <div class="dotpager" id="dotpager" aria-hidden="true">
+          <span class="active" data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span><span data-i="4"></span>
+        </div>
+      </div>
       <div class="vctl">
         <button type="button" class="vfull" id="vfull">▶ Полный ролик · 33 сек</button>
       </div>
     </div>
-    <div class="swipe-hint" id="swipeHint">← листайте, чтобы посмотреть другие проекты →</div>
-    <div class="dotpager" id="dotpager" aria-hidden="true">
-      <span class="active" data-i="0"></span><span data-i="1"></span><span data-i="2"></span><span data-i="3"></span><span data-i="4"></span>
+    <div class="phone-tabs" role="tablist">
+      <button type="button" class="active" data-bot="booking">Запись</button>
+      <button type="button" data-bot="subscription">Подписка</button>
+      <button type="button" data-bot="shop">Магазин</button>
+      <button type="button" data-bot="digital">Цифровые товары</button>
+      <button type="button" data-bot="content">ТГ→ВК</button>
     </div>
   </div>
 </div>
