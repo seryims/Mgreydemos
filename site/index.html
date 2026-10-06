@@ -204,6 +204,7 @@
   .vshow .vpager{ position:absolute; left:0; right:0; bottom:66px; z-index:5; display:flex; flex-direction:column; align-items:center; gap:5px; pointer-events:none; }
   .vshow .vpager .swipe-hint{ position:static; margin:0; pointer-events:none; }
   .vshow .vpager .swipe-hint.hide{ opacity:0; height:0; overflow:hidden; }
+  @media (hover:hover) and (pointer:fine){ .vshow .swipe-hint{ display:none; } }
   .bubble{ max-width:78%; padding:9px 13px; border-radius:12px; font-size:13.5px; line-height:1.45; animation:riseIn .45s ease both; }
   .bubble .t{ display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; opacity:.55; margin-top:4px; text-align:right; }
   .bubble.in{ align-self:flex-start; background:var(--surface-2); border:1px solid var(--border); border-bottom-left-radius:4px; }
@@ -735,7 +736,6 @@
           <p class="pitch">Лендинг для продажи подписки на канал Vas Kristi: продаёт идею до того, как человек попадёт в бота, и ведёт прямо на оплату.</p>
           <div class="tags"><span class="tag">лендинг</span><span class="tag">конверсия в подписку</span><span class="tag">vas-kristi.onrender.com</span></div>
           <div class="resline">
-            <button type="button" class="demo-btn" data-demo="booking"><span class="play">▶</span>Смотреть видео</button>
             <a class="resource-link" href="https://vas-kristi.onrender.com/" target="_blank" rel="noopener">Открыть сайт <span class="arrow">→</span></a>
             <button type="button" class="copy-chip" data-copy="vas-kristi.onrender.com"><span class="ic">⧉</span>vas-kristi.onrender.com</button>
           </div>
