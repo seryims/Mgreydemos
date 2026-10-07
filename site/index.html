@@ -83,8 +83,14 @@
   .hero h1{ font-size:clamp(40px,5.2vw,60px); line-height:1.06; font-weight:800; margin:20px 0 20px; }
   .hero p.lede{ font-size:17.5px; line-height:1.65; color:var(--text-dim); max-width:48ch; margin:0 0 30px; }
   .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:38px; }
-  .trust{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-  .trust span.lbl{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim); margin-right:4px; }
+  .trust{ display:flex; flex-direction:column; gap:10px; }
+  .trust-head{ display:flex; align-items:center; gap:10px; }
+  .trust-head .lbl{ font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--text-dim); letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+  .trust-line{ flex:1; height:1px; background:linear-gradient(to right,color-mix(in srgb,var(--accent-a) 55%,transparent),color-mix(in srgb,var(--accent-b) 45%,transparent),transparent); }
+  .trust-chips{ display:flex; gap:7px; flex-wrap:wrap; }
+  .trust-chip{ display:inline-flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:100px; padding:6px 13px 6px 9px; font-size:13px; font-weight:500; color:var(--text); transition:border-color .15s ease, color .15s ease; }
+  .trust-chip:hover{ border-color:var(--accent-a); }
+  .trust-dot{ width:6px; height:6px; background:var(--good); border-radius:50%; box-shadow:0 0 7px color-mix(in srgb,var(--good) 70%,transparent); flex-shrink:0; }
   .platforms-row{ display:flex; gap:9px; flex-wrap:wrap; align-items:center; margin:0 0 22px; }
   .platforms-row .lbl{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim); margin-right:2px; }
   .platform-chip{
@@ -94,11 +100,6 @@
   }
   .platform-chip svg{ width:13px; height:13px; flex:none; color:var(--accent-b); }
   .platform-chip:hover{ border-color:var(--accent-a); color:var(--text); }
-  .trust a{
-    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--text-dim); border:1px solid var(--border);
-    padding:5px 11px; border-radius:20px; transition:border-color .15s ease, color .15s ease;
-  }
-  .trust a:hover{ border-color:var(--accent-a); color:var(--text); }
 
   .rotator{ position:relative; display:inline-block; }
   .rotator .rw{ display:inline-block; transition:opacity .22s ease, transform .22s ease; }
@@ -590,12 +591,17 @@
       <a class="btn btn-ghost" href="#projects">Смотреть проекты</a>
     </div>
     <div class="trust">
-      <span class="lbl">уже работает →</span>
-      <a href="https://t.me/VasKristiSub_Bot" target="_blank" rel="noopener">Vas Kristi</a>
-      <a href="https://t.me/VasKristi_Bot" target="_blank" rel="noopener">Vas Kristi товары</a>
-      <a href="#projects" rel="noopener">ТГ→ВК</a>
-      <a href="https://t.me/BAAshop_bot" target="_blank" rel="noopener">Eco NeuroNova</a>
-      <a href="https://vas-kristi.onrender.com/" target="_blank" rel="noopener">Что поесть</a>
+      <div class="trust-head">
+        <span class="lbl">уже работает</span>
+        <div class="trust-line"></div>
+      </div>
+      <div class="trust-chips">
+        <a href="https://t.me/VasKristiSub_Bot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Клуб по подписке</a>
+        <a href="https://t.me/VasKristi_Bot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Магазин цифровых товаров</a>
+        <a href="#projects" class="trust-chip"><span class="trust-dot"></span>Синхронизация ТГ→ВК</a>
+        <a href="https://t.me/BAAshop_bot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Мини-апп магазин</a>
+        <a href="https://vas-kristi.onrender.com/" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Запись на массаж онлайн</a>
+      </div>
     </div>
   </div>
 
