@@ -466,6 +466,12 @@
     .lightbox{ padding:16px; }
     .lightbox-close{ top:-10px; right:0; }
   }
+  .lb-dots{ display:flex; gap:9px; justify-content:center; align-items:center; }
+  .lb-dot{ width:7px; height:7px; border-radius:50%; border:none; padding:0; cursor:pointer; background:rgba(255,255,255,.18); transition:background .2s ease, transform .2s ease; flex-shrink:0; }
+  .lb-dot.active{ background:var(--accent-b); transform:scale(1.3); }
+  .lb-dot:hover:not(.active){ background:rgba(255,255,255,.4); }
+  .lightbox-frame{ transition:opacity .18s ease; }
+  .lightbox-frame.fading{ opacity:0; }
 
   /* 9 — button shimmer sweep */
   .btn-primary::after{
@@ -544,6 +550,7 @@
         <source id="lbWebm" type="video/webm"><source id="lbMp4" type="video/mp4"></video>
       <button type="button" class="lb-sound" id="lightboxSound">🔊 Включить звук</button></div>
     <div class="lightbox-cap"><strong id="lightboxTitle"></strong><span id="lightboxCap"></span></div>
+    <div class="lb-dots" id="lbDots"></div>
   </div>
 </div>
 
@@ -1265,23 +1272,46 @@
     var lbCap = document.getElementById('lightboxCap');
     var lbClose = document.getElementById('lightboxClose');
     var lbSound = document.getElementById('lightboxSound');
-    function openDemo(key){
+    var lbFrame = document.querySelector('.lightbox-frame');
+    var lbDots = document.getElementById('lbDots');
+    var DEMO_KEYS = ['sub','digital','vk','shop','booking'];
+    var currentDemoKey = null;
+    DEMO_KEYS.forEach(function(k){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'lb-dot'; b.dataset.dot = k;
+      b.setAttribute('aria-label', DEMOS[k].title);
+      b.addEventListener('click', function(){ openDemo(k); });
+      lbDots.appendChild(b);
+    });
+    function setDots(key){ lbDots.querySelectorAll('.lb-dot').forEach(function(b){ b.classList.toggle('active', b.dataset.dot === key); }); }
+    function loadDemoSrc(key){
       var d = DEMOS[key];
-      if(!d) return;
       lbTitle.textContent = d.title;
       lbCap.textContent = d.cap;
       lbVideo.poster = d.poster;
       document.getElementById('lbWebm').src = d.src + '.webm';
       document.getElementById('lbMp4').src = d.src + '.mp4';
-      lbVideo.muted = false;
-      lbVideo.volume = 1;
+      lbVideo.muted = false; lbVideo.volume = 1;
       lbSound.classList.add('hide');
       lbVideo.load();
+      currentDemoKey = key;
+      setDots(key);
+      lbVideo.play().catch(function(){ lbVideo.muted = true; lbVideo.play().catch(function(){}); });
+    }
+    function openDemo(key){
+      var d = DEMOS[key];
+      if(!d) return;
+      if(lightbox.classList.contains('open')){
+        if(currentDemoKey === key) return;
+        lbFrame.classList.add('fading');
+        setTimeout(function(){ loadDemoSrc(key); lbFrame.classList.remove('fading'); }, 180);
+        return;
+      }
+      loadDemoSrc(key);
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       if(typeof vloop !== 'undefined') vloop.pause();
-      lbVideo.play().catch(function(){ lbVideo.muted = true; lbVideo.play().catch(function(){}); });
       // request fullscreen — lightbox element first; iOS Safari needs video-level
       (function tryFS(){
         var el = lightbox;
@@ -1305,6 +1335,7 @@
       document.getElementById('lbMp4').removeAttribute('src');
       lbVideo.removeAttribute('poster');
       lbVideo.load();
+      currentDemoKey = null;
       if(typeof vloop !== 'undefined' && !lightMode){ var pr = vloop.play(); if(pr && pr.catch) pr.catch(function(){}); }
     }
     // close demo when user exits fullscreen via device UI (swipe-down, Escape, etc.)
@@ -1313,14 +1344,19 @@
         if(!(document.fullscreenElement || document.webkitFullscreenElement) && lightbox.classList.contains('open')) closeDemo();
       });
     });
-    // swipe down on lightbox to close
+    // swipe: horizontal → navigate videos, vertical down → close
     (function(){
-      var lsy = 0;
-      lightbox.addEventListener('touchstart', function(e){ lsy = e.touches[0].clientY; }, { passive:true });
+      var lsx = 0, lsy = 0;
+      lightbox.addEventListener('touchstart', function(e){ lsx = e.touches[0].clientX; lsy = e.touches[0].clientY; }, { passive:true });
       lightbox.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - lsx;
         var dy = e.changedTouches[0].clientY - lsy;
-        var dx = Math.abs(e.changedTouches[0].clientX - (e.touches[0] ? e.touches[0].clientX : e.changedTouches[0].clientX));
-        if(dy > 70 && dy > dx) closeDemo();
+        if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44){
+          var i = DEMO_KEYS.indexOf(currentDemoKey);
+          openDemo(dx < 0 ? DEMO_KEYS[(i+1) % DEMO_KEYS.length] : DEMO_KEYS[(i-1+DEMO_KEYS.length) % DEMO_KEYS.length]);
+        } else if(dy > 70 && dy > Math.abs(dx)){
+          closeDemo();
+        }
       }, { passive:true });
     })();
     document.querySelectorAll('[data-demo]').forEach(function(el){
