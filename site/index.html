@@ -119,9 +119,9 @@
   .phone-tabs button:hover{ color:var(--text); border-color:var(--border-strong); }
   .phone-tabs button.active{ color:#07070a; background:transparent; border-color:transparent; }
   #tabPill{
-    position:absolute; top:2px; height:calc(100% - 4px); border-radius:20px; pointer-events:none; z-index:0;
+    position:absolute; border-radius:20px; pointer-events:none; z-index:0;
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b));
-    transition:left .28s cubic-bezier(.4,0,.2,1), width .28s cubic-bezier(.4,0,.2,1);
+    transition:left .28s cubic-bezier(.4,0,.2,1), width .28s cubic-bezier(.4,0,.2,1), top .28s cubic-bezier(.4,0,.2,1);
   }
   .phone{
     background:var(--surface-solid); border:1px solid var(--border-strong); border-radius:18px;
@@ -363,6 +363,10 @@
     .footbar{ flex-direction:column; align-items:flex-start; }
     .aurora span{ width:90vw; height:90vw; }
     .phone-tabs{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  }
+  @media (max-width:600px){
+    .phone-tabs{ flex-wrap:wrap; justify-content:center; overflow-x:visible; gap:7px 6px; }
+    .phone-tabs button{ flex:0 0 auto; }
   }
   @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
 
@@ -1041,7 +1045,9 @@
     function movePill(btn){
       if(!tabPill || !btn) return;
       tabPill.style.left = btn.offsetLeft + 'px';
+      tabPill.style.top = btn.offsetTop + 'px';
       tabPill.style.width = btn.offsetWidth + 'px';
+      tabPill.style.height = btn.offsetHeight + 'px';
     }
     // Place pill without animation on init
     (function(){
