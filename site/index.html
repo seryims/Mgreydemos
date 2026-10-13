@@ -108,15 +108,21 @@
 
   /* glass phone card */
   .phone-wrap{ perspective:1300px; }
-  .phone-tabs{ display:flex; gap:6px; margin-top:14px; padding:2px 0; background:none; border:none; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+  .phone-tabs{ position:relative; display:flex; gap:6px; margin-top:14px; padding:2px 0; background:none; border:none; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
   .phone-tabs::-webkit-scrollbar{ display:none; }
   .phone-tabs button{
+    position:relative; z-index:1;
     flex:0 0 auto; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--text-dim);
     background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:7px 14px; cursor:pointer;
-    transition:color .15s ease, background .15s ease, border-color .15s ease; white-space:nowrap;
+    transition:color .22s ease, border-color .22s ease, background .22s ease; white-space:nowrap;
   }
   .phone-tabs button:hover{ color:var(--text); border-color:var(--border-strong); }
-  .phone-tabs button.active{ color:#07070a; background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); border-color:transparent; }
+  .phone-tabs button.active{ color:#07070a; background:transparent; border-color:transparent; }
+  #tabPill{
+    position:absolute; top:2px; height:calc(100% - 4px); border-radius:20px; pointer-events:none; z-index:0;
+    background:linear-gradient(100deg,var(--accent-a),var(--accent-b));
+    transition:left .28s cubic-bezier(.4,0,.2,1), width .28s cubic-bezier(.4,0,.2,1);
+  }
   .phone{
     background:var(--surface-solid); border:1px solid var(--border-strong); border-radius:18px;
     box-shadow:0 30px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.02) inset;
@@ -634,6 +640,7 @@
       </div>
     </div>
     <div class="phone-tabs" role="tablist">
+      <span id="tabPill" aria-hidden="true"></span>
       <button type="button" class="active" data-bot="booking">Запись</button>
       <button type="button" data-bot="subscription">Подписка</button>
       <button type="button" data-bot="shop">Магазин</button>
@@ -974,15 +981,17 @@
       vlabel.textContent = d.label;
       vposter.style.backgroundImage = 'url(' + d.poster + ')';
       vposter.style.opacity = '1';
-      if(lightMode) return;
       vloop.classList.remove('on');
+      if(lightMode) return;
       vloop.pause();
-      vloop.poster = d.poster;
-      document.getElementById('vloopWebm').src = d.loop + '.webm';
-      document.getElementById('vloopMp4').src = d.loop + '.mp4';
-      vloop.muted = heroMuted;
-      vloop.load();
-      playSafe(vloop);
+      setTimeout(function(){
+        vloop.poster = d.poster;
+        document.getElementById('vloopWebm').src = d.loop + '.webm';
+        document.getElementById('vloopMp4').src = d.loop + '.mp4';
+        vloop.muted = heroMuted;
+        vloop.load();
+        playSafe(vloop);
+      }, 160);
     }
     vloop.addEventListener('playing', function(){
       vloop.classList.add('on');
@@ -1028,10 +1037,26 @@
     function syncDotpager(i){ dotpagerEls.forEach(function(d, di){ d.classList.toggle('active', di === i); }); }
 
     var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.phone-tabs button'));
+    var tabPill = document.getElementById('tabPill');
+    function movePill(btn){
+      if(!tabPill || !btn) return;
+      tabPill.style.left = btn.offsetLeft + 'px';
+      tabPill.style.width = btn.offsetWidth + 'px';
+    }
+    // Place pill without animation on init
+    (function(){
+      var activeBtn = document.querySelector('.phone-tabs button.active');
+      if(!activeBtn || !tabPill) return;
+      tabPill.style.transition = 'none';
+      movePill(activeBtn);
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ tabPill.style.transition = ''; }); });
+    })();
     tabBtns.forEach(function(btn, i){
       btn.addEventListener('click', function(){
         tabBtns.forEach(function(b){ b.classList.remove('active'); });
         btn.classList.add('active');
+        movePill(btn);
+        btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
         renderBot(btn.dataset.bot);
         syncDotpager(i);
         markTabInteracted();
