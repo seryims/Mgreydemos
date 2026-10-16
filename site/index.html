@@ -1214,24 +1214,83 @@
 
     // haptic tap feedback — no-op where Vibration API is unsupported
     function buzz(ms){ if(navigator.vibrate){ navigator.vibrate(ms); } }
-    // auto-open oferta when #oferta or #oferta-vozvrat anchor is active
+    // oferta smooth open/close animation
     (function(){
-      function openOferta(scrollToId){
-        var det = document.getElementById('oferta');
-        if(!det) return;
+      var det = document.getElementById('oferta');
+      if(!det) return;
+      var body = det.querySelector('.oferta-body');
+      var animating = false;
+
+      function animateOpen(afterOpen){
+        if(animating) return;
+        animating = true;
         det.open = true;
-        if(scrollToId){
+        var endH = body.scrollHeight;
+        body.style.overflow = 'hidden';
+        body.style.height = '0px';
+        body.style.opacity = '0';
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          body.style.transition = 'height .38s cubic-bezier(.4,0,.2,1), opacity .3s ease';
+          body.style.height = endH + 'px';
+          body.style.opacity = '1';
           setTimeout(function(){
+            body.style.height = '';
+            body.style.overflow = '';
+            body.style.opacity = '';
+            body.style.transition = '';
+            animating = false;
+            if(afterOpen) afterOpen();
+          }, 400);
+        }); });
+      }
+
+      function animateClose(){
+        if(animating) return;
+        animating = true;
+        var startH = body.scrollHeight;
+        body.style.overflow = 'hidden';
+        body.style.height = startH + 'px';
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          body.style.transition = 'height .38s cubic-bezier(.4,0,.2,1), opacity .28s ease';
+          body.style.height = '0px';
+          body.style.opacity = '0';
+          setTimeout(function(){
+            det.open = false;
+            body.style.height = '';
+            body.style.overflow = '';
+            body.style.opacity = '';
+            body.style.transition = '';
+            animating = false;
+          }, 400);
+        }); });
+      }
+
+      det.querySelector('summary').addEventListener('click', function(e){
+        e.preventDefault();
+        if(det.open){ animateClose(); } else { animateOpen(null); }
+      });
+
+      function openOferta(scrollToId){
+        if(det.open){
+          if(scrollToId){
             var el = document.getElementById(scrollToId);
             if(el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-          }, 50);
+          }
+        } else {
+          animateOpen(function(){
+            if(scrollToId){
+              var el = document.getElementById(scrollToId);
+              if(el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+            }
+          });
         }
       }
+
       var h = window.location.hash;
       if(h === '#oferta') openOferta(null);
       if(h === '#oferta-vozvrat') openOferta('oferta-vozvrat');
       document.querySelectorAll('a[href="#oferta"]').forEach(function(a){
-        a.addEventListener('click', function(){ openOferta(null); });
+        a.addEventListener('click', function(e){ e.preventDefault(); openOferta(null); });
       });
       var vl = document.getElementById('vozvratLink');
       if(vl) vl.addEventListener('click', function(e){
