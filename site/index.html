@@ -340,8 +340,29 @@
   .cta{ text-align:center; padding:90px 0 70px; }
   .cta h2{ font-size:clamp(30px,4vw,44px); font-weight:800; }
   .cta p{ color:var(--text-dim); font-size:16px; margin:14px 0 30px; }
-  footer{ border-top:1px solid var(--border); padding:26px 0 44px; }
-  .footbar{ display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text-dim); flex-wrap:wrap; gap:10px; }
+  footer{ border-top:1px solid var(--border); padding:44px 0 32px; }
+  .footgrid{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:36px 24px; padding-bottom:32px; }
+  .footsec .fhead{ font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
+  .footsec p{ margin:0 0 6px; font-size:13px; color:var(--text-dim); line-height:1.55; }
+  .footsec a{ color:var(--text-dim); text-decoration:none; transition:color .18s; }
+  .footsec a:hover{ color:var(--text); }
+  .footbar{ display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:var(--text-dim); flex-wrap:wrap; gap:10px; border-top:1px solid var(--border); padding-top:24px; }
+  /* oferta collapsible */
+  .oferta-wrap{ border-top:1px solid var(--border); background:var(--surface); }
+  .oferta-wrap summary{ list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; cursor:pointer; font-size:13px; font-weight:600; color:var(--text-dim); transition:color .18s; }
+  .oferta-wrap summary::-webkit-details-marker{ display:none; }
+  .oferta-wrap summary:hover{ color:var(--text); }
+  .oferta-wrap summary .arrow{ font-size:10px; transition:transform .22s ease; }
+  .oferta-wrap[open] summary .arrow{ transform:rotate(180deg); }
+  .oferta-body{ padding-bottom:32px; }
+  .oferta-body h3{ font-size:14px; font-weight:700; margin:22px 0 8px; }
+  .oferta-body p{ font-size:13px; color:var(--text-dim); line-height:1.7; margin:0 0 10px; }
+  @media (max-width:860px){
+    .footgrid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:600px){
+    .footgrid{ grid-template-columns:1fr; gap:24px; }
+  }
 
   @media (max-width:860px){
     .hero{ grid-template-columns:1fr; padding:24px 0 60px; gap:40px; }
@@ -360,7 +381,7 @@
     .brand-sub{ display:none; } .btn{ padding:9px 15px; font-size:13px; }
     .hero p.lede{ font-size:16px; max-width:none; }
     .pricegrid{ grid-template-columns:1fr; } .steps{ grid-template-columns:1fr; }
-    .footbar{ flex-direction:column; align-items:flex-start; }
+    .footbar{ flex-direction:column; align-items:flex-start; gap:6px; }
     .aurora span{ width:90vw; height:90vw; }
     .phone-tabs{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
   }
@@ -879,9 +900,69 @@
 </div>
 
 <footer>
-  <div class="wrap footbar">
-    <div>© Максим — боты и автоматизация</div>
-    <div class="mono"><span id="clock"></span> · страница на связи <span id="uptime">00:00</span> · <a href="https://t.me/maximgrey" target="_blank" rel="noopener">t.me/maximgrey</a></div>
+  <div class="wrap">
+    <div class="footgrid">
+      <div class="footsec">
+        <div class="fhead">О разработчике</div>
+        <p>Максим Серый — Telegram-боты и автоматизация бизнеса.<br>Самозанятый. ИНН 280126421444.</p>
+        <p style="margin-top:10px">Разрабатываю ботов под ключ: запись, оплата, магазин, рассылки.</p>
+      </div>
+      <div class="footsec">
+        <div class="fhead">Контакты</div>
+        <p><a href="tel:+79247250493">+7 924 725-04-93</a></p>
+        <p><a href="mailto:seryi.ms@yandex.ru">seryi.ms@yandex.ru</a></p>
+        <p><a href="https://t.me/maximgrey" target="_blank" rel="noopener">t.me/maximgrey</a></p>
+      </div>
+      <div class="footsec">
+        <div class="fhead">Документы</div>
+        <p><a href="#oferta" id="ofertaLink">Публичная оферта</a></p>
+        <p><a href="#oferta">Условия возврата</a></p>
+      </div>
+    </div>
+    <details class="oferta-wrap" id="oferta">
+      <summary class="wrap" style="padding-left:0;padding-right:0">
+        <span>Публичная оферта о заключении договора купли-продажи</span>
+        <span class="arrow">▼</span>
+      </summary>
+      <div class="oferta-body">
+        <h3>1. Общие положения</h3>
+        <p>В настоящей Публичной оферте содержатся условия заключения Договора купли-продажи. Нижеизложенный текст является официальным публичным предложением Продавца, адресованным заинтересованному кругу лиц заключить Договор в соответствии с п. 2 ст. 437 Гражданского кодекса РФ. Договор считается заключённым с момента совершения Покупателем действий, предусмотренных настоящей Офертой.</p>
+        <h3>2. Термины и определения</h3>
+        <p><b>Продавец</b> — Самозанятый Максим Серый, ИНН 280126421444, сайт maximgrey.ru.<br>
+        <b>Покупатель</b> — любое дееспособное физическое или юридическое лицо, акцептовавшее настоящую Оферту.<br>
+        <b>Товар</b> — услуги по разработке Telegram-ботов и автоматизации бизнеса, размещённые на сайте Продавца.<br>
+        <b>Договор</b> — текст настоящей Оферты, акцептованный Покупателем путём совершения конклюдентных действий.</p>
+        <h3>3. Предмет Договора</h3>
+        <p>По настоящему Договору Продавец обязуется выполнить работы/оказать услуги (передать Товар) Покупателю, а Покупатель обязуется принять и оплатить их. Наименование, состав и стоимость услуг определяются на основании сведений Продавца при оформлении заявки Покупателем либо на сайте Продавца maximgrey.ru. Акцепт выражается в оформлении заявки, оплате Товара, а также иных действиях, ясно выражающих намерение Покупателя принять условия настоящей Оферты.</p>
+        <h3>4. Права и обязанности Сторон</h3>
+        <p><b>Продавец</b> вправе требовать оплаты услуг в порядке и на условиях, предусмотренных Договором. Продавец обязуется оказать услуги надлежащего качества, предоставить Покупателю всю необходимую информацию о составе и порядке оказания услуг.</p>
+        <p><b>Покупатель</b> вправе требовать оказания услуг в соответствии с Договором, а также возврата оплаты по основаниям, предусмотренным Договором и действующим законодательством РФ. Покупатель обязуется предоставить достоверную информацию, необходимую для исполнения Договора, и принять оказанные услуги.</p>
+        <h3>5. Цена и порядок расчётов</h3>
+        <p>Стоимость услуг определяется на сайте maximgrey.ru либо по соглашению Сторон при оформлении заявки. Все расчёты по Договору производятся в безналичном порядке через платёжные системы, указанные Продавцом.</p>
+        <h3>6. Условия возврата</h3>
+        <p>Покупатель вправе отказаться от услуг Продавца до момента начала их оказания — в этом случае уплаченная сумма возвращается в полном объёме в течение 10 рабочих дней. После начала оказания услуг возврат осуществляется пропорционально фактически невыполненному объёму работ. Возврат производится на реквизиты, с которых поступила оплата. Для инициирования возврата необходимо направить заявку на seryi.ms@yandex.ru или +7 924 725-04-93.</p>
+        <h3>7. Конфиденциальность</h3>
+        <p>Стороны обеспечивают конфиденциальность и безопасность персональных данных в соответствии с ФЗ от 27.07.2006 № 152-ФЗ «О персональных данных». Стороны обязуются сохранять конфиденциальность информации, полученной в ходе исполнения Договора.</p>
+        <h3>8. Форс-мажор</h3>
+        <p>Стороны освобождаются от ответственности за неисполнение обязательств вследствие обстоятельств непреодолимой силы (запретные действия властей, эпидемии, стихийные бедствия и т. п.). Сторона, для которой наступили такие обстоятельства, уведомляет другую Сторону в течение 30 рабочих дней.</p>
+        <h3>9. Ответственность Сторон</h3>
+        <p>Стороны несут ответственность за неисполнение или ненадлежащее исполнение обязательств в соответствии с условиями настоящей Оферты и действующим законодательством РФ.</p>
+        <h3>10. Срок действия Оферты</h3>
+        <p>Оферта вступает в силу с момента размещения на сайте maximgrey.ru и действует до момента её отзыва Продавцом. Продавец вправе вносить изменения в условия Оферты, уведомив об этом путём размещения новой редакции на сайте.</p>
+        <h3>11. Применимое право и споры</h3>
+        <p>Договор регулируется законодательством Российской Федерации. Все споры подлежат урегулированию в досудебном порядке; при недостижении согласия — в соответствии с законодательством РФ.</p>
+        <h3>12. Реквизиты Продавца</h3>
+        <p>Самозанятый Серый Максим Сергеевич<br>
+        ИНН: 280126421444<br>
+        Сайт: maximgrey.ru<br>
+        Телефон: +7 924 725-04-93<br>
+        E-mail: seryi.ms@yandex.ru</p>
+      </div>
+    </details>
+    <div class="footbar">
+      <div>© Максим Серый — боты и автоматизация · Самозанятый · ИНН 280126421444</div>
+      <div class="mono"><span id="clock"></span> · на связи <span id="uptime">00:00</span></div>
+    </div>
   </div>
 </footer>
 
@@ -1137,6 +1218,22 @@
 
     // haptic tap feedback — no-op where Vibration API is unsupported
     function buzz(ms){ if(navigator.vibrate){ navigator.vibrate(ms); } }
+    // auto-open oferta when #oferta anchor is active
+    (function(){
+      function maybeOpenOferta(){
+        if(window.location.hash === '#oferta'){
+          var det = document.getElementById('oferta');
+          if(det) det.open = true;
+        }
+      }
+      maybeOpenOferta();
+      document.querySelectorAll('a[href="#oferta"]').forEach(function(a){
+        a.addEventListener('click', function(){
+          var det = document.getElementById('oferta');
+          if(det) det.open = true;
+        });
+      });
+    })();
     document.querySelectorAll('.btn, .resource-link, .copy-chip, .phone-tabs button, #totop').forEach(function(el){
       el.addEventListener('click', function(){ buzz(8); });
     });
