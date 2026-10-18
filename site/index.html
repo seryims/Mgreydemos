@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Разработчик ботов maximgrey</title>
+<meta name="description" content="Максим Серый: разрабатываю Telegram-, WhatsApp-, Instagram- и MAX-ботов под ключ. Запись, приём оплат, магазины с Mini App, подписки и рассылки. Цену фиксирую до начала работ.">
+<meta name="theme-color" content="#07070a">
+<link rel="canonical" href="https://maximgrey.ru/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="maximgrey">
+<meta property="og:title" content="Разработчик ботов: запись, оплаты, магазины и подписки">
+<meta property="og:description" content="Боты под ключ для Telegram, WhatsApp, Instagram и MAX. Реальные проекты с видео-демо, ориентиры по ценам и калькулятор тарифа.">
+<meta property="og:url" content="https://maximgrey.ru/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzAlIiBjeT0iMjglIiByPSI4MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4YWQ0ZmYiLz48c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iIzgwNjBmOCIvPjxzdG9wIG9mZnNldD0iNjUlIiBzdG9wLWNvbG9yPSIjYzA0MGU4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzA2MGZmIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbD0idXJsKCNnKSIgZD0iTTE2IDJDOC4yNyAyIDIgOC4yNyAyIDE2YzAgMy42OSAxLjQgNy4wNSAzLjcgOS42TDQgMzBsNC45LTIuNkMxMC43IDI4LjUgMTMuMjggMjkgMTYgMjljNy43MyAwIDE0LTYuMjcgMTQtMTNTMjMuNzMgMiAxNiAyeiIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTUuNSIgcj0iNyIgZmlsbD0iIzA3MDcwYSIvPjwvc3ZnPg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -1128,6 +1138,17 @@
     .step:nth-child(n){ margin-top:0; }
   }
   .calc-back[hidden]{ display:none; }
+
+  /* qa fixes */
+  section[id], #oferta-vozvrat, #oferta{ scroll-margin-top:96px; }
+  .footsec a{ display:inline-block; padding:7px 0; }
+  .footsec p{ margin:0 0 2px; }
+  @media (max-width:760px){
+    .pricegrid .reveal, .steps .reveal, .grid .reveal{ opacity:1; transform:none; transition:none; }
+    .footsec a{ padding:10px 0; }
+  }
+  .pricecard.hot::before{ top:-13px; right:20px; }
+  .foot-word{ font-size:clamp(40px,12vw,190px); white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -1364,7 +1385,7 @@
         </div><div class="tags"><span class="tag">aiogram 3</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">APScheduler</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="booking"><span class="play">▶</span>Смотреть видео</button>
-          <a class="resource-link disabled" href="#" onclick="return false;">Пока без паблик-ссылки</a>
+          <span class="resource-link disabled" aria-disabled="true">Пока без паблик-ссылки</span>
         </div>
       </div>
 
@@ -1490,7 +1511,7 @@
     <div class="sec-head reveal">
       <div class="eyebrow">стек</div>
       <h2>Стек</h2>
-      <p>Набор, проверенный на живых проектах с оплатами и расписаниями — не «модно», а предсказуемо под нагрузкой. Наведи на пункт, если незнакомый термин.</p>
+      <p>Набор, проверенный на живых проектах с оплатами и расписаниями — не «модно», а предсказуемо под нагрузкой. Наведите или нажмите на пункт, если термин незнаком.</p>
     </div>
     <div class="stackgrid">
       <div class="stackcard">
@@ -1692,6 +1713,20 @@
       }
     }
 
+    // failsafe: after scrolling stops, reveal anything already on screen
+    (function(){
+      var t;
+      window.addEventListener('scroll', function(){
+        clearTimeout(t);
+        t = setTimeout(function(){
+          document.querySelectorAll('.reveal:not(.in)').forEach(function(el){
+            var r = el.getBoundingClientRect();
+            if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+          });
+        }, 220);
+      }, { passive:true });
+    })();
+
     // hero showcase — one demo video per project (autoplay, muted)
     var HERO = {
       booking:{ label:'запись в студию', demo:'booking', loop:'media/booking_loop', poster:'media/booking_poster.jpg' },
@@ -1822,7 +1857,7 @@
         tabBtns.forEach(function(b){ b.classList.remove('active'); });
         btn.classList.add('active');
         movePill(btn);
-        btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+        var pt = btn.parentNode; if(pt.scrollWidth > pt.clientWidth){ pt.scrollTo({ left: btn.offsetLeft - (pt.clientWidth - btn.offsetWidth) / 2, behavior:'smooth' }); }
         prevTabIndex = i;
         renderBot(btn.dataset.bot, dir);
         syncDotpager(i);
