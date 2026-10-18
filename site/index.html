@@ -6,7 +6,7 @@
 <title>Разработчик ботов maximgrey</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzAlIiBjeT0iMjglIiByPSI4MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4YWQ0ZmYiLz48c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iIzgwNjBmOCIvPjxzdG9wIG9mZnNldD0iNjUlIiBzdG9wLWNvbG9yPSIjYzA0MGU4Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzA2MGZmIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbD0idXJsKCNnKSIgZD0iTTE2IDJDOC4yNyAyIDIgOC4yNyAyIDE2YzAgMy42OSAxLjQgNy4wNSAzLjcgOS42TDQgMzBsNC45LTIuNkMxMC43IDI4LjUgMTMuMjggMjkgMTYgMjljNy43MyAwIDE0LTYuMjcgMTQtMTNTMjMuNzMgMiAxNiAyeiIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTUuNSIgcj0iNyIgZmlsbD0iIzA3MDcwYSIvPjwvc3ZnPg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root{
     --bg:#07070a;
@@ -27,7 +27,7 @@
   html{ overflow-x:hidden; }
   body{
     margin:0; background:var(--bg); color:var(--text); width:100%; overflow-x:hidden;
-    font-family:'Manrope',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased;
+    font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased;
     padding-top:72px;
   }
   ::selection{ background:var(--accent-a); color:#fff; }
@@ -79,7 +79,7 @@
   .btn-ghost:hover{ border-color:var(--border-strong); background:var(--surface-2); }
 
   /* ---------- hero ---------- */
-  .hero{ padding:44px 0 90px; display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }
+  .hero{ padding-top:44px; padding-bottom:90px; display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }
   .hero h1{ font-size:clamp(40px,5.2vw,60px); line-height:1.06; font-weight:800; margin:20px 0 20px; }
   .hero p.lede{ font-size:17.5px; line-height:1.65; color:var(--text-dim); max-width:48ch; margin:0 0 30px; }
   .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:38px; }
@@ -153,7 +153,7 @@
   .vshow .vctl{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; gap:8px; align-items:center; }
   .vfull{ flex:1; height:44px; border:0; border-radius:12px; cursor:pointer;
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a;
-    font:700 14px/1 Manrope,system-ui,sans-serif; display:flex; align-items:center; justify-content:center; gap:8px; }
+    font:700 14px/1 Inter,system-ui,sans-serif; display:flex; align-items:center; justify-content:center; gap:8px; }
   .vfull:hover{ filter:brightness(1.08); }
   .vmute{ position:absolute; right:14px; top:14px; z-index:2; width:40px; height:40px; border-radius:50%; cursor:pointer;
     border:1px solid var(--border); background:rgba(7,7,10,.6); backdrop-filter:blur(8px);
@@ -166,7 +166,7 @@
   .lb-sound{ position:absolute; left:50%; transform:translateX(-50%); bottom:68px; z-index:3;
     height:40px; padding:0 18px; border:0; border-radius:999px; cursor:pointer;
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a;
-    font:700 13px/1 Manrope,system-ui,sans-serif; }
+    font:700 13px/1 Inter,system-ui,sans-serif; }
   .lb-sound.hide{ display:none; }
   .hero > *{ min-width:0; }
   .phone-wrap{ min-width:0; }
@@ -365,7 +365,7 @@
   }
 
   @media (max-width:860px){
-    .hero{ grid-template-columns:1fr; padding:24px 0 60px; gap:40px; }
+    .hero{ grid-template-columns:1fr; padding-top:24px; padding-bottom:60px; gap:40px; }
     .about{ grid-template-columns:1fr; gap:32px; }
     .grid{ grid-template-columns:1fr; }
     .stackgrid{ grid-template-columns:1fr; }
@@ -395,38 +395,8 @@
   .reveal{ opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
 
-  /* ---------- marquee strip ---------- */
-  .marquee-strip{ border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:hidden; padding:14px 0; position:relative; }
-  .marquee-strip::before,.marquee-strip::after{ content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none; }
-  .marquee-strip::before{ left:0; background:linear-gradient(to right, var(--bg), transparent); }
-  .marquee-strip::after{ right:0; background:linear-gradient(to left, var(--bg), transparent); }
-  .marquee-track{ display:flex; width:max-content; animation:marqueeScroll 28s linear infinite; }
-  .marquee-track:hover{ animation-play-state:paused; }
-  @keyframes marqueeScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-  .marquee-item{ display:inline-flex; align-items:center; gap:8px; padding:0 28px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-dim); white-space:nowrap; transition:color .15s; }
-  .marquee-item svg{ width:14px; height:14px; flex:none; color:var(--accent-b); opacity:.7; }
-  .marquee-item:hover{ color:var(--text); }
-  .marquee-sep{ color:var(--border-strong); font-size:18px; line-height:1; }
-  @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none; } }
-
-  /* ---------- stats strip ---------- */
-  .stats-strip{ display:flex; gap:0; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); overflow:hidden; margin:32px 0 0; }
-  .stat-item{ flex:1; padding:16px 20px; border-right:1px solid var(--border); }
-  .stat-item:last-child{ border-right:none; }
-  .stat-item .sv{ font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .stat-item .sk{ font-size:11.5px; color:var(--text-dim); margin-top:3px; line-height:1.4; }
-  @media (max-width:600px){ .stats-strip{ flex-direction:column; } .stat-item{ border-right:none; border-bottom:1px solid var(--border); } .stat-item:last-child{ border-bottom:none; } }
-
-  /* ---------- enhanced card glow ---------- */
-  .card:hover{ border-color:color-mix(in srgb, var(--accent-a) 50%, var(--border)); transform:translateY(-3px); box-shadow:0 20px 50px -20px color-mix(in srgb,var(--accent-a) 30%,transparent), 0 0 0 1px color-mix(in srgb,var(--accent-a) 20%,transparent) inset; }
-  .card::after{ content:''; position:absolute; inset:0; opacity:0; transition:opacity .3s ease; pointer-events:none; border-radius:var(--radius); box-shadow:0 0 60px -20px var(--accent-a) inset; }
-  .card:hover::after{ opacity:1; }
-
   /* ---------- tab pill glow ---------- */
   #tabPill{ box-shadow:0 0 24px -4px color-mix(in srgb,var(--accent-a) 70%,transparent); }
-
-  /* ---------- section number ---------- */
-  .sec-num{ font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.15em; color:var(--accent-a); opacity:.8; margin-right:2px; }
 
   /* ---------- dramatic CTA section ---------- */
   .cta-wrap{ position:relative; overflow:hidden; }
@@ -610,12 +580,221 @@
     .aurora span{ filter:blur(55px); }
     .brand-sub{ display:none !important; }
   }
+
+  /* =========================================================
+     v2 — type, pills, cards, spoilers (palette unchanged)
+     ========================================================= */
+  :root{
+    --ease:cubic-bezier(.23,1,.32,1);
+    --card-bg:linear-gradient(180deg, rgba(255,255,255,.06), rgba(124,108,255,.07));
+    --r-card:30px;
+    --sec-pad:clamp(64px,9vw,116px);
+  }
+  body{ font-weight:400; letter-spacing:-.005em; }
+  h1,h2,h3,h4{ font-family:'Inter',system-ui,sans-serif; hyphens:manual; }
+
+  /* ambient light only in hero (replaces full-page aurora) */
+  .hero-glow{
+    position:absolute; top:0; left:0; right:0; height:980px; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(640px 460px at 12% 18%, rgba(124,108,255,.30), transparent 70%),
+      radial-gradient(600px 460px at 88% 42%, rgba(49,216,201,.17), transparent 70%);
+    -webkit-mask-image:linear-gradient(#000 55%, transparent); mask-image:linear-gradient(#000 55%, transparent);
+  }
+  html{ background:var(--bg); }
+
+  /* header: transparent on top, glass after scroll */
+  header{ background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; border-bottom:1px solid transparent;
+    transition:background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out; }
+  header.scrolled{ background:rgba(7,7,10,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom-color:var(--border); box-shadow:0 2px 20px rgba(0,0,0,.3); }
+  .navlinks{ gap:26px; font-size:14px; font-weight:500; }
+  .navlinks a{ color:var(--text-dim); }
+  .navlinks a:hover, .navlinks a.active{ color:var(--text); }
+  .brand{ font-weight:600; letter-spacing:-.02em; }
+
+  /* pill buttons */
+  .btn{ height:48px; padding:0 22px; border-radius:100px; font-weight:500; font-size:15px; letter-spacing:-.02em; gap:12px;
+    transition:transform .25s var(--ease), box-shadow .25s ease, filter .25s ease, background-color .25s ease, border-color .25s ease; }
+  .btn svg{ width:18px; height:12px; flex:none; transition:transform .25s var(--ease); }
+  .btn:hover svg{ transform:translateX(4px); }
+  .btn-primary{ box-shadow:0 10px 30px -12px rgba(124,108,255,.6); }
+  .btn-primary:hover{ box-shadow:0 14px 34px -10px rgba(124,108,255,.7); }
+  header .btn{ height:40px; padding:0 18px; font-size:14px; }
+  .btn-ghost{ background:rgba(255,255,255,.05); border:1px solid rgba(243,244,247,.7); backdrop-filter:blur(3px); }
+  .btn-ghost:hover{ background:rgba(255,255,255,.12); border-color:var(--text); }
+  .btn:focus-visible, .faq-q:focus-visible, .resource-link:focus-visible, .demo-btn:focus-visible{ outline:2px solid var(--accent-b); outline-offset:3px; }
+
+  /* eyebrow becomes a quiet tag, not terminal text */
+  .eyebrow{ font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0; text-transform:none; color:var(--text);
+    padding:8px 14px; border-radius:100px; border:1px solid rgba(124,108,255,.28); background:rgba(124,108,255,.08); }
+  .eyebrow:not(:has(.dot))::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-b); flex:none; }
+
+  /* hero */
+  .hero{ padding-top:52px; padding-bottom:96px; gap:64px; }
+  .hero h1{
+    font-size:clamp(34px,5.6vw,68px); line-height:1.03; font-weight:600; letter-spacing:-.04em; margin:22px 0 22px;
+    background:linear-gradient(180deg,#fff 0%, #ebe9ff 60%, #b9ece6 130%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    padding:.06em .08em .2em; margin-left:-.08em; margin-right:-.08em; margin-bottom:calc(22px - .14em);
+  }
+  .hero h1 .grad-text{ background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); -webkit-background-clip:text; background-clip:text; }
+  .hero p.lede{ font-size:clamp(16px,1.5vw,19px); line-height:1.6; color:var(--text-dim); max-width:46ch; margin:0 0 32px; }
+  .hero-ctas{ gap:14px; margin-bottom:22px; }
+  .hero-note{ margin:0; font-size:14px; color:var(--text-dim); }
+  .hero-note::before{ content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--good); margin-right:9px; vertical-align:1px; box-shadow:0 0 8px rgba(55,224,138,.6); }
+  .hero .eyebrow{ margin-top:0 !important; }
+
+  /* sections */
+  section{ padding:var(--sec-pad) 0; border-top:none; }
+  .sec-head{ margin-bottom:clamp(32px,5vw,56px); max-width:62ch; }
+  .sec-head.center{ margin-left:auto; margin-right:auto; text-align:center; display:flex; flex-direction:column; align-items:center; }
+  .sec-head h2{ font-size:clamp(30px,5vw,56px); line-height:1.04; font-weight:500; letter-spacing:-.04em; margin-top:20px; }
+  .sec-head p{ font-size:clamp(15px,1.4vw,17px); line-height:1.6; margin-top:16px; }
+  #about h2{ font-size:clamp(30px,4.4vw,48px) !important; font-weight:500 !important; letter-spacing:-.04em; }
+  .about p{ font-size:clamp(15.5px,1.4vw,17px); }
+  .fact{ border-radius:24px; padding:22px 24px; background:var(--card-bg); }
+  .fact .k{ font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0; text-transform:none; color:var(--accent-b); }
+  .fact .v{ font-size:15px; line-height:1.6; margin-top:8px; }
+
+  /* cards */
+  .grid{ gap:20px; }
+  .card{ border-radius:var(--r-card); padding:30px; background:var(--card-bg); border:1px solid var(--border); gap:16px;
+    transition:border-color .25s ease, transform .35s var(--ease), box-shadow .35s ease; }
+  .card::after{ display:none; }
+  .card-top h3{ font-size:clamp(19px,1.7vw,22px); font-weight:500; letter-spacing:-.03em; line-height:1.2; }
+  .card p.pitch{ font-size:15px; line-height:1.6; }
+  .status{ font-family:'Inter',sans-serif; font-size:12.5px; font-weight:500; padding:6px 12px; border-radius:100px; background:rgba(255,255,255,.04); }
+  .tags{ gap:8px; }
+  .tag{ font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:var(--text); padding:8px 12px; border-radius:100px;
+    border:1px solid rgba(124,108,255,.22); background:rgba(124,108,255,.07); display:inline-flex; align-items:center; gap:8px; line-height:1; }
+  .tag::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--accent-b); flex:none; }
+  .resline{ gap:10px; margin-top:auto; padding-top:4px; }
+  .resource-link{ height:44px; padding:0 20px; border-radius:100px; font-size:14px; font-weight:500; gap:10px; }
+  .demo-btn{ height:44px; padding:0 18px; border-radius:100px; font-family:'Inter',sans-serif; font-size:14px; font-weight:500; background:rgba(255,255,255,.05); border:1px solid rgba(243,244,247,.5); }
+  .demo-btn:hover{ background:rgba(255,255,255,.12); }
+  .copy-chip{ font-family:'Inter',sans-serif; font-size:13px; border-radius:100px; height:44px; padding:0 16px; }
+  .card.site{ gap:36px; }
+  .browser{ border-radius:20px; }
+  @media (hover:hover){
+    .card:hover{ transform:translateY(-4px); border-color:rgba(124,108,255,.45); box-shadow:0 24px 50px -28px rgba(124,108,255,.5); }
+  }
+
+  /* technical-details spoiler: closed by default, animated */
+  .term-details{ interpolate-size:allow-keywords; border-top:1px solid var(--border); padding-top:4px; }
+  .term-details summary{ font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:var(--text); text-transform:none; letter-spacing:-.01em; padding:12px 0; }
+  .term-details summary::after{ content:'+'; font-size:20px; font-weight:400; line-height:1; color:var(--accent-b); transition:transform .3s var(--ease); }
+  .term-details:not([open]) summary::after{ content:'+'; }
+  .term-details[open] summary::after{ content:'+'; transform:rotate(45deg); }
+  .term-details::details-content{ block-size:0; overflow:hidden; transition:block-size .38s var(--ease), content-visibility .38s allow-discrete; }
+  .term-details[open]::details-content{ block-size:auto; }
+  .term{ border-radius:18px; font-size:12.5px; }
+
+  /* stack */
+  .stackcard{ border-radius:var(--r-card); padding:26px; background:var(--card-bg); }
+  .stackcard .h{ font-size:18px; font-weight:500; letter-spacing:-.03em; margin-bottom:14px; }
+  .stackcard li{ font-size:14.5px; line-height:1.45; }
+  .stackgrid{ gap:20px; }
+  @media (hover:hover){ .stackcard:hover{ transform:translateY(-4px); } }
+
+  /* pricing */
+  .pricegrid{ gap:20px; }
+  .pricecard{ border-radius:var(--r-card); padding:24px; background:var(--card-bg); gap:16px; }
+  .pricecard .name{ font-size:17px; font-weight:500; letter-spacing:-.025em; }
+  .pricecard .price{ font-family:'Inter',sans-serif; font-size:19px; font-weight:500; letter-spacing:-.03em; height:46px; display:flex; align-items:center; padding:0 18px;
+    border-radius:100px; background:rgba(255,255,255,.08); color:var(--accent-b); background-clip:border-box; -webkit-background-clip:border-box; -webkit-text-fill-color:currentColor; }
+  .pricecard li{ font-size:14px; line-height:1.55; }
+  .pricecard.hot{ border-color:rgba(124,108,255,.55); background:linear-gradient(180deg, rgba(124,108,255,.16), rgba(49,216,201,.07)); }
+  .pricecard.hot::before{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.02em; text-transform:none; font-weight:600; right:20px; }
+  .price-note{ font-size:14.5px; border-left-color:var(--accent-b); margin-top:24px; }
+  .supportcard{ border-radius:var(--r-card); padding:30px; background:var(--card-bg); gap:14px; }
+  .supportcard .tag-mode{ font-family:'Inter',sans-serif; font-size:13px; font-weight:500; text-transform:none; letter-spacing:0; padding:7px 12px; background:rgba(124,108,255,.08); border-color:rgba(124,108,255,.25); color:var(--text); }
+  .supportcard .name{ font-size:21px; font-weight:500; letter-spacing:-.03em; }
+  .supportcard .price{ font-family:'Inter',sans-serif; font-size:19px; font-weight:500; letter-spacing:-.03em; height:46px; display:flex; align-items:center; align-self:flex-start; padding:0 18px;
+    border-radius:100px; background:rgba(255,255,255,.08); color:var(--accent-b); background-clip:border-box; -webkit-background-clip:border-box; -webkit-text-fill-color:currentColor; }
+  .supportcard p{ font-size:15px; }
+
+  /* process: ascending staircase */
+  .steps{ grid-template-columns:repeat(4,1fr); gap:20px; align-items:start; }
+  .step{ position:relative; overflow:hidden; border-left:none; padding:28px 24px 26px; border-radius:var(--r-card); min-height:230px;
+    background:var(--card-bg); border:1px solid var(--border); }
+  .step:nth-child(1){ margin-top:120px; } .step:nth-child(2){ margin-top:80px; } .step:nth-child(3){ margin-top:40px; } .step:nth-child(4){ margin-top:0; }
+  .step .n{ position:absolute; right:18px; top:6px; font-family:'Inter',sans-serif; font-size:84px; font-weight:700; letter-spacing:-.06em; line-height:1; color:rgba(124,108,255,.16); pointer-events:none; }
+  .step h4{ font-size:20px; font-weight:500; letter-spacing:-.03em; margin:56px 0 10px; position:relative; }
+  .step p{ font-size:14.5px; line-height:1.6; position:relative; }
+
+  /* faq spoilers (animated height via grid 0fr -> 1fr) */
+  .faq{ max-width:790px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .faq-item{ border-radius:100px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
+    transition:border-radius .35s var(--ease), background-color .25s ease, border-color .25s ease, opacity .7s var(--ease), transform .7s var(--ease); }
+  .faq-item.open{ border-radius:24px; border-color:rgba(124,108,255,.4); background:rgba(124,108,255,.07); }
+  .faq-q{ all:unset; box-sizing:border-box; width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:56px; padding:14px 24px; cursor:pointer;
+    font:500 clamp(15px,1.5vw,17px)/1.3 Inter,system-ui,sans-serif; letter-spacing:-.02em; color:var(--text); transition:color .25s ease; }
+  .faq-q:focus-visible{ outline:2px solid var(--accent-b); outline-offset:3px; border-radius:100px; }
+  .faq-item.open .faq-q{ color:#c9c4ff; }
+  .faq-q i{ flex:none; width:9px; height:9px; border:solid var(--text-dim); border-width:0 1.6px 1.6px 0; transform:translateY(-2px) rotate(45deg); transition:transform .3s var(--ease), border-color .25s ease; }
+  .faq-item.open .faq-q i{ transform:translateY(2px) rotate(-135deg); border-color:var(--accent-b); }
+  .faq-a{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease); }
+  .faq-item.open .faq-a{ grid-template-rows:1fr; }
+  .faq-a > div{ overflow:hidden; }
+  .faq-a p{ margin:0; padding:0 24px 22px; max-width:64ch; font-size:15.5px; line-height:1.65; color:var(--text-dim); }
+  .faq-item.reveal.in{ opacity:1; transform:none; }
+
+  /* reveal */
+  .reveal{ transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+
+  /* cta */
+  .cta{ padding:clamp(72px,10vw,120px) 0 clamp(64px,9vw,100px); }
+  .cta-wrap{ border-top:none; }
+  .cta-wrap::before{ width:760px; height:480px; background:radial-gradient(ellipse, rgba(124,108,255,.26) 0%, rgba(49,216,201,.10) 50%, transparent 75%); filter:blur(30px); }
+  .cta h2{ font-size:clamp(30px,5vw,56px); line-height:1.04; font-weight:500; letter-spacing:-.04em; max-width:18ch; margin:22px auto 0; }
+  .cta p{ font-size:clamp(15px,1.4vw,18px); margin:18px 0 34px; }
+
+  /* footer */
+  footer{ border-top:1px solid var(--border); }
+  .footsec .fhead{ font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0; text-transform:none; color:var(--text); }
+
+  /* tabs */
+  .phone-tabs button{ font-family:'Inter',sans-serif; font-weight:500; }
+  .vlabel, .vfull{ font-family:'Inter',sans-serif; }
+  .vlabel{ letter-spacing:0; font-weight:500; }
+
+  @media (max-width:1099px){
+    .steps{ grid-template-columns:1fr 1fr; }
+    .step:nth-child(n){ margin-top:0; }
+    .step{ min-height:200px; }
+  }
+  @media (max-width:860px){
+    .navlinks{ display:none; }
+    .hero{ padding-top:28px; padding-bottom:60px; gap:36px; }
+    .hero-ctas .btn{ flex:1 1 100%; justify-content:space-between; }
+    .hero .hero-note{ order:7; }
+    .hero .eyebrow{ align-self:flex-start; }
+    .hero .lede{ margin-bottom:22px !important; }
+    .hero-glow{ height:760px; }
+  }
+  @media (max-width:600px){
+    body{ padding-bottom:0; }
+    #totop{ bottom:20px; }
+    .card{ padding:22px 20px; border-radius:26px; }
+    .stackcard, .pricecard, .supportcard{ padding:22px 20px; border-radius:26px; }
+    .steps{ grid-template-columns:1fr; }
+    .step{ min-height:0; }
+    .step h4{ margin-top:44px; }
+    .faq-item{ border-radius:24px; }
+    .faq-q{ padding:14px 18px; }
+    .faq-a p{ padding:0 18px 20px; }
+    .resline .btn, .resource-link, .demo-btn{ flex:1 1 auto; justify-content:center; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .faq-a, .faq-item, .faq-q i, .term-details::details-content{ transition:none !important; }
+  }
 </style>
 </head>
 <body>
 <noscript><style>.reveal{ opacity:1 !important; transform:none !important; }</style></noscript>
 
-<div class="aurora"><span></span><span></span><span></span></div>
+<div class="hero-glow" aria-hidden="true"></div>
 <div id="grain"></div>
 <div id="scrollbar"></div>
 <button id="totop" aria-label="Наверх">↑</button>
@@ -631,29 +810,15 @@
   </div>
 </div>
 
-<div id="mobilecta">
-  <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Написать в Telegram</a>
-</div>
-
-<nav id="dotnav" aria-hidden="true">
-  <a href="#about" data-dot></a>
-  <a href="#projects" data-dot></a>
-  <a href="#stack" data-dot></a>
-  <a href="#pricing" data-dot></a>
-  <a href="#support" data-dot></a>
-  <a href="#process" data-dot></a>
-</nav>
-
 <header>
   <div class="nav wrap">
     <div class="brand"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="maxG" cx="30%" cy="28%" r="80%"><stop offset="0%" stop-color="#8ad4ff"/><stop offset="28%" stop-color="#8060f8"/><stop offset="65%" stop-color="#c040e8"/><stop offset="100%" stop-color="#3060ff"/></radialGradient></defs><path fill="url(#maxG)" d="M16 2C8.27 2 2 8.27 2 16c0 3.69 1.4 7.05 3.7 9.6L4 30l4.9-2.6C10.7 28.5 13.28 29 16 29c7.73 0 14-6.27 14-13S23.73 2 16 2z"/><circle cx="16" cy="15.5" r="7" fill="#07070a"/></svg></span><span class="dot" id="logo-dot"></span> Максим<span class="brand-sub"> · боты и автоматизация</span><span id="egg">не роняю клики 😉</span></div>
     <nav class="navlinks">
-      <a href="#about">Обо мне</a>
       <a href="#projects">Проекты</a>
-      <a href="#stack">Стек</a>
-      <a href="#pricing">Цены</a>
-      <a href="#support">Поддержка</a>
+      <a href="#about">Обо мне</a>
       <a href="#process">Как я работаю</a>
+      <a href="#pricing">Цены</a>
+      <a href="#faq">Вопросы</a>
     </nav>
     <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Написать в Telegram</a>
   </div>
@@ -664,35 +829,11 @@
     <div class="eyebrow" style="margin-top:18px;"><span class="dot"></span>на связи · принимаю новые проекты</div>
     <h1>Боты, которые <span class="rotator grad-text"><span class="rw" id="rw">не роняют</span></span><br>заявки клиентов</h1>
     <p class="lede">Разрабатываю ботов на Python: подписки и приём оплат, магазины с доставкой, запись к специалистам. Без падений в выходные и потерянных броней.</p>
-    <div class="platforms-row">
-      <span class="lbl">площадки:</span>
-      <span class="platform-chip"><svg viewBox="0 0 20 20"><path d="M2 10.5 17 3 12.5 17 9 11.5 4.5 13.5Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg>Telegram</span>
-      <span class="platform-chip"><svg viewBox="0 0 20 20"><path d="M10 3a7 7 0 0 0-6 10.6L3 17l3.6-1a7 7 0 1 0 3.4-13Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>WhatsApp</span>
-      <span class="platform-chip"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="3.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="14.2" cy="5.8" r="0.9" fill="currentColor"/></svg>Instagram</span>
-      <span class="platform-chip"><svg viewBox="0 0 20 20"><path d="M4 15V5l3 4 3-4 3 4 3-4v10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg>MAX</span>
-    </div>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить бота — @maximgrey</a>
+      <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить бота <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn btn-ghost" href="#projects">Смотреть проекты</a>
     </div>
-    <div class="trust">
-      <div class="trust-head">
-        <span class="lbl">уже работает</span>
-        <div class="trust-line"></div>
-      </div>
-      <div class="trust-chips">
-        <a href="https://t.me/VasKristiSub_Bot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Клуб по подписке</a>
-        <a href="https://t.me/VasKristi_Bot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Магазин цифровых товаров</a>
-        <a href="https://t.me/VasKristi_VKbot" target="_blank" rel="noopener" class="trust-chip"><span class="trust-dot"></span>Синхронизация ТГ→ВК</a>
-        <span class="trust-chip trust-chip--closed"><span class="trust-dot"></span>Мини-апп магазин</span>
-        <span class="trust-chip trust-chip--closed"><span class="trust-dot"></span>Запись на массаж онлайн</span>
-      </div>
-    </div>
-    <div class="stats-strip reveal">
-      <div class="stat-item"><div class="sv">6+</div><div class="sk">проектов в&nbsp;работе</div></div>
-      <div class="stat-item"><div class="sv">3 года</div><div class="sk">в&nbsp;разработке ботов</div></div>
-      <div class="stat-item"><div class="sv">99.9%</div><div class="sk">uptime на&nbsp;проектах</div></div>
-    </div>
+    <p class="hero-note">Отвечаю в течение дня. Цену фиксирую до начала работ.</p>
   </div>
 
   <div class="phone-wrap">
@@ -726,57 +867,10 @@
   </div>
 </div>
 
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 10.5l2 2 4-4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>Python 3.12</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>aiogram 3</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><ellipse cx="10" cy="7" rx="7" ry="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 7v6c0 1.66 3.13 3 7 3s7-1.34 7-3V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>SQLAlchemy 2.0</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Redis FSM</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 7v4l2.5 2.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>APScheduler</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 3L3 17h14L10 3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>PostgreSQL</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M4 4l6 6-6 6M11 16h5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Telegram Bot API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>Mini Apps / WebApp</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 5V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>ЮKassa / Робокасса</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M17 8A7 7 0 1 0 4.5 14.5L3 17l3-1A7 7 0 0 0 17 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>WhatsApp API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 3a7 7 0 0 0-6 10.6L3 17l3.6-1A7 7 0 1 0 10 3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>ChatGPT API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M4 10h12M4 6h12M4 14h7" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>СДЭК доставка</span><span class="marquee-sep">·</span>
-    <!-- дублируем для бесконечного скролла -->
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 10.5l2 2 4-4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>Python 3.12</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h8" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>aiogram 3</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><ellipse cx="10" cy="7" rx="7" ry="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 7v6c0 1.66 3.13 3 7 3s7-1.34 7-3V7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>SQLAlchemy 2.0</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Redis FSM</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 7v4l2.5 2.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>APScheduler</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 3L3 17h14L10 3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>PostgreSQL</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M4 4l6 6-6 6M11 16h5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Telegram Bot API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>Mini Apps / WebApp</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 5V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>ЮKassa / Робокасса</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M17 8A7 7 0 1 0 4.5 14.5L3 17l3-1A7 7 0 0 0 17 8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>WhatsApp API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M10 3a7 7 0 0 0-6 10.6L3 17l3.6-1A7 7 0 1 0 10 3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>ChatGPT API</span><span class="marquee-sep">·</span>
-    <span class="marquee-item"><svg viewBox="0 0 20 20"><path d="M4 10h12M4 6h12M4 14h7" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>СДЭК доставка</span><span class="marquee-sep">·</span>
-  </div>
-</div>
-
-<section id="about">
-  <div class="wrap about">
-    <div>
-      <div class="eyebrow"><span class="sec-num">01 /</span> обо мне</div>
-      <h2 style="font-size:30px;margin-top:16px;font-weight:800;">Максим</h2>
-      <p style="margin-top:16px;">Пишу продовых ботов на <strong>Python</strong> для Telegram, WhatsApp, Instagram и MAX — не прототипы «на посмотреть», а сервисы, которые обрабатывают оплаты, ведут расписание и выдерживают наплыв заявок.</p>
-      <p>Отдельно слежу за тем, что обычно ломается в чужих ботах: гонки при одновременной записи, потеря сообщений при перезапуске, забытые напоминания. Использую транзакции с блокировкой, очереди задач и авто-восстановление после падений.</p>
-    </div>
-    <div>
-      <div class="fact"><div class="k">Платформы</div><div class="v">Telegram, WhatsApp, Instagram, MAX — под каждую платформу свой API и особенности, сценарий проектирую с учётом её ограничений.</div></div>
-      <div class="fact"><div class="k">Что делаю</div><div class="v">Боты-подписки с приёмом оплаты, магазины с Mini App/каталогом, запись и CRM-уведомления, интеграции с ChatGPT, СДЭК и платёжными системами (ЮKassa, CloudPayments, Т-Банк, Робокасса, Prodamus).</div></div>
-      <div class="fact"><div class="k">На чём</div><div class="v">Python 3, aiogram 3, SQLAlchemy + Alembic, SQLite/Postgres, Redis (FSM-хранилище), APScheduler.</div></div>
-      <div class="fact"><div class="k">Как сдаю</div><div class="v">С логами, ротацией, резервными копиями БД и базовыми автотестами — чтобы после сдачи проект не остался «чёрным ящиком».</div></div>
-    </div>
-  </div>
-</section>
-
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="sec-num">02 /</span> проекты</div>
+      <div class="eyebrow">проекты</div>
       <h2>Что уже работает</h2>
       <p>Часть уже работает и приносит клиентам платящих подписчиков, часть — готовые к запуску приложения, которые ещё не объявлены публично.</p>
     </div>
@@ -785,7 +879,7 @@
       <div class="card reveal">
         <div class="card-top"><h3>Vas Kristi — рационы питания</h3><div class="status"><span class="d"></span>запущен</div></div>
         <p class="pitch">Бот-подписка на закрытый канал с готовыми рационами и рецептами: приём оплаты, выдача доступа, синхронизация подписчиков между Telegram и VK.</p>
-        <details class="term-details" open><summary>Технические детали</summary><div class="term">
+        <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">оплата</span> — эквайринг под проект, авто-продление</div>
           <div><span class="k">$</span> <span class="v">контент</span> — 56 рационов, 200+ рецептов с БЖУ</div>
           <div><span class="k">$</span> <span class="v">кросс-платформа</span> — импорт подписчиков из VK</div>
@@ -801,7 +895,7 @@
       <div class="card reveal">
         <div class="card-top"><h3>Vas Kristi — цифровые товары</h3><div class="status"><span class="d"></span>запущен</div></div>
         <p class="pitch">Отдельный бот-магазин: продаёт разовые цифровые продукты (гайды, PDF-руководства) через сайт-витрину, с уведомлениями о заказах и регистрациях в реальном времени.</p>
-        <details class="term-details" open><summary>Технические детали</summary><div class="term">
+        <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">товары</span> — гайд по КБЖУ, руководство по тарелке, план завтраков</div>
           <div><span class="k">$</span> <span class="v">оплата</span> — заказ с сайта → уведомление в боте</div>
           <div><span class="k">$</span> <span class="v">учёт</span> — лог регистраций и оплаченных заказов</div>
@@ -817,7 +911,7 @@
       <div class="card reveal">
         <div class="card-top"><h3>Vas Kristi — синхронизация ТГ→ВК</h3><div class="status"><span class="d"></span>запущен</div></div>
         <p class="pitch">Мост между Telegram и ВКонтакте: при оплате подписки в TG доступ автоматически открывается в VK-сообществе, при отмене — закрывается в обоих каналах.</p>
-        <details class="term-details" open><summary>Технические детали</summary><div class="term">
+        <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">синхронизация</span> — VK API + TG Bot API через webhook-мост</div>
           <div><span class="k">$</span> <span class="v">авто-отзыв</span> — доступ закрывается при отмене подписки</div>
           <div><span class="k">$</span> <span class="v">единая база</span> — один подписчик = один статус в двух платформах</div>
@@ -833,7 +927,7 @@
       <div class="card reveal">
         <div class="card-top"><h3>Eco NeuroNova — магазин в Telegram</h3><div class="status"><span class="d"></span>запущен</div></div>
         <p class="pitch">Магазин на базе Telegram Mini App с полноценной админкой: заказы, рассылки, автосценарии, доставка через СДЭК. Есть локализованная версия для Израиля.</p>
-        <details class="term-details" open><summary>Технические детали</summary><div class="term">
+        <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">витрина</span> — Mini App (WebApp) с каталогом</div>
           <div><span class="k">$</span> <span class="v">доставка</span> — СДЭК API, порог бесплатной доставки</div>
           <div><span class="k">$</span> <span class="v">админка</span> — заказы · рассылки · автосценарии</div>
@@ -849,7 +943,7 @@
       <div class="card reveal">
         <div class="card-top"><h3>Бот записи массажной студии</h3><div class="status demo"><span class="d"></span>готов к запуску</div></div>
         <p class="pitch">Онлайн-запись для студии массажа с месячным календарём, ручной записью администратором и защитой от двойного бронирования на уровне транзакций БД.</p>
-        <details class="term-details" open><summary>Технические детали</summary><div class="term">
+        <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">надёжность</span> — BEGIN IMMEDIATE, WAL, busy timeout</div>
           <div><span class="k">$</span> <span class="v">напоминания</span> — за 24ч и за 1ч, догоняются после простоя</div>
           <div><span class="k">$</span> <span class="v">эксплуатация</span> — авто-бэкапы, ротация логов, автотесты</div>
@@ -885,10 +979,76 @@
   </div>
 </section>
 
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow">обо мне</div>
+      <h2 style="font-size:30px;margin-top:16px;font-weight:800;">Максим</h2>
+      <p style="margin-top:16px;">Пишу продовых ботов на <strong>Python</strong> для Telegram, WhatsApp, Instagram и MAX — не прототипы «на посмотреть», а сервисы, которые обрабатывают оплаты, ведут расписание и выдерживают наплыв заявок.</p>
+      <p>Отдельно слежу за тем, что обычно ломается в чужих ботах: гонки при одновременной записи, потеря сообщений при перезапуске, забытые напоминания. Использую транзакции с блокировкой, очереди задач и авто-восстановление после падений.</p>
+    </div>
+    <div>
+      <div class="fact"><div class="k">Платформы</div><div class="v">Telegram, WhatsApp, Instagram, MAX — под каждую платформу свой API и особенности, сценарий проектирую с учётом её ограничений.</div></div>
+      <div class="fact"><div class="k">Что делаю</div><div class="v">Боты-подписки с приёмом оплаты, магазины с Mini App/каталогом, запись и CRM-уведомления, интеграции с ChatGPT, СДЭК и платёжными системами (ЮKassa, CloudPayments, Т-Банк, Робокасса, Prodamus).</div></div>
+      <div class="fact"><div class="k">На чём</div><div class="v">Python 3, aiogram 3, SQLAlchemy + Alembic, SQLite/Postgres, Redis (FSM-хранилище), APScheduler.</div></div>
+      <div class="fact"><div class="k">Как сдаю</div><div class="v">С логами, ротацией, резервными копиями БД и базовыми автотестами — чтобы после сдачи проект не остался «чёрным ящиком».</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">как я работаю</div><h2>Четыре шага до запуска</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Разбор задачи</h4><p>Обсуждаем сценарии бота, оплаты и то, что должно попасть в MVP, а что подождёт.</p></div>
+      <div class="step"><div class="n">02</div><h4>Прототип</h4><p>Собираю рабочий скелет с ключевым сценарием — можно потрогать и поправить до полной сборки.</p></div>
+      <div class="step"><div class="n">03</div><h4>Сборка и тесты</h4><p>Оплаты, база, напоминания, защита от гонок и падений, базовые автотесты.</p></div>
+      <div class="step"><div class="n">04</div><h4>Запуск и поддержка</h4><p>Разворачиваю на сервере, передаю логи и бэкапы, остаюсь на связи после сдачи.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">цены</div>
+      <h2>Ориентир по цене</h2>
+      <p>Диапазоны — по сложности похожих проектов выше. Точная сумма — после того как обсудим сценарий и объём интеграций.</p>
+    </div>
+    <div class="pricegrid">
+      <div class="pricecard reveal"><div class="name">Контент-подписка</div><div class="price grad-text">от 15 000 ₽</div>
+        <ul><li>Тарифы и оплата</li><li>Выдача доступа к каналу</li><li>Промо-скидки для новых</li></ul></div>
+      <div class="pricecard reveal"><div class="name">Бот с приёмом оплат</div><div class="price grad-text">от 20 000 ₽</div>
+        <ul><li>ЮKassa, CloudPayments, Т-Банк и др.</li><li>Профиль клиента, авто-продление</li><li>Уведомления и CRM-лог</li></ul></div>
+      <div class="pricecard hot reveal"><div class="name">Бот записи / брони</div><div class="price grad-text">от 25 000 ₽</div>
+        <ul><li>Календарь, ручная запись админом</li><li>Защита от двойной записи</li><li>Напоминания, бэкапы, автотесты</li></ul></div>
+      <div class="pricecard reveal"><div class="name">Магазин с Mini App</div><div class="price grad-text">от 45 000 ₽</div>
+        <ul><li>Витрина, каталог, корзина</li><li>Доставка (СДЭК и др.), скидки</li><li>Админка: заказы, рассылки</li></ul></div>
+    </div>
+    <p class="price-note">Это стартовые ориентиры, не прайс-лист — сумма зависит от сценария, интеграций и сроков. Финальную цену фиксируем до начала работ.</p>
+  </div>
+</section>
+
+<section id="support">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">поддержка</div>
+      <h2>Поддержка бота</h2>
+      <p>Бот не остаётся без присмотра после сдачи — можно обращаться разово или взять на постоянное сопровождение.</p>
+    </div>
+    <div class="supportgrid">
+      <div class="supportcard reveal"><div class="tag-mode">разово</div><div class="name">Разовое обращение</div><div class="price grad-text">от 1 500 ₽/час</div>
+        <p>Правки сценариев, новая функция, разбор ошибки — оцениваю задачу и называю фикс-стоимость до начала работы.</p></div>
+      <div class="supportcard reveal"><div class="tag-mode">ежемесячно</div><div class="name">Сопровождение бота</div><div class="price grad-text">от 5 000 ₽/мес</div>
+        <p>Слежу за логами и падениями, делаю мелкие правки без отдельного счёта, отвечаю в приоритете, если что-то сломалось.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="stack">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="sec-num">03 /</span> стек</div>
+      <div class="eyebrow">стек</div>
       <h2>Стек</h2>
       <p>Набор, проверенный на живых проектах с оплатами и расписаниями — не «модно», а предсказуемо под нагрузкой. Наведи на пункт, если незнакомый термин.</p>
     </div>
@@ -924,51 +1084,17 @@
   </div>
 </section>
 
-<section id="pricing">
+<section id="faq">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="sec-num">04 /</span> цены</div>
-      <h2>Ориентир по цене</h2>
-      <p>Диапазоны — по сложности похожих проектов выше. Точная сумма — после того как обсудим сценарий и объём интеграций.</p>
-    </div>
-    <div class="pricegrid">
-      <div class="pricecard reveal"><div class="name">Контент-подписка</div><div class="price grad-text">от 15 000 ₽</div>
-        <ul><li>Тарифы и оплата</li><li>Выдача доступа к каналу</li><li>Промо-скидки для новых</li></ul></div>
-      <div class="pricecard reveal"><div class="name">Бот с приёмом оплат</div><div class="price grad-text">от 20 000 ₽</div>
-        <ul><li>ЮKassa, CloudPayments, Т-Банк и др.</li><li>Профиль клиента, авто-продление</li><li>Уведомления и CRM-лог</li></ul></div>
-      <div class="pricecard hot reveal"><div class="name">Бот записи / брони</div><div class="price grad-text">от 25 000 ₽</div>
-        <ul><li>Календарь, ручная запись админом</li><li>Защита от двойной записи</li><li>Напоминания, бэкапы, автотесты</li></ul></div>
-      <div class="pricecard reveal"><div class="name">Магазин с Mini App</div><div class="price grad-text">от 45 000 ₽</div>
-        <ul><li>Витрина, каталог, корзина</li><li>Доставка (СДЭК и др.), скидки</li><li>Админка: заказы, рассылки</li></ul></div>
-    </div>
-    <p class="price-note">Это стартовые ориентиры, не прайс-лист — сумма зависит от сценария, интеграций и сроков. Финальную цену фиксируем до начала работ.</p>
-  </div>
-</section>
-
-<section id="support">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="sec-num">05 /</span> поддержка</div>
-      <h2>Поддержка бота</h2>
-      <p>Бот не остаётся без присмотра после сдачи — можно обращаться разово или взять на постоянное сопровождение.</p>
-    </div>
-    <div class="supportgrid">
-      <div class="supportcard reveal"><div class="tag-mode">разово</div><div class="name">Разовое обращение</div><div class="price grad-text">от 1 500 ₽/час</div>
-        <p>Правки сценариев, новая функция, разбор ошибки — оцениваю задачу и называю фикс-стоимость до начала работы.</p></div>
-      <div class="supportcard reveal"><div class="tag-mode">ежемесячно</div><div class="name">Сопровождение бота</div><div class="price grad-text">от 5 000 ₽/мес</div>
-        <p>Слежу за логами и падениями, делаю мелкие правки без отдельного счёта, отвечаю в приоритете, если что-то сломалось.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="process">
-  <div class="wrap">
-    <div class="sec-head"><div class="eyebrow"><span class="sec-num">06 /</span> как я работаю</div><h2>Четыре шага до запуска</h2></div>
-    <div class="steps">
-      <div class="step"><div class="n">01</div><h4>Разбор задачи</h4><p>Обсуждаем сценарии бота, оплаты и то, что должно попасть в MVP, а что подождёт.</p></div>
-      <div class="step"><div class="n">02</div><h4>Прототип</h4><p>Собираю рабочий скелет с ключевым сценарием — можно потрогать и поправить до полной сборки.</p></div>
-      <div class="step"><div class="n">03</div><h4>Сборка и тесты</h4><p>Оплаты, база, напоминания, защита от гонок и падений, базовые автотесты.</p></div>
-      <div class="step"><div class="n">04</div><h4>Запуск и поддержка</h4><p>Разворачиваю на сервере, передаю логи и бэкапы, остаюсь на связи после сдачи.</p></div>
+    <div class="sec-head center"><div class="eyebrow">вопросы</div><h2>Частые вопросы</h2></div>
+    <div class="faq" data-stagger>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Сколько стоит бот?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Ориентиры есть в разделе «Цены»: от 15 000 ₽ за контент-подписку до 45 000 ₽ за магазин с Mini App. Точную сумму называю после разбора задачи и фиксирую до начала работ.</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Как быстро будет готов бот?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Срок зависит от числа сценариев и интеграций: оплата, доставка, админка. После разбора задачи называю конкретный срок, а не «примерно».</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Что нужно подготовить с моей стороны?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Достаточно описать, как сейчас идёт работа: запись, продажи, подписка. Сценарий бота и состав первой версии мы собираем вместе на шаге «Разбор задачи».</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Можно ли увидеть бота до полной сборки?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Да. На втором шаге собираю рабочий прототип с ключевым сценарием: его можно потрогать и поправить. А как выглядят уже запущенные боты, видно в видео-демо в разделе «Проекты».</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Какие оплаты и платформы поддерживаете?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Приём оплат через ЮKassa, CloudPayments, Т-Банк, Робокассу и Prodamus. Платформы: Telegram, WhatsApp, Instagram и MAX. Набор подбираем под вашу задачу.</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Что если бот сломается или нужны правки?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Есть два формата: разовое обращение (оцениваю задачу и называю стоимость до начала работы) и ежемесячное сопровождение, где я слежу за логами и падениями и делаю мелкие правки. Условия возврата описаны в публичной оферте внизу страницы.</p></div></div></div>
+      <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Как начать?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Напишите в Telegram @maximgrey и коротко опишите задачу. Обсудим сценарий, я назову срок и стоимость, и приступаем после согласования.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -980,7 +1106,7 @@
       <h2 style="margin-top:16px;">Расскажите, какого бота не&nbsp;хватает вашему бизнесу</h2>
       <p>Запись, оплата, магазин или рассылки — обсудим сценарий и посчитаем срок.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Написать @maximgrey</a>
+        <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Написать @maximgrey <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a class="btn btn-ghost" href="mailto:seryi.ms@yandex.ru">Написать на почту</a>
       </div>
     </div>
@@ -1121,7 +1247,7 @@
             if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
           });
         }, { threshold:.12, rootMargin:'0px 0px -30px 0px' });
-        targets.forEach(function(el, i){ el.style.transitionDelay = (i % 5) * 0.05 + 's'; io.observe(el); });
+        targets.forEach(function(el){ var idx = Array.prototype.indexOf.call(el.parentNode.children, el); el.style.transitionDelay = Math.min(idx, 5) * 0.09 + 's'; io.observe(el); });
       }
     }
 
@@ -1272,10 +1398,11 @@
 
     // 4 + 5 — scrollspy for nav + dot nav (manual scroll-position calc — robust regardless of section height)
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.navlinks a'));
-    var dotLinks = Array.prototype.slice.call(document.querySelectorAll('#dotnav a'));
-    var spySections = dotLinks
+    var dotLinks = [];
+    var spySections = navLinks
       .map(function(a){ return document.querySelector(a.getAttribute('href')); })
       .filter(Boolean);
+    var siteHeader = document.querySelector('header');
     function setActive(id){
       navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
       dotLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
@@ -1292,6 +1419,7 @@
         setActive(current.id);
       }
       totop.classList.toggle('show', window.scrollY > window.innerHeight * 0.8);
+      siteHeader.classList.toggle('scrolled', window.scrollY > 40);
     }
     window.addEventListener('scroll', function(){
       if(!spyTicking){ spyTicking = true; requestAnimationFrame(updateSpy); }
@@ -1302,6 +1430,14 @@
 
     // haptic tap feedback — no-op where Vibration API is unsupported
     function buzz(ms){ if(navigator.vibrate){ navigator.vibrate(ms); } }
+    // faq spoilers
+    document.querySelectorAll('.faq-item').forEach(function(item){
+      var q = item.querySelector('.faq-q');
+      q.addEventListener('click', function(){
+        var open = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
     // oferta smooth open/close animation
     (function(){
       var det = document.getElementById('oferta');
