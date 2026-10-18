@@ -158,9 +158,9 @@
   .vshow .vposter{ position:absolute; inset:0; background:#0b0b10 center/cover no-repeat; transition:opacity .45s ease, transform .33s cubic-bezier(.4,0,.2,1); }
   .vshow video{ opacity:0; transition:opacity .45s ease; }
   .vshow video.on{ opacity:1; }
-  .vshow .vfade{ position:absolute; left:0; right:0; bottom:0; height:190px;
-    background:linear-gradient(to top, rgba(7,7,10,.92), rgba(7,7,10,0)); pointer-events:none; }
-  .vshow .vctl{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; gap:8px; align-items:center; }
+  .vshow .vfade{ position:absolute; left:0; right:0; bottom:0; height:280px;
+    background:linear-gradient(to top, rgba(7,7,10,.97) 0%, rgba(7,7,10,.75) 45%, rgba(7,7,10,0) 100%); pointer-events:none; }
+  .vshow .vctl{ position:absolute; left:12px; right:12px; bottom:64px; display:flex; gap:8px; align-items:center; }
   .vfull{ flex:1; height:44px; border:0; border-radius:12px; cursor:pointer;
     background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a;
     font:700 14px/1 Inter,system-ui,sans-serif; display:flex; align-items:center; justify-content:center; gap:8px; }
@@ -195,8 +195,10 @@
     .hero .platforms-row{ order:5; }
     .hero .hero-ctas{ order:6; }
     .hero .trust{ order:7; }
-    .vshow{ width:auto; height:min(62vh, calc((100vw - 36px) * 16 / 9)); max-height:none; }
-    @supports (height:1svh){ .vshow{ height:min(62svh, calc((100vw - 36px) * 16 / 9)); } }
+    .hero .phone-wrap{ margin-left:-28px; margin-right:-28px; width:calc(100% + 56px); }
+    .vshow{ width:100%; aspect-ratio:auto; height:calc(100vh - 72px); max-height:none; border-radius:0 !important; }
+    @supports (height:1svh){ .vshow{ height:calc(100svh - 72px); } }
+    .vshow .vpager{ top:54px; bottom:auto; }
     .vfull{ font-size:13px; }
     .vlabel{ font-size:11px; padding:6px 10px; }
     .vmute{ width:38px; height:38px; font-size:14px; right:12px; top:12px; }
@@ -204,9 +206,8 @@
   @media (max-width:420px){
     .vshow{ border-radius:16px; }
     .vfull{ font-size:12.5px; }
-    .vshow .vctl{ left:10px; right:10px; bottom:10px; justify-content:center; }
+    .vshow .vctl{ left:10px; right:10px; bottom:64px; justify-content:center; }
     .vfull{ height:40px; flex:0 0 auto; padding:0 22px; }
-    .vshow .vpager{ bottom:58px; }
   }
   .swipe-hint{
     text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim);
@@ -223,6 +224,19 @@
   .vshow .vpager .swipe-hint{ position:static; margin:0; pointer-events:none; }
   .vshow .vpager .swipe-hint.hide{ opacity:0; height:0; overflow:hidden; }
   @media (hover:hover) and (pointer:fine){ .vshow .swipe-hint{ display:none; } }
+  /* phone-tabs overlaid inside video */
+  .vshow .phone-tabs{
+    position:absolute; bottom:0; left:0; right:0; z-index:6;
+    margin:0; padding:10px 14px 16px;
+    justify-content:center; flex-wrap:nowrap; overflow-x:auto;
+    background:none;
+  }
+  .vshow .phone-tabs button{
+    background:rgba(7,7,10,.55); border:1px solid rgba(255,255,255,.16);
+    color:var(--text-dim); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  }
+  .vshow .phone-tabs button:hover{ background:rgba(7,7,10,.72); border-color:rgba(255,255,255,.28); color:var(--text); }
+  .vshow .phone-tabs button.active{ color:#07070a; background:transparent; border-color:transparent; }
   .bubble{ max-width:78%; padding:9px 13px; border-radius:12px; font-size:13.5px; line-height:1.45; animation:riseIn .45s ease both; }
   .bubble .t{ display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; opacity:.55; margin-top:4px; text-align:right; }
   .bubble.in{ align-self:flex-start; background:var(--surface-2); border:1px solid var(--border); border-bottom-left-radius:4px; }
@@ -1222,14 +1236,14 @@
       <div class="vctl">
         <button type="button" class="vfull" id="vfull">▶ Полный ролик · 33 сек</button>
       </div>
-    </div>
-    <div class="phone-tabs" role="tablist">
-      <span id="tabPill" aria-hidden="true"></span>
-      <button type="button" class="active" data-bot="booking">Запись</button>
-      <button type="button" data-bot="subscription">Подписка</button>
-      <button type="button" data-bot="shop">Магазин</button>
-      <button type="button" data-bot="digital">Цифровые товары</button>
-      <button type="button" data-bot="content">ТГ→ВК</button>
+      <div class="phone-tabs" role="tablist">
+        <span id="tabPill" aria-hidden="true"></span>
+        <button type="button" class="active" data-bot="booking">Запись</button>
+        <button type="button" data-bot="subscription">Подписка</button>
+        <button type="button" data-bot="shop">Магазин</button>
+        <button type="button" data-bot="digital">Цифровые товары</button>
+        <button type="button" data-bot="content">ТГ→ВК</button>
+      </div>
     </div>
   </div>
 </div>
