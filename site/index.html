@@ -789,6 +789,68 @@
   @media (prefers-reduced-motion:reduce){
     .faq-a, .faq-item, .faq-q i, .term-details::details-content{ transition:none !important; }
   }
+
+  /* ===== v2.1 refinements ===== */
+  :root{ --sec-pad:clamp(56px,7vw,96px); --text-body:#aeb1ba; }
+  .sec-head{ margin-bottom:clamp(28px,4vw,44px); }
+  .sec-head p, .about p, .card p.pitch, .pricecard li, .stackcard li, .faq-a p, .step p, .supportcard p, .price-note, .fact .v{ color:var(--text-body); }
+  .brand .brand-sub{ color:var(--text-dim); font-weight:400; }
+  .hero{ padding-bottom:64px; }
+  .sec-cta{ display:flex; justify-content:center; margin-top:clamp(32px,4vw,48px); }
+  .sec-cta .btn{ height:52px; padding:0 28px; font-size:16px; }
+
+  /* header becomes a floating pill */
+  header{ top:12px; left:50%; right:auto; transform:translateX(-50%); width:min(1160px,calc(100% - 24px)); border-radius:100px; }
+  header .nav{ padding:8px 10px 8px 22px; max-width:none; }
+  header.scrolled{ border:1px solid var(--border); background:rgba(10,10,14,.72); }
+  body{ padding-top:84px; }
+
+  /* project cards: less noise */
+  .copy-chip{ height:36px; border-style:solid; border-color:rgba(255,255,255,.12); font-size:13px; color:var(--text-dim); padding:0 14px; }
+  .term-details .tags{ padding:2px 0 14px; }
+  .grid > .card:nth-last-child(2):nth-child(odd){ grid-column:1/-1; }
+
+  /* stack as chips */
+  .stackcard ul{ flex-direction:row; flex-wrap:wrap; gap:8px; }
+  .stackcard li{ cursor:help; color:var(--text); font-size:13.5px; line-height:1.3; padding:9px 13px; border-radius:100px; border:1px solid rgba(124,108,255,.22); background:rgba(124,108,255,.07); }
+  .stackcard li::before{ display:none; }
+
+  /* steps: tighter staircase */
+  .step{ min-height:0; }
+  .step:nth-child(1){ margin-top:72px; } .step:nth-child(2){ margin-top:48px; } .step:nth-child(3){ margin-top:24px; }
+  .step h4{ margin:40px 0 10px; }
+  .step .n{ font-size:96px; right:14px; top:-6px; color:rgba(124,108,255,.22); }
+
+  /* price cards */
+  .pricecard.hot::before{ top:18px; right:18px; height:24px; padding:0 10px; display:flex; align-items:center; border-radius:100px; }
+  .price-btn{ margin-top:auto; justify-content:space-between; height:44px; font-size:14px; }
+
+  /* cta */
+  .cta .btn{ height:56px; padding:0 30px; font-size:16px; }
+  .oferta-wrap summary{ font-weight:500; }
+  .footbar .mono{ font-family:'Inter',sans-serif; }
+
+  /* floating CTA */
+  .float-cta{ position:fixed; left:50%; bottom:18px; z-index:46; transform:translate(-50%,140px); opacity:0; pointer-events:none;
+    box-shadow:0 18px 40px -12px rgba(124,108,255,.6); transition:transform .45s var(--ease), opacity .3s ease; }
+  .float-cta.show{ transform:translate(-50%,0); opacity:1; pointer-events:auto; }
+  @media (min-width:861px){ .float-cta{ left:auto; right:24px; transform:translateY(140px); } .float-cta.show{ transform:none; } }
+
+  @media (max-width:860px){
+    header{ top:8px; }
+    body{ padding-top:76px; }
+    .hero h1{ font-size:clamp(36px,10.6vw,48px); }
+    .hero .lede{ order:3; margin-top:0; }
+    .hero .hero-ctas{ order:4; }
+    .hero .hero-note{ order:5; }
+    .hero .phone-wrap{ order:6; margin-top:20px; }
+    .step:nth-child(n){ margin-top:0; }
+  }
+  @media (max-width:600px){
+    #totop{ display:none; }
+    .step{ padding:22px; } .step h4{ margin-top:30px; }
+    body{ padding-bottom:84px; }
+  }
 </style>
 </head>
 <body>
@@ -810,9 +872,11 @@
   </div>
 </div>
 
+<a class="btn btn-primary float-cta" id="floatCta" href="https://t.me/maximgrey" target="_blank" rel="noopener">Написать в Telegram <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
 <header>
   <div class="nav wrap">
-    <div class="brand"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="maxG" cx="30%" cy="28%" r="80%"><stop offset="0%" stop-color="#8ad4ff"/><stop offset="28%" stop-color="#8060f8"/><stop offset="65%" stop-color="#c040e8"/><stop offset="100%" stop-color="#3060ff"/></radialGradient></defs><path fill="url(#maxG)" d="M16 2C8.27 2 2 8.27 2 16c0 3.69 1.4 7.05 3.7 9.6L4 30l4.9-2.6C10.7 28.5 13.28 29 16 29c7.73 0 14-6.27 14-13S23.73 2 16 2z"/><circle cx="16" cy="15.5" r="7" fill="#07070a"/></svg></span><span class="dot" id="logo-dot"></span> Максим<span class="brand-sub"> · боты и автоматизация</span><span id="egg">не роняю клики 😉</span></div>
+    <div class="brand"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="maxG" cx="30%" cy="28%" r="80%"><stop offset="0%" stop-color="#8ad4ff"/><stop offset="28%" stop-color="#8060f8"/><stop offset="65%" stop-color="#c040e8"/><stop offset="100%" stop-color="#3060ff"/></radialGradient></defs><path fill="url(#maxG)" d="M16 2C8.27 2 2 8.27 2 16c0 3.69 1.4 7.05 3.7 9.6L4 30l4.9-2.6C10.7 28.5 13.28 29 16 29c7.73 0 14-6.27 14-13S23.73 2 16 2z"/><circle cx="16" cy="15.5" r="7" fill="#07070a"/></svg></span><span class="dot" id="logo-dot"></span> Максим<span class="brand-sub"> боты и автоматизация</span><span id="egg">не роняю клики 😉</span></div>
     <nav class="navlinks">
       <a href="#projects">Проекты</a>
       <a href="#about">Обо мне</a>
@@ -883,8 +947,7 @@
           <div><span class="k">$</span> <span class="v">оплата</span> — эквайринг под проект, авто-продление</div>
           <div><span class="k">$</span> <span class="v">контент</span> — 56 рационов, 200+ рецептов с БЖУ</div>
           <div><span class="k">$</span> <span class="v">кросс-платформа</span> — импорт подписчиков из VK</div>
-        </div></details>
-        <div class="tags"><span class="tag">aiogram</span><span class="tag">приём оплат</span><span class="tag">VK API</span><span class="tag">лендинг</span></div>
+        </div><div class="tags"><span class="tag">aiogram</span><span class="tag">приём оплат</span><span class="tag">VK API</span><span class="tag">лендинг</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="sub"><span class="play">▶</span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristiSub_Bot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
@@ -899,8 +962,7 @@
           <div><span class="k">$</span> <span class="v">товары</span> — гайд по КБЖУ, руководство по тарелке, план завтраков</div>
           <div><span class="k">$</span> <span class="v">оплата</span> — заказ с сайта → уведомление в боте</div>
           <div><span class="k">$</span> <span class="v">учёт</span> — лог регистраций и оплаченных заказов</div>
-        </div></details>
-        <div class="tags"><span class="tag">aiogram</span><span class="tag">цифровые товары</span><span class="tag">CRM-уведомления</span></div>
+        </div><div class="tags"><span class="tag">aiogram</span><span class="tag">цифровые товары</span><span class="tag">CRM-уведомления</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="digital"><span class="play">▶</span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristi_Bot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
@@ -915,8 +977,7 @@
           <div><span class="k">$</span> <span class="v">синхронизация</span> — VK API + TG Bot API через webhook-мост</div>
           <div><span class="k">$</span> <span class="v">авто-отзыв</span> — доступ закрывается при отмене подписки</div>
           <div><span class="k">$</span> <span class="v">единая база</span> — один подписчик = один статус в двух платформах</div>
-        </div></details>
-        <div class="tags"><span class="tag">VK API</span><span class="tag">aiogram</span><span class="tag">синхронизация</span><span class="tag">webhook</span></div>
+        </div><div class="tags"><span class="tag">VK API</span><span class="tag">aiogram</span><span class="tag">синхронизация</span><span class="tag">webhook</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="vk"><span class="play">▶</span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristi_VKbot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
@@ -931,8 +992,7 @@
           <div><span class="k">$</span> <span class="v">витрина</span> — Mini App (WebApp) с каталогом</div>
           <div><span class="k">$</span> <span class="v">доставка</span> — СДЭК API, порог бесплатной доставки</div>
           <div><span class="k">$</span> <span class="v">админка</span> — заказы · рассылки · автосценарии</div>
-        </div></details>
-        <div class="tags"><span class="tag">Mini App</span><span class="tag">CDEK API</span><span class="tag">RU / IL</span><span class="tag">админ-панель</span></div>
+        </div><div class="tags"><span class="tag">Mini App</span><span class="tag">CDEK API</span><span class="tag">RU / IL</span><span class="tag">админ-панель</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="shop"><span class="play">▶</span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/BAAshop_bot" target="_blank" rel="noopener">Открыть магазин <span class="arrow">→</span></a>
@@ -947,11 +1007,10 @@
           <div><span class="k">$</span> <span class="v">надёжность</span> — BEGIN IMMEDIATE, WAL, busy timeout</div>
           <div><span class="k">$</span> <span class="v">напоминания</span> — за 24ч и за 1ч, догоняются после простоя</div>
           <div><span class="k">$</span> <span class="v">эксплуатация</span> — авто-бэкапы, ротация логов, автотесты</div>
-        </div></details>
-        <div class="tags"><span class="tag">aiogram 3</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">APScheduler</span></div>
+        </div><div class="tags"><span class="tag">aiogram 3</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">APScheduler</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="booking"><span class="play">▶</span>Смотреть видео</button>
-          <a class="resource-link disabled" href="#" onclick="return false;">Пока без паблик-ссылки <span class="arrow">·</span></a>
+          <a class="resource-link disabled" href="#" onclick="return false;">Пока без паблик-ссылки</a>
         </div>
       </div>
 
@@ -976,6 +1035,7 @@
       </div>
 
     </div>
+    <div class="sec-cta reveal"><a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Хочу такого же бота <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
 </section>
 
@@ -990,7 +1050,6 @@
     <div>
       <div class="fact"><div class="k">Платформы</div><div class="v">Telegram, WhatsApp, Instagram, MAX — под каждую платформу свой API и особенности, сценарий проектирую с учётом её ограничений.</div></div>
       <div class="fact"><div class="k">Что делаю</div><div class="v">Боты-подписки с приёмом оплаты, магазины с Mini App/каталогом, запись и CRM-уведомления, интеграции с ChatGPT, СДЭК и платёжными системами (ЮKassa, CloudPayments, Т-Банк, Робокасса, Prodamus).</div></div>
-      <div class="fact"><div class="k">На чём</div><div class="v">Python 3, aiogram 3, SQLAlchemy + Alembic, SQLite/Postgres, Redis (FSM-хранилище), APScheduler.</div></div>
       <div class="fact"><div class="k">Как сдаю</div><div class="v">С логами, ротацией, резервными копиями БД и базовыми автотестами — чтобы после сдачи проект не остался «чёрным ящиком».</div></div>
     </div>
   </div>
@@ -1005,6 +1064,7 @@
       <div class="step"><div class="n">03</div><h4>Сборка и тесты</h4><p>Оплаты, база, напоминания, защита от гонок и падений, базовые автотесты.</p></div>
       <div class="step"><div class="n">04</div><h4>Запуск и поддержка</h4><p>Разворачиваю на сервере, передаю логи и бэкапы, остаюсь на связи после сдачи.</p></div>
     </div>
+    <div class="sec-cta reveal"><a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Начать с разбора задачи <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
 </section>
 
@@ -1017,13 +1077,13 @@
     </div>
     <div class="pricegrid">
       <div class="pricecard reveal"><div class="name">Контент-подписка</div><div class="price grad-text">от 15 000 ₽</div>
-        <ul><li>Тарифы и оплата</li><li>Выдача доступа к каналу</li><li>Промо-скидки для новых</li></ul></div>
+        <ul><li>Тарифы и оплата</li><li>Выдача доступа к каналу</li><li>Промо-скидки для новых</li></ul><a class="btn btn-ghost price-btn" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       <div class="pricecard reveal"><div class="name">Бот с приёмом оплат</div><div class="price grad-text">от 20 000 ₽</div>
-        <ul><li>ЮKassa, CloudPayments, Т-Банк и др.</li><li>Профиль клиента, авто-продление</li><li>Уведомления и CRM-лог</li></ul></div>
+        <ul><li>ЮKassa, CloudPayments, Т-Банк и др.</li><li>Профиль клиента, авто-продление</li><li>Уведомления и CRM-лог</li></ul><a class="btn btn-ghost price-btn" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       <div class="pricecard hot reveal"><div class="name">Бот записи / брони</div><div class="price grad-text">от 25 000 ₽</div>
-        <ul><li>Календарь, ручная запись админом</li><li>Защита от двойной записи</li><li>Напоминания, бэкапы, автотесты</li></ul></div>
+        <ul><li>Календарь, ручная запись админом</li><li>Защита от двойной записи</li><li>Напоминания, бэкапы, автотесты</li></ul><a class="btn btn-primary price-btn" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       <div class="pricecard reveal"><div class="name">Магазин с Mini App</div><div class="price grad-text">от 45 000 ₽</div>
-        <ul><li>Витрина, каталог, корзина</li><li>Доставка (СДЭК и др.), скидки</li><li>Админка: заказы, рассылки</li></ul></div>
+        <ul><li>Витрина, каталог, корзина</li><li>Доставка (СДЭК и др.), скидки</li><li>Админка: заказы, рассылки</li></ul><a class="btn btn-ghost price-btn" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
     <p class="price-note">Это стартовые ориентиры, не прайс-лист — сумма зависит от сценария, интеграций и сроков. Финальную цену фиксируем до начала работ.</p>
   </div>
@@ -1430,6 +1490,15 @@
 
     // haptic tap feedback — no-op where Vibration API is unsupported
     function buzz(ms){ if(navigator.vibrate){ navigator.vibrate(ms); } }
+    // floating CTA: visible once the hero is out of view and before the final CTA
+    (function(){
+      var fc = document.getElementById('floatCta'), hero = document.querySelector('.hero'), fin = document.querySelector('.cta-wrap');
+      if(!fc || !hero || !('IntersectionObserver' in window)) return;
+      var heroOut = false, finalIn = false;
+      function upd(){ fc.classList.toggle('show', heroOut && !finalIn); }
+      new IntersectionObserver(function(e){ heroOut = !e[0].isIntersecting; upd(); }).observe(hero);
+      new IntersectionObserver(function(e){ finalIn = e[0].isIntersecting; upd(); }).observe(fin);
+    })();
     // faq spoilers
     document.querySelectorAll('.faq-item').forEach(function(item){
       var q = item.querySelector('.faq-q');
