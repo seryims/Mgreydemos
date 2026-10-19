@@ -433,7 +433,7 @@
 
   /* ---------- pricecard featured ---------- */
   .pricecard.hot{ border-color:color-mix(in srgb,var(--accent-a) 55%,var(--border)); background:color-mix(in srgb,var(--accent-a) 6%,var(--surface)); position:relative; overflow:visible; }
-  .pricecard.hot::before{ content:'популярный'; position:absolute; top:-13px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a; padding:3px 10px; border-radius:0 0 8px 8px; font-weight:700; height:auto; display:block; }
+  .pricecard.hot::after{ content:'популярный'; position:absolute; top:-13px; right:16px; left:auto; bottom:auto; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; background:linear-gradient(100deg,var(--accent-a),var(--accent-b)); color:#07070a; padding:3px 10px; border-radius:0 0 8px 8px; font-weight:700; height:auto; width:auto; display:block; }
 
   /* 2 — scroll to top */
   #totop{
@@ -729,7 +729,7 @@
     border-radius:100px; background:rgba(255,255,255,.08); color:var(--accent-b); background-clip:border-box; -webkit-background-clip:border-box; -webkit-text-fill-color:currentColor; }
   .pricecard li{ font-size:14px; line-height:1.55; }
   .pricecard.hot{ border-color:rgba(124,108,255,.55); background:linear-gradient(180deg, rgba(124,108,255,.16), rgba(49,216,201,.07)); }
-  .pricecard.hot::before{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.02em; text-transform:none; font-weight:600; right:20px; }
+  .pricecard.hot::after{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.02em; text-transform:none; font-weight:600; right:20px; }
   .price-note{ font-size:14.5px; border-left-color:var(--accent-b); margin-top:24px; }
   .supportcard{ border-radius:var(--r-card); padding:30px; background:var(--card-bg); gap:14px; }
   .supportcard .tag-mode{ font-family:'Inter',sans-serif; font-size:13px; font-weight:500; text-transform:none; letter-spacing:0; padding:7px 12px; background:rgba(124,108,255,.08); border-color:rgba(124,108,255,.25); color:var(--text); }
@@ -958,6 +958,16 @@
   .bento{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
   .bento-card{ position:relative; overflow:hidden; border-radius:30px; padding:22px 22px 28px; background:var(--card-bg); border:1px solid var(--border);
     transition:transform .4s var(--ease), border-color .3s ease, box-shadow .4s ease; }
+
+  /* cursor-spotlight glow on interactive cards (desktop) */
+  .bento-card::before, .stackcard::before, .pricecard::before, .supportcard::before{
+    content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; z-index:0;
+    transition:opacity .4s ease;
+    background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(124,108,255,.16), transparent 72%);
+  }
+  @media (hover:hover) and (pointer:fine){
+    .bento-card:hover::before, .stackcard:hover::before, .pricecard:hover::before, .supportcard:hover::before{ opacity:1; }
+  }
   .b-wide{ grid-column:span 2; }
   @media (hover:hover){ .bento-card:hover{ transform:translateY(-5px); border-color:rgba(124,108,255,.5); box-shadow:0 26px 54px -28px rgba(124,108,255,.55); } }
   .bento-card h3{ font-size:clamp(20px,1.9vw,24px); font-weight:500; letter-spacing:-.035em; line-height:1.15; margin:0 6px 10px; }
@@ -1675,7 +1685,7 @@
       phone.addEventListener('mouseleave', function(){ phone.style.transform = ''; });
     }
 
-    document.querySelectorAll('.card').forEach(function(c){
+    document.querySelectorAll('.card, .bento-card, .stackcard, .pricecard, .supportcard').forEach(function(c){
       c.addEventListener('mousemove', function(e){
         var r = c.getBoundingClientRect();
         c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
