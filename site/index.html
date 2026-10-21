@@ -195,10 +195,10 @@
     .hero .platforms-row{ order:5; }
     .hero .hero-ctas{ order:6; }
     .hero .trust{ order:7; }
-    .hero .phone-wrap{ margin-left:-28px; margin-right:-28px; width:calc(100% + 56px); }
-    .vshow{ width:100%; aspect-ratio:auto; height:calc(100vh - 72px); max-height:none; border-radius:0 !important; }
-    @supports (height:1svh){ .vshow{ height:calc(100svh - 72px); } }
-    .vshow .vpager{ top:54px; bottom:auto; }
+    .hero .phone-wrap{ margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); width:100vw; }
+    .vshow{ width:100%; aspect-ratio:9/16; height:auto; max-height:none; border-radius:0 !important; }
+    .vlabel{ display:none; }
+    .vshow .vpager{ top:auto; bottom:116px; }
     .vfull{ font-size:13px; }
     .vlabel{ font-size:11px; padding:6px 10px; }
     .vmute{ width:38px; height:38px; font-size:14px; right:12px; top:12px; }
@@ -815,8 +815,8 @@
   }
 
   /* ===== v2.1 refinements ===== */
-  :root{ --sec-pad:clamp(56px,7vw,96px); --text-body:#aeb1ba; }
-  .sec-head{ margin-bottom:clamp(28px,4vw,44px); }
+  :root{ --sec-pad:clamp(36px,5.5vw,80px); --text-body:#aeb1ba; }
+  .sec-head{ margin-bottom:clamp(22px,3.2vw,40px); }
   .sec-head p, .about p, .card p.pitch, .pricecard li, .stackcard li, .faq-a p, .step p, .supportcard p, .price-note, .fact .v{ color:var(--text-body); }
   .brand .brand-sub{ color:var(--text-dim); font-weight:400; }
   .hero{ padding-bottom:64px; }
@@ -1335,7 +1335,7 @@
       <h2>Что уже работает</h2>
       <p>Часть уже работает и приносит клиентам платящих подписчиков, часть — готовые к запуску приложения, которые ещё не объявлены публично.</p>
     </div>
-    <div class="pcircles" aria-hidden="true"><div class="pc-track"><span class="pc"><b>Рационы питания</b></span><span class="pc"><b>Цифровые товары</b></span><span class="pc"><b>Синхронизация ТГ→ВК</b></span><span class="pc"><b>Eco NeuroNova</b></span><span class="pc"><b>Запись на массаж</b></span><span class="pc"><b>«Что поесть»</b></span><span class="pc"><b>Рационы питания</b></span><span class="pc"><b>Цифровые товары</b></span><span class="pc"><b>Синхронизация ТГ→ВК</b></span><span class="pc"><b>Eco NeuroNova</b></span><span class="pc"><b>Запись на массаж</b></span><span class="pc"><b>«Что поесть»</b></span></div></div>
+    
     <div class="grid">
 
       <div class="card reveal">
@@ -1525,45 +1525,6 @@
         <p>Правки сценариев, новая функция, разбор ошибки — оцениваю задачу и называю фикс-стоимость до начала работы.</p></div>
       <div class="supportcard reveal"><div class="tag-mode">ежемесячно</div><div class="name">Сопровождение бота</div><div class="price grad-text">от 5 000 ₽/мес</div>
         <p>Слежу за логами и падениями, делаю мелкие правки без отдельного счёта, отвечаю в приоритете, если что-то сломалось.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="stack">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">стек</div>
-      <h2>Стек</h2>
-      <p>Набор, проверенный на живых проектах с оплатами и расписаниями — не «модно», а предсказуемо под нагрузкой. Наведите или нажмите на пункт, если термин незнаком.</p>
-    </div>
-    <div class="stackgrid">
-      <div class="stackcard">
-        <div class="h">Бэкенд бота</div>
-        <ul>
-          <li data-tip="Фреймворк для Telegram-ботов на Python — быстрый и асинхронный, держит много диалогов одновременно">Python 3 / aiogram 3</li>
-          <li data-tip="Машина состояний: бот помнит, на каком шаге сценария сейчас клиент">FSM-сценарии диалогов</li>
-          <li data-tip="Быстрая база в памяти для сессий — контекст диалога не теряется при перезапуске">Redis как хранилище состояний</li>
-          <li data-tip="Защита от спама командами и корректная остановка бота без потери сообщений">Антифлуд и graceful shutdown</li>
-        </ul>
-      </div>
-      <div class="stackcard">
-        <div class="h">Данные</div>
-        <ul>
-          <li data-tip="ORM для работы с базой + инструмент управляемых миграций схемы">SQLAlchemy 2.0 + Alembic</li>
-          <li data-tip="WAL — режим SQLite, где чтение и запись идут одновременно без блокировок">SQLite (WAL) и PostgreSQL</li>
-          <li data-tip="Гарантия, что два клиента не займут один и тот же слот записи одновременно">Транзакции против гонок записи</li>
-          <li data-tip="Автоматические бэкапы базы и очистка старых журналов">Резервное копирование и ротация логов</li>
-        </ul>
-      </div>
-      <div class="stackcard">
-        <div class="h">Интеграции</div>
-        <ul>
-          <li data-tip="ЮKassa, CloudPayments, Т-Банк, Робокасса, Prodamus — подключаю нужный эквайринг под проект">Приём оплат и подписок</li>
-          <li data-tip="Расчёт стоимости и оформление доставки СДЭК прямо из бота">СДЭК API, расчёт доставки</li>
-          <li data-tip="Веб-интерфейс внутри Telegram — витрина или каталог без выхода из чата">Telegram Mini Apps / WebApp</li>
-          <li data-tip="GPT для генерации текста или пересчёта показателей по запросу клиента">ChatGPT API для расчётов и текстов</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
