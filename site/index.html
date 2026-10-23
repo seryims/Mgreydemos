@@ -237,6 +237,12 @@
   }
   .vshow .phone-tabs button:hover{ background:rgba(7,7,10,.72); border-color:rgba(255,255,255,.28); color:var(--text); }
   .vshow .phone-tabs button.active{ color:#07070a; background:transparent; border-color:transparent; }
+  /* tabs wrap into rows so every project is visible (no clipped first tab) */
+  .vshow .phone-tabs{ flex-wrap:wrap; justify-content:center; overflow:visible; row-gap:6px; padding:8px 10px 12px; }
+  .vshow .phone-tabs button{ font-size:11.5px; padding:0 11px; min-height:32px !important; height:32px; }
+  .vshow .vctl{ bottom:96px !important; }
+  .vshow .vpager{ bottom:146px !important; top:auto !important; }
+  .vshow .vfade{ height:330px; }
   .bubble{ max-width:78%; padding:9px 13px; border-radius:12px; font-size:13.5px; line-height:1.45; animation:riseIn .45s ease both; }
   .bubble .t{ display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; opacity:.55; margin-top:4px; text-align:right; }
   .bubble.in{ align-self:flex-start; background:var(--surface-2); border:1px solid var(--border); border-bottom-left-radius:4px; }
@@ -2182,7 +2188,7 @@
       var vshowEl = document.getElementById('vshow');
       if(!vshowEl) return;
       vshowEl.addEventListener('click', function(e){
-        if(e.target.closest('#vmute') || e.target.closest('#vfull') || e.target.closest('.vctl')) return;
+        if(e.target.closest('#vmute') || e.target.closest('#vfull') || e.target.closest('.vctl') || e.target.closest('.phone-tabs') || e.target.closest('.vpager')) return;
         openDemo(HERO[heroKey].demo);
       });
     })();
