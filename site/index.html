@@ -1178,6 +1178,20 @@
     .footsec a{ padding:10px 0; }
   }
   .foot-word{ font-size:clamp(40px,12vw,190px); white-space:nowrap; }
+
+  /* ---------- perf: pause off-screen animation, lighter effects ---------- */
+  .anim-off, .anim-off *, .anim-off *::before, .anim-off *::after{ animation-play-state:paused !important; }
+  #scrollbar{ width:100% !important; transform-origin:0 50%; transform:scaleX(0); will-change:transform; }
+  #grain{ mix-blend-mode:normal; opacity:.025; }
+  .fchip{ -webkit-backdrop-filter:none; backdrop-filter:none; background:rgba(16,16,24,.92); }
+  .orb b{ will-change:transform; }
+  @media (max-width:860px), (pointer:coarse){
+    #grain{ display:none; }
+    header, header.scrolled{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+    header.scrolled{ background:rgba(7,7,10,.95) !important; }
+    .orb b{ filter:blur(24px); animation:none; }
+    .vctl button, .vshow .phone-tabs{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -1636,10 +1650,19 @@
     function onScroll(){
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
     }
-    document.addEventListener('scroll', onScroll, { passive:true });
+    var barTick = false;
+    document.addEventListener('scroll', function(){ if(!barTick){ barTick = true; requestAnimationFrame(function(){ barTick = false; onScroll(); }); } }, { passive:true });
     onScroll();
+
+    // pause decorative CSS animations in blocks that are off screen
+    if('IntersectionObserver' in window){
+      var animIO = new IntersectionObserver(function(es){
+        es.forEach(function(en){ en.target.classList.toggle('anim-off', !en.isIntersecting); });
+      }, { rootMargin:'120px 0px' });
+      document.querySelectorAll('body > section, .wrap.hero, .bigmarquee, footer').forEach(function(el){ animIO.observe(el); });
+    }
 
     var phone = document.querySelector('.phone');
     if(phone && !reduce && window.matchMedia('(pointer:fine)').matches){
@@ -1968,7 +1991,7 @@
         function size(){
           var r = cv.getBoundingClientRect(); W = r.width; H = r.height;
           cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          var n = Math.round(Math.min(70, W / 22)); pts = [];
+          var n = Math.round(Math.min(window.matchMedia('(pointer:coarse)').matches ? 28 : 70, W / 22)); pts = [];
           for(var i = 0; i < n; i++) pts.push({ x:Math.random() * W, y:Math.random() * H, vx:(Math.random() - .5) * .25, vy:(Math.random() - .5) * .25, r:Math.random() * 1.4 + .5, c:Math.random() < .5 ? '124,108,255' : '49,216,201' });
         }
         function draw(){
@@ -1987,7 +2010,7 @@
           if(on && !reduce) requestAnimationFrame(draw);
         }
         size(); draw();
-        window.addEventListener('resize', function(){ size(); if(reduce) draw(); });
+        window.addEventListener('resize', function(){ if(Math.abs(cv.getBoundingClientRect().width - W) < 1) return; size(); if(reduce) draw(); }); // ignore mobile URL-bar height changes
         if(hero) hero.addEventListener('pointermove', function(e){ var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive:true });
         if('IntersectionObserver' in window && hero){
           new IntersectionObserver(function(es){ var was = on; on = es[0].isIntersecting; if(on && !was && !reduce) draw(); }).observe(hero);
@@ -2187,7 +2210,17 @@
     (function(){
       var vshowEl = document.getElementById('vshow');
       if(!vshowEl) return;
+      // only a deliberate tap opens it: not a programmatic click (auto-advance / swipe),
+      // not the end of a scroll gesture, not a tap that stops momentum scrolling
+      var tx = 0, ty = 0, tsy = null, moved = false, lastScroll = 0;
+      window.addEventListener('scroll', function(){ lastScroll = Date.now(); }, { passive:true });
+      vshowEl.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; ty = e.touches[0].clientY; tsy = window.scrollY; moved = Date.now() - lastScroll < 350; }, { passive:true });
+      vshowEl.addEventListener('touchmove', function(e){ if(Math.abs(e.touches[0].clientX - tx) > 10 || Math.abs(e.touches[0].clientY - ty) > 10) moved = true; }, { passive:true });
       vshowEl.addEventListener('click', function(e){
+        var scrolledSinceTouch = tsy !== null && Math.abs(window.scrollY - tsy) > 4;
+        var blocked = !e.isTrusted || moved || scrolledSinceTouch || Date.now() - lastScroll < 250;
+        moved = false; tsy = null;
+        if(blocked) return;
         if(e.target.closest('#vmute') || e.target.closest('#vfull') || e.target.closest('.vctl') || e.target.closest('.phone-tabs') || e.target.closest('.vpager')) return;
         openDemo(HERO[heroKey].demo);
       });
@@ -2432,8 +2465,10 @@
         }
       }, { passive:true });
     })();
+    var lastWinScroll = 0;
+    window.addEventListener('scroll', function(){ lastWinScroll = Date.now(); }, { passive:true });
     document.querySelectorAll('[data-demo]').forEach(function(el){
-      el.addEventListener('click', function(){ openDemo(el.dataset.demo); });
+      el.addEventListener('click', function(e){ if(e.isTrusted && Date.now() - lastWinScroll < 250) return; openDemo(el.dataset.demo); });
       el.addEventListener('keydown', function(e){
         if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDemo(el.dataset.demo); }
       });
