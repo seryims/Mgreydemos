@@ -1192,6 +1192,29 @@
     .orb b{ filter:blur(24px); animation:none; }
     .vctl button, .vshow .phone-tabs{ -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
   }
+
+  /* ---------- audit fixes ---------- */
+  /* hero: the video already shows its own title — keep overlays off it */
+  .vlabel{ display:none !important; }
+  .fc1{ top:30%; }
+  .fc3{ bottom:14%; }
+  /* project tabs: always one row */
+  .vshow .phone-tabs{ flex-wrap:nowrap !important; justify-content:center; gap:5px; padding:8px 6px 12px; }
+  .vshow .phone-tabs button{ font-size:11.5px !important; padding:0 10px !important; white-space:nowrap; flex:0 0 auto; }
+  .vshow .vctl{ bottom:62px !important; }
+  .vshow .vpager{ bottom:112px !important; }
+  .vshow .vfade{ height:280px; }
+  /* process: big step numbers stay inside the card and clear of titles */
+  .step .n{ top:14px !important; right:18px !important; font-size:64px !important; line-height:.9; }
+  .step h4{ margin-top:72px !important; }
+  /* projects: actions aligned with the text, not floating in the middle */
+  @media (min-width:861px){ .resline{ justify-content:flex-start; } }
+  @media (max-width:600px){
+    .viz-cal{ flex-direction:column !important; justify-content:flex-start !important; align-items:center !important; gap:14px !important; padding:22px 0 0 !important; }
+    .viz .cal-slots{ flex-direction:row; }
+    .viz .cal-slots span{ padding:7px 13px; }
+    .viz-cal .toast{ left:50%; right:auto; bottom:12px; translate:-50% 0; white-space:nowrap; }
+  }
 </style>
 </head>
 <body>
@@ -1270,7 +1293,7 @@
         <button type="button" class="active" data-bot="booking">Запись</button>
         <button type="button" data-bot="subscription">Подписка</button>
         <button type="button" data-bot="shop">Магазин</button>
-        <button type="button" data-bot="digital">Цифровые товары</button>
+        <button type="button" data-bot="digital">Цифровые</button>
         <button type="button" data-bot="content">ТГ→ВК</button>
       </div>
     </div>
