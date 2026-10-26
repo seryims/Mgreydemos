@@ -225,8 +225,8 @@
   .vshow .phone-tabs button:hover{ background:rgba(7,7,10,.72); border-color:rgba(255,255,255,.28); color:var(--text); }
   .vshow .phone-tabs button.active{ color:var(--bg); background:transparent; border-color:transparent; }
   /* all five project tabs in one row under the clip */
-  .vshow .phone-tabs{ flex-wrap:nowrap; justify-content:center; overflow:visible; gap:5px; padding:8px 6px 12px; }
-  .vshow .phone-tabs button{ font-size:11.5px; padding:0 10px; min-height:32px; height:32px; white-space:nowrap; flex:0 0 auto; }
+  .vshow .phone-tabs{ flex-wrap:nowrap; justify-content:center; overflow:visible; gap:4px; padding:8px 4px 12px; }
+  .vshow .phone-tabs button{ font-size:11.5px; padding:0 9px; min-height:32px; height:32px; white-space:nowrap; flex:0 0 auto; }
   .vshow .vctl{ bottom:62px; }
   .vshow .vpager{ top:auto; bottom:112px; }
   .vshow .vfade{ height:280px; }
@@ -1174,8 +1174,8 @@
   }
 
   /* ---------- a11y + touch targets ---------- */
-  .skip-link{ position:fixed; left:16px; top:-60px; z-index:300; padding:10px 16px; border-radius:12px; background:var(--text); color:var(--bg); font-weight:600; text-decoration:none; transition:top .2s; }
-  .skip-link:focus{ top:12px; }
+  .skip-link{ position:fixed; left:-9999px; top:12px; z-index:300; padding:10px 16px; border-radius:12px; background:var(--text); color:var(--bg); font-weight:600; text-decoration:none; transition:top .2s; }
+  .skip-link:focus{ left:16px; }
   :where(a, button, summary, [tabindex]):focus-visible{ outline:2px solid var(--accent-b); outline-offset:3px; }
   .phone-tabs button:focus-visible{ outline-offset:2px; }
   .lightbox{ transition:opacity .22s ease, visibility 0s linear .22s; } .lightbox:not(.open){ visibility:hidden; } .lightbox.open{ transition-delay:0s; }
@@ -1191,6 +1191,31 @@
     .vmute{ width:44px; height:44px; }
     .footsec a{ padding:12px 0; }
   }
+
+  /* ---------- quieter: one accent, no glow, no decoration for its own sake ---------- */
+  .sec-head h2, #about h2{ margin-top:0; }
+  .hero-note::before{ box-shadow:0 0 0 3px rgba(55,224,138,.16); }
+  /* emphasis by colour and weight, not gradient text */
+  .grad-text, .hero h1 .grad-text{ background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--accent-b); -webkit-text-fill-color:currentColor; animation:none; }
+  .bm-w.fill{ background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--text); -webkit-text-fill-color:currentColor; }
+  /* primary action: solid, quiet, a real offset shadow instead of a coloured halo */
+  .btn-primary, .vfull, .resource-link{ background:var(--text); color:var(--bg); box-shadow:0 8px 18px -12px rgba(0,0,0,.7); filter:none; }
+  .btn-primary:hover, .vfull:hover, .resource-link:hover{ background:#fff; box-shadow:0 12px 22px -12px rgba(0,0,0,.75); filter:none; }
+  .btn-primary::after, .btn-primary::before{ content:none; }
+  .demo-btn .play{ background:var(--accent-b); }
+  .i{ display:block; flex:none; }
+  #totop, .lightbox-close, .vmute{ display:flex; align-items:center; justify-content:center; }
+  .lb-sound, .vfull, .copy-chip{ display:inline-flex; align-items:center; gap:7px; }
+  .vfull{ display:flex; }
+  /* hero ground: thin static rings, no breathing blob */
+  .orb b{ display:none; }
+  .orb i{ animation:none; }
+  #grain{ display:none; }
+  /* popular plan: a steady accent border, not a spinning one */
+  .pricecard.hot, .pricecard.hot.reveal{ animation:none; border:1px solid rgba(var(--accent-b-rgb),.55); background:var(--card-bg); }
+  .price-note{ border-left:0; padding-left:0; }
+  .pricecard.hot::after{ background:var(--accent-b); }
+  #tabPill{ background:var(--text); box-shadow:none; }
 </style>
 </head>
 <body>
@@ -1200,14 +1225,14 @@
 <div class="hero-glow" aria-hidden="true"><canvas id="particles"></canvas></div>
 <div id="grain"></div>
 <div id="scrollbar"></div>
-<button id="totop" aria-label="Наверх">↑</button>
+<button id="totop" aria-label="Наверх"><svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <div class="lightbox" id="lightbox" aria-hidden="true" inert role="dialog" aria-modal="true" aria-label="Демо-ролик">
   <div class="lightbox-box">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button>
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Закрыть"><svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="lightbox-frame"><video id="lightboxVideo" controls playsinline autoplay preload="none">
         <source id="lbWebm" type="video/webm"><source id="lbMp4" type="video/mp4"></video>
-      <button type="button" class="lb-sound" id="lightboxSound">🔊 Включить звук</button></div>
+      <button type="button" class="lb-sound" id="lightboxSound"><svg class="i" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Включить звук</button></div>
     <div class="lightbox-cap"><strong id="lightboxTitle"></strong><span id="lightboxCap"></span></div>
     <div class="lb-dots" id="lbDots"></div>
   </div>
@@ -1233,14 +1258,13 @@
 <main id="main">
 <div class="wrap hero">
   <div>
-    <div class="eyebrow"><span class="dot"></span>на связи · принимаю новые проекты</div>
     <h1>Боты, которые <span class="rotator grad-text"><span class="rw" id="rw">не роняют</span></span><br>заявки клиентов</h1>
     <p class="lede">Разрабатываю ботов на Python: подписки и приём оплат, магазины с доставкой, запись к специалистам. Без падений в выходные и потерянных броней.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="https://t.me/maximgrey" target="_blank" rel="noopener">Обсудить бота <svg viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a class="btn btn-ghost" href="#projects">Смотреть проекты</a>
     </div>
-    <p class="hero-note">Отвечаю в течение дня. Цену фиксирую до начала работ.</p>
+    <p class="hero-note">Принимаю новые проекты. Отвечаю в течение дня, цену фиксирую до начала работ.</p>
   </div>
 
   <div class="phone-wrap">
@@ -1256,7 +1280,7 @@
       </video>
       <div class="vfade"></div>
       <div class="vlabel"><span class="d"></span><span id="vlabel">запись в студию</span></div>
-      <button type="button" class="vmute" id="vmute" aria-label="Включить звук">🔇</button>
+      <button type="button" class="vmute" id="vmute" aria-label="Включить звук"><svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
       <div class="vpager">
         <div class="swipe-hint" id="swipeHint">← свайп →</div>
         <div class="dotpager" id="dotpager" aria-hidden="true">
@@ -1264,7 +1288,7 @@
         </div>
       </div>
       <div class="vctl">
-        <button type="button" class="vfull" id="vfull">▶ Полный ролик · 33 сек</button>
+        <button type="button" class="vfull" id="vfull"><svg class="i" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>Полный ролик · 33 сек</button>
       </div>
       <div class="phone-tabs" role="tablist" aria-label="Проекты">
         <span id="tabPill" aria-hidden="true"></span>
@@ -1293,7 +1317,7 @@
 
 <section id="features">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">возможности</div><h2>Что умеет бот под ключ</h2><p>Каждый блок ниже — реальная функция, которая уже работает в моих проектах.</p></div>
+    <div class="sec-head reveal"><h2>Что умеет бот под ключ</h2><p>Каждый блок ниже — реальная функция, которая уже работает в моих проектах.</p></div>
     <div class="bento" data-stagger>
 
       <div class="bento-card b-wide reveal">
@@ -1352,7 +1376,7 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">проекты</div>
+      
       <h2>Что уже работает</h2>
       <p>Часть уже работает и приносит клиентам платящих подписчиков, часть — готовые к запуску приложения, которые ещё не объявлены публично.</p>
     </div>
@@ -1368,9 +1392,9 @@
           <div><span class="k">$</span> <span class="v">кросс-платформа</span> — импорт подписчиков из VK</div>
         </div><div class="tags"><span class="tag">aiogram</span><span class="tag">приём оплат</span><span class="tag">VK API</span><span class="tag">лендинг</span></div></details>
         <div class="resline">
-          <button type="button" class="demo-btn" data-demo="sub"><span class="play">▶</span>Смотреть видео</button>
+          <button type="button" class="demo-btn" data-demo="sub"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristiSub_Bot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
-          <button type="button" class="copy-chip" data-copy="@VasKristiSub_Bot"><span class="ic">⧉</span>@VasKristiSub_Bot</button>
+          <button type="button" class="copy-chip" data-copy="@VasKristiSub_Bot"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>@VasKristiSub_Bot</button>
         </div>
       </div>
 
@@ -1383,9 +1407,9 @@
           <div><span class="k">$</span> <span class="v">учёт</span> — лог регистраций и оплаченных заказов</div>
         </div><div class="tags"><span class="tag">aiogram</span><span class="tag">цифровые товары</span><span class="tag">CRM-уведомления</span></div></details>
         <div class="resline">
-          <button type="button" class="demo-btn" data-demo="digital"><span class="play">▶</span>Смотреть видео</button>
+          <button type="button" class="demo-btn" data-demo="digital"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristi_Bot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
-          <button type="button" class="copy-chip" data-copy="@VasKristi_Bot"><span class="ic">⧉</span>@VasKristi_Bot</button>
+          <button type="button" class="copy-chip" data-copy="@VasKristi_Bot"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>@VasKristi_Bot</button>
         </div>
       </div>
 
@@ -1398,9 +1422,9 @@
           <div><span class="k">$</span> <span class="v">единая база</span> — один подписчик = один статус в двух платформах</div>
         </div><div class="tags"><span class="tag">VK API</span><span class="tag">aiogram</span><span class="tag">синхронизация</span><span class="tag">webhook</span></div></details>
         <div class="resline">
-          <button type="button" class="demo-btn" data-demo="vk"><span class="play">▶</span>Смотреть видео</button>
+          <button type="button" class="demo-btn" data-demo="vk"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/VasKristi_VKbot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
-          <button type="button" class="copy-chip" data-copy="@VasKristi_VKbot"><span class="ic">⧉</span>@VasKristi_VKbot</button>
+          <button type="button" class="copy-chip" data-copy="@VasKristi_VKbot"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>@VasKristi_VKbot</button>
         </div>
       </div>
 
@@ -1413,9 +1437,9 @@
           <div><span class="k">$</span> <span class="v">админка</span> — заказы · рассылки · автосценарии</div>
         </div><div class="tags"><span class="tag">Mini App</span><span class="tag">CDEK API</span><span class="tag">RU / IL</span><span class="tag">админ-панель</span></div></details>
         <div class="resline">
-          <button type="button" class="demo-btn" data-demo="shop"><span class="play">▶</span>Смотреть видео</button>
+          <button type="button" class="demo-btn" data-demo="shop"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
           <a class="resource-link" href="https://t.me/BAAshop_bot" target="_blank" rel="noopener">Открыть магазин <span class="arrow">→</span></a>
-          <button type="button" class="copy-chip" data-copy="@BAAshop_bot"><span class="ic">⧉</span>@BAAshop_bot</button>
+          <button type="button" class="copy-chip" data-copy="@BAAshop_bot"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>@BAAshop_bot</button>
         </div>
       </div>
 
@@ -1428,7 +1452,7 @@
           <div><span class="k">$</span> <span class="v">эксплуатация</span> — авто-бэкапы, ротация логов, автотесты</div>
         </div><div class="tags"><span class="tag">aiogram 3</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">APScheduler</span></div></details>
         <div class="resline">
-          <button type="button" class="demo-btn" data-demo="booking"><span class="play">▶</span>Смотреть видео</button>
+          <button type="button" class="demo-btn" data-demo="booking"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
           <span class="resource-link disabled" aria-disabled="true">Пока без паблик-ссылки</span>
         </div>
       </div>
@@ -1440,7 +1464,7 @@
           <div class="tags"><span class="tag">лендинг</span><span class="tag">конверсия в подписку</span><span class="tag">vas-kristi.onrender.com</span></div>
           <div class="resline">
             <a class="resource-link" href="https://vas-kristi.onrender.com/" target="_blank" rel="noopener">Открыть сайт <span class="arrow">→</span></a>
-            <button type="button" class="copy-chip" data-copy="vas-kristi.onrender.com"><span class="ic">⧉</span>vas-kristi.onrender.com</button>
+            <button type="button" class="copy-chip" data-copy="vas-kristi.onrender.com"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>vas-kristi.onrender.com</button>
           </div>
         </div>
         <a class="browser" href="https://vas-kristi.onrender.com/" target="_blank" rel="noopener">
@@ -1476,7 +1500,7 @@
       </div>
     </div>
     <div>
-      <div class="eyebrow">обо мне</div>
+      
       <h2>Максим</h2>
       <p style="margin-top:16px;">Пишу продовых ботов на <strong>Python</strong> для Telegram, WhatsApp, Instagram и MAX — не прототипы «на посмотреть», а сервисы, которые обрабатывают оплаты, ведут расписание и выдерживают наплыв заявок.</p>
       <p>Отдельно слежу за тем, что обычно ломается в чужих ботах: гонки при одновременной записи, потеря сообщений при перезапуске, забытые напоминания. Использую транзакции с блокировкой, очереди задач и авто-восстановление после падений.</p>
@@ -1491,7 +1515,7 @@
 
 <section id="process">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="eyebrow">как я работаю</div><h2>Четыре шага до запуска</h2></div>
+    <div class="sec-head reveal"><h2>Четыре шага до запуска</h2></div>
     <div class="steps">
       <div class="step"><div class="n">01</div><h4>Разбор задачи</h4><p>Обсуждаем сценарии бота, оплаты и то, что должно попасть в MVP, а что подождёт.</p></div>
       <div class="step"><div class="n">02</div><h4>Прототип</h4><p>Собираю рабочий скелет с ключевым сценарием — можно потрогать и поправить до полной сборки.</p></div>
@@ -1504,7 +1528,7 @@
 
 <section id="calc">
   <div class="wrap">
-    <div class="sec-head center reveal"><div class="eyebrow">калькулятор</div><h2>Подберём тариф за минуту</h2><p>Ответьте на три вопроса, и я покажу подходящий ориентир. Точную сумму назову после разбора задачи.</p></div>
+    <div class="sec-head center reveal"><h2>Подберём тариф за минуту</h2><p>Ответьте на три вопроса, и я покажу подходящий ориентир. Точную сумму назову после разбора задачи.</p></div>
     <div class="calc reveal" id="calcBox">
       <div class="calc-top"><div class="calc-bar"><i id="calcBarFill"></i></div><span class="calc-step" id="calcStepLbl">Вопрос 1 из 3</span></div>
       <div class="calc-body" id="calcBody"></div>
@@ -1516,7 +1540,7 @@
 <section id="pricing">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">цены</div>
+      
       <h2>Ориентир по цене</h2>
       <p>Диапазоны — по сложности похожих проектов выше. Точная сумма — после того как обсудим сценарий и объём интеграций.</p>
     </div>
@@ -1537,7 +1561,7 @@
 <section id="support">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">поддержка</div>
+      
       <h2>Поддержка бота</h2>
       <p>Бот не остаётся без присмотра после сдачи — можно обращаться разово или взять на постоянное сопровождение.</p>
     </div>
@@ -1552,7 +1576,7 @@
 
 <section id="faq">
   <div class="wrap">
-    <div class="sec-head center reveal"><div class="eyebrow">вопросы</div><h2>Частые вопросы</h2></div>
+    <div class="sec-head center reveal"><h2>Частые вопросы</h2></div>
     <div class="faq" data-stagger>
       <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Сколько стоит бот?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Ориентиры есть в разделе «Цены»: от 15 000 ₽ за контент-подписку до 45 000 ₽ за магазин с Mini App. Точную сумму называю после разбора задачи и фиксирую до начала работ.</p></div></div></div>
       <div class="faq-item reveal"><button type="button" class="faq-q" aria-expanded="false"><span>Как быстро будет готов бот?</span><i aria-hidden="true"></i></button><div class="faq-a"><div><p>Срок зависит от числа сценариев и интеграций: оплата, доставка, админка. После разбора задачи называю конкретный срок, а не «примерно».</p></div></div></div>
@@ -1568,7 +1592,6 @@
 <div class="cta-wrap">
   <div class="cta wrap">
     <div class="cta-inner">
-      <div class="eyebrow" style="justify-content:center;">на связи · отвечаю в течение дня</div>
       <h2 style="margin-top:16px;">Расскажите, какого бота не&nbsp;хватает вашему бизнесу</h2>
       <p>Запись, оплата, магазин или рассылки — обсудим сценарий и посчитаем срок.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
@@ -1815,7 +1838,8 @@
     vmuteBtn.addEventListener('click', function(){
       heroMuted = !heroMuted;
       vloop.muted = heroMuted;
-      vmuteBtn.textContent = heroMuted ? '🔇' : '🔊';
+      vmuteBtn.innerHTML = heroMuted ? '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>' : '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+      vmuteBtn.setAttribute('aria-label', heroMuted ? 'Включить звук' : 'Выключить звук');
       playSafe(vloop);
     });
     vfullBtn.addEventListener('click', function(){ openDemo(HERO[heroKey].demo); });
@@ -1867,6 +1891,10 @@
       movePill(activeBtn);
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ tabPill.style.transition = ''; }); });
     })();
+    // tab widths change once web fonts arrive or the viewport resizes — keep the pill under the active tab
+    function resyncPill(){ var b = document.querySelector('.phone-tabs button.active'); if(!b || !tabPill) return; tabPill.style.transition = 'none'; movePill(b); requestAnimationFrame(function(){ tabPill.style.transition = ''; }); }
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(resyncPill);
+    window.addEventListener('resize', resyncPill);
     tabBtns.forEach(function(btn, i){
       btn.addEventListener('click', function(){
         var dir = pendingSlideDir !== 0 ? pendingSlideDir : (i > prevTabIndex ? -1 : i < prevTabIndex ? 1 : 0);
@@ -2273,7 +2301,7 @@
         var val = chip.dataset.copy;
         var original = chip.innerHTML;
         function done(){
-          chip.innerHTML = '<span class="ic">✓</span>скопировано'; chip.classList.add('done');
+          chip.innerHTML = '<span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>скопировано'; chip.classList.add('done');
           setTimeout(function(){ chip.innerHTML = original; chip.classList.remove('done'); }, 1600);
         }
         if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(val).then(done, done); }
