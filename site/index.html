@@ -419,7 +419,7 @@
     .phone-tabs{ flex-wrap:wrap; justify-content:center; overflow-x:visible; gap:7px 6px; }
     .phone-tabs button{ flex:0 0 auto; }
   }
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+  @media (prefers-reduced-motion: reduce){ *, *::before, *::after{ animation:none !important; transition-duration:.12s !important; transition-delay:0s !important; } .reveal{ transform:none !important; } }
 
   .btn{ will-change:transform; position:relative; overflow:hidden; }
   .reveal{ opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
@@ -1215,9 +1215,29 @@
     .viz .cal-slots span{ padding:7px 13px; }
     .viz-cal .toast{ left:50%; right:auto; bottom:12px; translate:-50% 0; white-space:nowrap; }
   }
+
+  /* ---------- a11y + touch targets ---------- */
+  .skip-link{ position:fixed; left:16px; top:-60px; z-index:300; padding:10px 16px; border-radius:12px; background:var(--text); color:var(--bg); font-weight:600; text-decoration:none; transition:top .2s; }
+  .skip-link:focus{ top:12px; }
+  :where(a, button, summary, [tabindex]):focus-visible{ outline:2px solid var(--accent-b); outline-offset:3px; }
+  .phone-tabs button:focus-visible{ outline-offset:2px; }
+  .lightbox{ transition:opacity .22s ease, visibility 0s linear .22s; } .lightbox:not(.open){ visibility:hidden; } .lightbox.open{ transition-delay:0s; }
+  #totop:not(.show), .float-cta:not(.show){ visibility:hidden; transition-property:opacity, transform, visibility; transition-delay:0s, 0s, .3s; }
+  .lb-dot{ position:relative; }
+  .lb-dot::after{ content:''; position:absolute; inset:-9px; }
+  @media (max-width:860px), (pointer:coarse){
+    .vshow .phone-tabs button{ position:relative; height:36px !important; min-height:36px !important; }
+    .vshow .phone-tabs button::after{ content:''; position:absolute; left:0; right:0; top:-4px; bottom:-4px; }
+    .vshow .vctl{ bottom:68px !important; }
+    .vshow .vpager{ bottom:118px !important; }
+    header .btn{ height:44px; }
+    .vmute{ width:44px !important; height:44px !important; }
+    .footsec a{ padding:12px 0 !important; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 <noscript><style>.reveal{ opacity:1 !important; transform:none !important; }</style></noscript>
 
 <div class="hero-glow" aria-hidden="true"><canvas id="particles"></canvas></div>
@@ -1225,7 +1245,7 @@
 <div id="scrollbar"></div>
 <button id="totop" aria-label="Наверх">↑</button>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
+<div class="lightbox" id="lightbox" aria-hidden="true" inert role="dialog" aria-modal="true" aria-label="Демо-ролик">
   <div class="lightbox-box">
     <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button>
     <div class="lightbox-frame"><video id="lightboxVideo" controls playsinline autoplay preload="none">
@@ -1253,6 +1273,7 @@
   </div>
 </header>
 
+<main id="main">
 <div class="wrap hero">
   <div>
     <div class="eyebrow" style="margin-top:18px;"><span class="dot"></span>на связи · принимаю новые проекты</div>
@@ -1273,8 +1294,8 @@
     <div class="vshow" id="vshow">
       <div class="vposter" id="vposter" style="background-image:url(media/booking_poster.jpg)" role="img" aria-label="Демо Telegram-бота"></div>
       <video id="vloop" muted playsinline autoplay preload="auto" poster="media/booking_poster.jpg">
-        <source id="vloopWebm" src="media/booking_loop.webm" type="video/webm">
         <source id="vloopMp4" src="media/booking_loop.mp4" type="video/mp4">
+        <source id="vloopWebm" src="media/booking_loop.webm" type="video/webm">
       </video>
       <div class="vfade"></div>
       <div class="vlabel"><span class="d"></span><span id="vlabel">запись в студию</span></div>
@@ -1288,13 +1309,13 @@
       <div class="vctl">
         <button type="button" class="vfull" id="vfull">▶ Полный ролик · 33 сек</button>
       </div>
-      <div class="phone-tabs" role="tablist">
+      <div class="phone-tabs" role="tablist" aria-label="Проекты">
         <span id="tabPill" aria-hidden="true"></span>
-        <button type="button" class="active" data-bot="booking">Запись</button>
-        <button type="button" data-bot="subscription">Подписка</button>
-        <button type="button" data-bot="shop">Магазин</button>
-        <button type="button" data-bot="digital">Цифровые</button>
-        <button type="button" data-bot="content">ТГ→ВК</button>
+        <button type="button" class="active" data-bot="booking" role="tab" aria-selected="true" tabindex="0" aria-controls="vloop">Запись</button>
+        <button type="button" data-bot="subscription" role="tab" aria-selected="false" tabindex="-1" aria-controls="vloop">Подписка</button>
+        <button type="button" data-bot="shop" role="tab" aria-selected="false" tabindex="-1" aria-controls="vloop">Магазин</button>
+        <button type="button" data-bot="digital" role="tab" aria-selected="false" tabindex="-1" aria-controls="vloop">Цифровые</button>
+        <button type="button" data-bot="content" role="tab" aria-selected="false" tabindex="-1" aria-controls="vloop">ТГ→ВК</button>
       </div>
     </div>
   </div>
@@ -1601,6 +1622,8 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="wrap">
     <div class="footgrid">
@@ -1684,7 +1707,7 @@
       var animIO = new IntersectionObserver(function(es){
         es.forEach(function(en){ en.target.classList.toggle('anim-off', !en.isIntersecting); });
       }, { rootMargin:'120px 0px' });
-      document.querySelectorAll('body > section, .wrap.hero, .bigmarquee, footer').forEach(function(el){ animIO.observe(el); });
+      document.querySelectorAll('main > section, .wrap.hero, .bigmarquee, footer').forEach(function(el){ animIO.observe(el); });
     }
 
     var phone = document.querySelector('.phone');
@@ -1890,8 +1913,8 @@
     tabBtns.forEach(function(btn, i){
       btn.addEventListener('click', function(){
         var dir = pendingSlideDir !== 0 ? pendingSlideDir : (i > prevTabIndex ? -1 : i < prevTabIndex ? 1 : 0);
-        tabBtns.forEach(function(b){ b.classList.remove('active'); });
-        btn.classList.add('active');
+        tabBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); b.tabIndex = -1; });
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true'); btn.tabIndex = 0;
         movePill(btn);
         var pt = btn.parentNode; if(pt.scrollWidth > pt.clientWidth){ pt.scrollTo({ left: btn.offsetLeft - (pt.clientWidth - btn.offsetWidth) / 2, behavior:'smooth' }); }
         prevTabIndex = i;
@@ -1899,6 +1922,13 @@
         syncDotpager(i);
         markTabInteracted();
       });
+    });
+    // arrow keys move between project tabs (ARIA tabs pattern)
+    if(tabBtns.length) tabBtns[0].parentNode.addEventListener('keydown', function(e){
+      var i = tabBtns.indexOf(document.activeElement); if(i < 0) return;
+      var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? tabBtns.length - 1 : null;
+      if(n === null) return; e.preventDefault();
+      n = (n + tabBtns.length) % tabBtns.length; tabBtns[n].focus(); tabBtns[n].click();
     });
     if(swipeHint && !reduce){ setTimeout(function(){ swipeHint.classList.add('hide'); }, 7000); }
 
@@ -2437,7 +2467,7 @@
         return;
       }
       loadDemoSrc(key);
-      lightbox.classList.add('open');
+      lightbox.classList.add('open'); lightbox.inert = false;
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       if(typeof vloop !== 'undefined') vloop.pause();
@@ -2456,7 +2486,7 @@
         var exitFn = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
         if(exitFn && (document.fullscreenElement || document.webkitFullscreenElement)) exitFn.call(document);
       }catch(e){}
-      lightbox.classList.remove('open');
+      lightbox.classList.remove('open'); lightbox.inert = true;
       lightbox.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       lbVideo.pause();
