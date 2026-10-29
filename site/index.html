@@ -1444,7 +1444,7 @@
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><h3>Бот записи массажной студии</h3><div class="status demo"><span class="d"></span>готов к запуску</div></div>
+        <div class="card-top"><h3>Бот записи массажной студии</h3><div class="status"><span class="d"></span>запущен</div></div>
         <p class="pitch">Онлайн-запись для студии массажа с месячным календарём, ручной записью администратором и защитой от двойного бронирования на уровне транзакций БД.</p>
         <details class="term-details"><summary>Технические детали</summary><div class="term">
           <div><span class="k">$</span> <span class="v">надёжность</span> — BEGIN IMMEDIATE, WAL, busy timeout</div>
@@ -1453,7 +1453,8 @@
         </div><div class="tags"><span class="tag">aiogram 3</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">APScheduler</span></div></details>
         <div class="resline">
           <button type="button" class="demo-btn" data-demo="booking"><span class="play"><svg class="i" viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg></span>Смотреть видео</button>
-          <span class="resource-link disabled" aria-disabled="true">Пока без паблик-ссылки</span>
+          <a class="resource-link" href="https://t.me/BodyHormonyBot" target="_blank" rel="noopener">Открыть бота <span class="arrow">→</span></a>
+          <button type="button" class="copy-chip" data-copy="@BodyHormonyBot"><span class="ic"><svg class="i" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>@BodyHormonyBot</button>
         </div>
       </div>
 
@@ -2311,9 +2312,10 @@
 
     // 7 — number count-up on price reveal — replays every time the card crosses into view, from either direction
     document.querySelectorAll('.price').forEach(function(el){
-      var m = el.textContent.match(/^(\D*)([\d\s]+?)\s*(\D.*|)$/);
+      // "от 15 000 ₽/мес" → prefix "от ", number 15000 (spaces inside the number included), suffix " ₽/мес"
+      var m = el.textContent.match(/^(\D*)(\d[\d\s]*\d|\d)(\D.*|)$/);
       if(!m) return;
-      var prefix = m[1], target = parseInt(m[2].replace(/\s/g,''),10), suffix = m[3] ? ' ' + m[3].trim() : '';
+      var prefix = m[1], target = parseInt(m[2].replace(/\s/g,''),10), suffix = m[3];
       if(reduce || isNaN(target)){ return; }
       var card = el.closest('.pricecard, .supportcard');
       var running = false;
@@ -2325,14 +2327,13 @@
           void card.offsetWidth; // restart CSS animation
           card.classList.add('price-pulse');
         }
-        var start = performance.now(), dur = 2400;
-        function frame(now){
-          var p = Math.min(1, (now - start) / dur);
-          var eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = prefix + Math.round(target * eased).toLocaleString('ru-RU') + suffix;
-          if(p < 1){ requestAnimationFrame(frame); } else { running = false; }
+        // count the last 5 steps only (e.g. 7 000 → 12 000), so the real price shows almost at once
+        var step = target >= 10000 ? 1000 : 100, k = 5;
+        function tick(){
+          el.textContent = prefix + Math.max(0, target - k * step).toLocaleString('ru-RU') + suffix;
+          if(k > 0){ k--; setTimeout(tick, 110); } else { running = false; }
         }
-        requestAnimationFrame(frame);
+        tick();
       }
       var obs = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
